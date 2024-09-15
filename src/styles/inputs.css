@@ -1,0 +1,30 @@
+@tailwind utilities;
+@tailwind base;
+
+@layer utilities {
+  .alert_input,
+  .alert_input:focus {
+    outline: 3.2px solid rgba(255, 0, 0, 0.32);
+    border: 1px solid rgba(255, 0, 0, 0.48);
+  }
+}
+
+@layer base {
+  .rounded_input {
+    border-radius: 58px;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: 3.2px solid rgba(108, 48, 237, 0.32);
+    border: 1px solid rgba(108, 48, 237, 0.48);
+  }
+
+  input:disabled,
+  textarea:disabled {
+    cursor: not-allowed;
+
+    background: gainsboro;
+    border-color: gainsboro;
+  }
+}

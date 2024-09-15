@@ -1,0 +1,80 @@
+@tailwind utilities;
+@tailwind base;
+
+@layer utilities {
+  .first_btn,
+  .second_btn,
+  .third_btn,
+  .normal_btn {
+    border: unset;
+    box-shadow: unset;
+  }
+
+  .text_btn {
+    width: fit-content;
+    height: unset;
+    background: unset;
+    border: unset;
+    box-shadow: unset;
+    padding: unset;
+
+    line-height: normal;
+    color: var(--black-color);
+  }
+  .text_btn:active {
+    transform: unset;
+  }
+
+  .first_btn:hover,
+  .second_btn:hover,
+  .third_btn:hover,
+  .normal_btn:hover {
+    box-shadow: 4px 4px 15.8px 0px rgba(112, 62, 254, 0.4),
+      0px -4px 12px 0px rgba(0, 0, 0, 0.07),
+      0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
+  }
+
+  .first_btn {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .second_btn {
+    background: var(--gray-color);
+    color: var(--black-color);
+  }
+
+  .third_btn {
+    background: var(--black-color);
+    color: var(--gray-color);
+  }
+
+  .normal_btn {
+    background: white;
+    color: var(--primary-color);
+    border: 1px solid gainsboro;
+  }
+}
+
+@layer base {
+  button:active {
+    transform: scale(0.88);
+    transition: transform 0.2s ease-out;
+  }
+
+  button:hover {
+    background: white;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    text-shadow: unset;
+    box-shadow: unset;
+    transform: unset;
+
+    background: #f4f4f4;
+    border-color: #d9d9d9;
+  }
+}
