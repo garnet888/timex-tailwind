@@ -8,7 +8,8 @@
 :root {
   --message-z-index: 99999;
   --modal-z-index: calc(var(--message-z-index) - 1);
-  --header-z-index: calc(var(--modal-z-index) - 1);
+  --tooltip-z-index: calc(var(--modal-z-index) - 1);
+  --header-z-index: calc(var(--tooltip-z-index) - 1);
 
   --primary-color: #6c30ed;
   --black-color: #222222;

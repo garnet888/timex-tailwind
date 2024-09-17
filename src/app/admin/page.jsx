@@ -1,14 +1,11 @@
-import { getMetaTitle } from '@/lib/getMetaTitle';
 import RenderAdmin from './RenderAdmin';
 
-const TITLE = 'Тавтай морилно уу';
+const title = 'Тавтай морилно уу';
 
-export const metadata = {
-  title: getMetaTitle(TITLE),
-};
+export const metadata = { title };
 
 const Admin = () => {
-  return <RenderAdmin title={TITLE} />;
+  return <RenderAdmin title={title} />;
 };
 
 export default Admin;

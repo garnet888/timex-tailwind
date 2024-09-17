@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Select from '@/ui/Select';
 import Layout from '@/layouts/Layout';
+import Select from '@/ui/Select';
 
 export default function Home() {
   const [selectedOption, setSelectedOption] = useState('');
@@ -55,40 +55,22 @@ export default function Home() {
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <input placeholder='Primary' />
-            <input
-              placeholder='Disabled'
-              disabled
-            />
+            <input placeholder='Disabled' disabled />
 
-            <input
-              className='alert_input'
-              placeholder='Alert'
-            />
+            <input className='alert_input' placeholder='Alert' />
             <input
               className='no_arrow'
               placeholder='Number (No arrow)'
               type='number'
             />
-            <input
-              placeholder='Number'
-              type='number'
-            />
-            <input
-              className='rounded_input'
-              placeholder='Rounded'
-            />
+            <input placeholder='Number' type='number' />
+            <input className='rounded_input' placeholder='Rounded' />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <textarea placeholder='Primary' />
-            <textarea
-              placeholder='Disabled'
-              disabled
-            />
-            <textarea
-              className='alert_input'
-              placeholder='Alert'
-            />
+            <textarea placeholder='Disabled' disabled />
+            <textarea className='alert_input' placeholder='Alert' />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
@@ -143,10 +125,11 @@ export default function Home() {
 
         <div className='relative'>
           <ul className='fixed top-[80px] w-[320px] h-[320px] overflow-auto list-decimal bg-cyan-200 rounded-lg pl-10 p-2'>
-            <li>Clicked tooltip of avatar in header</li>
-            <li>Upload image </li>
-            <li>Preview image</li>
+            <li>Image Cutter</li>
+            <li>Top Spinner</li>
             <li>Avatar</li>
+            <li>Upload image</li>
+            <li>Preview image</li>
             <li>Checkbox/Radiobox</li>
             <li>Message</li>
             <li>Modal</li>

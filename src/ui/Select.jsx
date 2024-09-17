@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import RctSelect, { components } from 'react-select';
 import { IoSearchOutline, IoChevronDown, IoClose } from 'react-icons/io5';
+import RctSelect, { components } from 'react-select';
 
 const Select = ({
   placeholder = 'Сонгох...',

@@ -1,14 +1,11 @@
-import { getMetaTitle } from '@/lib/getMetaTitle';
 import RenderHome from './RenderHome';
 
-const TITLE = 'Нүүр';
+const title = 'Нүүр';
 
-export const metadata = {
-  title: getMetaTitle(TITLE),
-};
+export const metadata = { title };
 
 const Home = () => {
-  return <RenderHome title={TITLE} />;
+  return <RenderHome title={title} />;
 };
 
 export default Home;

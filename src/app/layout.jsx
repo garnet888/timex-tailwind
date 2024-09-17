@@ -1,8 +1,11 @@
 import '../styles/main.css';
 
 export const metadata = {
-  title: 'Цаг захиалгын платформ',
   description: 'TIMEX | Цаг захиалгын платформ',
+  title: {
+    default: 'TIMEX',
+    template: 'TIMEX | %s',
+  },
   icons: {
     icon: '/favicon.ico',
   },
