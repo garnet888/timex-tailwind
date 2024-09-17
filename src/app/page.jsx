@@ -144,17 +144,17 @@ export default function Home() {
         <div className='relative'>
           <ul className='fixed top-[80px] w-[320px] h-[320px] overflow-auto list-decimal bg-cyan-200 rounded-lg pl-10 p-2'>
             <li>Clicked tooltip of avatar in header</li>
-            <li>Switch</li>
-            <li>Date picker</li>
-            <li>Checkbox/Radiobox</li>
-            <li>Carousel</li>
-            <li>Tabs</li>
-            <li>Collapse</li>
             <li>Upload image </li>
             <li>Preview image</li>
             <li>Avatar</li>
+            <li>Checkbox/Radiobox</li>
             <li>Message</li>
             <li>Modal</li>
+            <li>Tabs</li>
+            <li>Collapse</li>
+            <li>Switch</li>
+            <li>Date picker</li>
+            <li>Carousel</li>
             <li>Toast</li>
             <li>Table</li>
             <li>Chart</li>

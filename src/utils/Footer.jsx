@@ -9,9 +9,9 @@ const Footer = () => {
   return (
     <footer
       style={{ gridArea: 'footer' }}
-      className='shadow-footer px-[120px] py-8'
+      className='shadow-footer px-8 lg:px-[120px] py-8'
     >
-      <ul className='flex gap-12 text-sm'>
+      <ul className='flex flex-col gap-12 text-sm'>
         <li className='flex flex-col gap-6 text-primary text-sm'>
           <Image
             className='w-[100px] h-[40px] object-contain'
@@ -131,10 +131,10 @@ const Footer = () => {
 
       <hr className='my-6' />
 
-      <div className='flex justify-between'>
+      <div className='flex flex-col md:flex-row justify-between'>
         <p>&copy; Copyright {1900 + new Date().getYear()}</p>
 
-        <div className='flex items-center gap-2'>
+        <div className='flex flex-col md:flex-row items-center gap-2'>
           Биднийг дагаарай
           <Link
             className='bg-[#1877F2] text-white rounded-full px-[12px] py-2'
