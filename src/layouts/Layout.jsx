@@ -5,9 +5,7 @@ const Layout = ({ children }) => {
   return (
     <main className='layout'>
       <Header />
-
       <main style={{ gridArea: 'content' }}>{children}</main>
-
       <Footer />
     </main>
   );

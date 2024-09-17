@@ -13,7 +13,7 @@ const Sidebar = ({ smallMenu, setSmallMenu }) => {
       ].join(' ')}
       style={{ gridArea: 'sidebar' }}
     >
-      <nav className='tmx_scollbar w-full h-full overflow-auto bg-white rounded-xl shadow-sbar_shadow'>
+      <nav className='tmx_scollbar w-full h-full overflow-auto bg-white rounded-xl shadow-sidebar'>
         <div
           className={[
             'sticky top-0 flex items-center bg-white p-3 shadow',
@@ -64,13 +64,19 @@ const Sidebar = ({ smallMenu, setSmallMenu }) => {
 
           <div className='sticky bottom-0 flex flex-col gap-4 bg-white shadow p-4'>
             <button className='text_btn flex items-center gap-[10px] w-full text-blackCLR text-start hover:text-red-500'>
-              <TbLogout color='red' size={18} />
+              <TbLogout
+                color='red'
+                size={18}
+              />
               Гарах
             </button>
 
             <hr />
 
-            <Link className='flex items-center gap-2' href='/'>
+            <Link
+              className='flex items-center gap-2'
+              href='/'
+            >
               <Image
                 className='w-[32px] h-[32px] object-cover rounded-full'
                 src='/images/logo.png'

@@ -27,11 +27,11 @@ module.exports = {
         footer: 'var(--footer-height)',
       },
       minHeight: {
-        min_content: 'calc(100vh - var(--header-height))',
+        content: 'calc(100vh - var(--header-height))',
       },
       boxShadow: {
-        sbar_shadow: '0 1px 6px rgba(0, 0, 0, 0.2)',
-        footer_shadow: '0 1px 8px rgba(0, 0, 0, 0.4)',
+        sidebar: '0 1px 6px rgba(0, 0, 0, 0.2)',
+        footer: '0 1px 8px rgba(0, 0, 0, 0.4)',
       },
     },
   },

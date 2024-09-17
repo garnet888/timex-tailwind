@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer
       style={{ gridArea: 'footer' }}
-      className='shadow-footer_shadow px-[120px] py-8'
+      className='shadow-footer px-[120px] py-8'
     >
       <ul className='flex gap-12 text-sm'>
         <li className='flex flex-col gap-6 text-primary text-sm'>
