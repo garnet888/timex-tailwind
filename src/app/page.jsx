@@ -126,7 +126,6 @@ export default function Home() {
         <div className='relative'>
           <ul className='fixed top-[80px] w-[320px] h-[320px] overflow-auto list-decimal bg-cyan-200 rounded-lg pl-10 p-2'>
             <li>Image Cutter</li>
-            <li>Top Spinner</li>
             <li>Avatar</li>
             <li>Upload image</li>
             <li>Preview image</li>

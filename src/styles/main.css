@@ -6,7 +6,8 @@
 @import '../styles/inputs.css';
 
 :root {
-  --message-z-index: 99999;
+  --load_box-z-index: 99999;
+  --message-z-index: calc(var(--load_box-z-index) - 1);
   --modal-z-index: calc(var(--message-z-index) - 1);
   --tooltip-z-index: calc(var(--modal-z-index) - 1);
   --header-z-index: calc(var(--tooltip-z-index) - 1);
@@ -180,5 +181,28 @@ body *:disabled::placeholder {
     height: auto;
 
     padding-block: 4px;
+  }
+}
+
+.load_spinner {
+  width: 36px;
+  aspect-ratio: 1;
+
+  border-radius: 100%;
+
+  background: radial-gradient(farthest-side, var(--primary-color) 94%, #0000)
+      top/4.8px 4.8px no-repeat,
+    conic-gradient(#0000 30%, var(--primary-color));
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    #0000 calc(100% - 4.8px),
+    #000 0
+  );
+
+  animation: rotation 1s infinite linear;
+}
+@keyframes rotation {
+  100% {
+    transform: rotate(1turn);
   }
 }

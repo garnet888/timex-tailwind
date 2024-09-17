@@ -1,3 +1,5 @@
+import LoadBox from '@/ui/LoadBox';
+
 import '../styles/main.css';
 
 export const metadata = {
@@ -12,9 +14,15 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const isLoading = false;
+
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body>
+        <LoadBox isLoading={isLoading} />
+
+        {children}
+      </body>
     </html>
   );
 }

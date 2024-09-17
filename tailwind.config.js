@@ -12,6 +12,7 @@ module.exports = {
   theme: {
     extend: {
       zIndex: {
+        load_box: 'var(--load_box-z-index)',
         message: 'var(--message-z-index)',
         modal: 'var(--modal-z-index)',
         tooltip: 'var(--tooltip-z-index)',
