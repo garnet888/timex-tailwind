@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header
       style={{ gridArea: 'header' }}
-      className='background_img fixed top-0 z-header w-full h-header flex justify-between items-center bg-white shadow-md px-10'
+      className='background_img_1 fixed top-0 z-header w-full h-header flex justify-between items-center bg-white border-b border-white px-10'
     >
       <Link href='/'>
         <Image

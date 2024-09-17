@@ -7,7 +7,7 @@ const DynamicImage = dynamic(() => import('next/image'), { ssr: false });
 const RenderHome = ({ title }) => {
   return (
     <Layout>
-      <div className='home_bg h-home_top flex flex-col justify-between py-12 bg-gray-200'>
+      <div className='background_img_2 h-home_top flex flex-col justify-between py-12 bg-gray-200'>
         <div className='px-[200px]'>
           <h1 className='text-center'>{title}</h1>
         </div>
@@ -32,7 +32,7 @@ const RenderHome = ({ title }) => {
         </ul>
       </div>
 
-      <div className='background_img h-[800px] px-[120px]'>Other</div>
+      <div className='background_img_1 h-[800px] px-[120px]'>Other</div>
     </Layout>
   );
 };

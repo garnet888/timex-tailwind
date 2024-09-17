@@ -8,8 +8,11 @@ const AdminLayout = ({ title, children }) => {
   const [smallMenu, setSmallMenu] = useState(false);
 
   return (
-    <main className='admin_layout background_img bg-[#f0f2f5]'>
-      <Sidebar smallMenu={smallMenu} setSmallMenu={setSmallMenu} />
+    <main className='admin_layout background_img_2 bg-[#f0f2f5]'>
+      <Sidebar
+        smallMenu={smallMenu}
+        setSmallMenu={setSmallMenu}
+      />
 
       <div
         style={{ gridArea: 'admContent' }}

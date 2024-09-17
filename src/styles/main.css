@@ -62,15 +62,15 @@ body *:disabled::placeholder {
     transition: width 0.4s linear;
   }
 
-  .background_img {
+  .background_img_1 {
     background-image: url('/images/background.png');
     background-repeat: repeat;
     background-size: cover;
   }
 
-  .home_bg {
+  .background_img_2 {
     background-image: url('/images/background.png'),
-      url('/images/background_grid.png');
+      url('/images/background_grid.svg');
     background-repeat: no-repeat, repeat;
     background-size: cover;
   }
@@ -90,7 +90,7 @@ body *:disabled::placeholder {
     grid-template-rows:
       var(--header-height)
       1fr
-      var(--footer-height);
+      auto;
 
     grid-template-areas:
       'header'
