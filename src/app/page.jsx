@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import * as Icons from 'react-icons';
-import { RxBell } from 'react-icons/rx';
 import Select from '@/ui/Select';
 import Layout from '@/layouts/Layout';
 
@@ -57,22 +55,40 @@ export default function Home() {
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <input placeholder='Primary' />
-            <input placeholder='Disabled' disabled />
+            <input
+              placeholder='Disabled'
+              disabled
+            />
 
-            <input className='alert_input' placeholder='Alert' />
+            <input
+              className='alert_input'
+              placeholder='Alert'
+            />
             <input
               className='no_arrow'
               placeholder='Number (No arrow)'
               type='number'
             />
-            <input placeholder='Number' type='number' />
-            <input className='rounded_input' placeholder='Rounded' />
+            <input
+              placeholder='Number'
+              type='number'
+            />
+            <input
+              className='rounded_input'
+              placeholder='Rounded'
+            />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <textarea placeholder='Primary' />
-            <textarea placeholder='Disabled' disabled />
-            <textarea className='alert_input' placeholder='Alert' />
+            <textarea
+              placeholder='Disabled'
+              disabled
+            />
+            <textarea
+              className='alert_input'
+              placeholder='Alert'
+            />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>

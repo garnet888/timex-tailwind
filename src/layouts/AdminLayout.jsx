@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { IoNotifications } from 'react-icons/io5';
-import Sidebar from '@/components/Sidebar';
+import Sidebar from '@/utils/Sidebar';
 
 const AdminLayout = ({ title, children }) => {
   const [smallMenu, setSmallMenu] = useState(false);

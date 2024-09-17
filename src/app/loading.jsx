@@ -1,4 +1,4 @@
-import { getMetaTitle } from '@/utils/MetaTitle';
+import { getMetaTitle } from '@/lib/getMetaTitle';
 import Layout from '@/layouts/Layout';
 
 const TITLE = 'Уншиж байна';

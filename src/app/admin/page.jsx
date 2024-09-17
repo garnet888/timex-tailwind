@@ -1,4 +1,4 @@
-import { getMetaTitle } from '@/utils/MetaTitle';
+import { getMetaTitle } from '@/lib/getMetaTitle';
 import RenderAdmin from './RenderAdmin';
 
 const TITLE = 'Тавтай морилно уу';

@@ -89,8 +89,7 @@ body *:disabled::placeholder {
     grid-template-columns: 1fr;
     grid-template-rows:
       var(--header-height)
-      1fr
-      auto;
+      repeat(2, auto);
 
     grid-template-areas:
       'header'
