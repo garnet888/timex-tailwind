@@ -253,10 +253,9 @@ export default function Home() {
             <li>Upload image</li>
             <li>Preview image</li>
             <li>Checkbox/Radiobox</li>
-            <li>Message</li>
-            <li>Modal</li>
-            <li>Tabs</li>
-            <li>Collapse</li>
+            <li>Modal /npm/</li>
+            <li>Tabs /npm/</li>
+            <li>Collapse /npm/</li>
             <li>Switch</li>
             <li>Date picker</li>
             <li>Carousel</li>

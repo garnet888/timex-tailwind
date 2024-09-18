@@ -27,7 +27,6 @@ module.exports = {
       height: {
         header: 'var(--header-height)',
         home_top: 'calc(100vh - var(--header-height))',
-        footer: 'var(--footer-height)',
       },
       minHeight: {
         content: 'calc(100vh - var(--header-height))',
