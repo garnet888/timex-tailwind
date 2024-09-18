@@ -57,7 +57,8 @@
 }
 
 @layer base {
-  button:active {
+  button:active,
+  .click_effect:active {
     transform: scale(0.88);
     transition: transform 0.2s ease-out;
   }

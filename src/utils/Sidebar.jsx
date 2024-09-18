@@ -20,7 +20,7 @@ const Sidebar = ({ smallMenu, setSmallMenu }) => {
             smallMenu ? 'justify-center' : 'justify-between',
           ].join(' ')}
         >
-          <Link href='/'>
+          <Link href='/home'>
             <Image
               className={[
                 'w-[100px] object-contain',
@@ -70,7 +70,7 @@ const Sidebar = ({ smallMenu, setSmallMenu }) => {
 
             <hr />
 
-            <Link className='flex items-center gap-2' href='/'>
+            <Link className='flex items-center gap-2' href='#'>
               <Image
                 className='w-[32px] h-[32px] object-cover rounded-full'
                 src='/images/logo.png'
