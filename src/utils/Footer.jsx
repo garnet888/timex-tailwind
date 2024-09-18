@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { TbPhone, TbMail } from 'react-icons/tb';
+import { SiFacebook, SiInstagram } from 'react-icons/si';
 
 const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE;
 
@@ -137,25 +138,23 @@ const Footer = () => {
         </p>
 
         <div className='flex flex-col md:flex-row items-center gap-2'>
-          Биднийг дагаарай
+          <p>Биднийг дагаарай</p>
+
           <div className='flex gap-4 md:gap-2'>
             <Link
-              className='bg-[#1877F2] text-white rounded-full px-[12px] py-2'
+              className='flex gap-[6px] items-center bg-[#1877F2] text-white rounded-full px-[12px] py-2 hover:text-white hover:bg-primary'
               href='https://www.facebook.com/Timex.mn'
               target='_blank'
             >
-              fb.com/timexmn
+              <SiFacebook size={20} /> fb.com/timexmn
             </Link>
+
             <Link
-              className='text-white rounded-full px-[12px] py-2'
-              style={{
-                background:
-                  'radial-gradient(92.18% 99.11% at 26.56% 107.7%, #FD5 0%, #FD5 10%, #FF543E 50%, #C837AB 100%), #FFF',
-              }}
+              className='insta_gradient_bg flex gap-[6px] items-center text-white rounded-full px-[12px] py-2'
               href='https://www.instagram.com/timex.mn'
               target='_blank'
             >
-              @timex.mn
+              <SiInstagram className='mt-[2px]' size={20} /> @timex.mn
             </Link>
           </div>
         </div>

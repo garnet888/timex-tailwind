@@ -47,7 +47,7 @@ const Sidebar = ({ smallMenu, setSmallMenu }) => {
           </button>
         </div>
 
-        <div className='text-dark text-[14px]'>
+        <div className='text-[14px]'>
           <ul className='flex flex-col gap-2 px-2 py-1'>
             {[...Array(80)].map((_, idx) => (
               <li key={uuid()}>
@@ -63,20 +63,14 @@ const Sidebar = ({ smallMenu, setSmallMenu }) => {
           </ul>
 
           <div className='sticky bottom-0 flex flex-col gap-4 bg-white shadow p-4'>
-            <button className='text_btn flex items-center gap-[10px] w-full text-dark text-start hover:text-red-500'>
-              <TbLogout
-                color='red'
-                size={18}
-              />
+            <button className='text_btn flex items-center gap-[10px] w-full text-start hover:text-red-500'>
+              <TbLogout color='red' size={18} />
               Гарах
             </button>
 
             <hr />
 
-            <Link
-              className='flex items-center gap-2'
-              href='/'
-            >
+            <Link className='flex items-center gap-2' href='/'>
               <Image
                 className='w-[32px] h-[32px] object-cover rounded-full'
                 src='/images/logo.png'

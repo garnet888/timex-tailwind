@@ -22,26 +22,12 @@ const Header = () => {
       </Link>
 
       <div className='flex gap-1'>
-        <Tooltip
-          content={
-            <div className='bg-primary text-white rounded-full p-[10px] hover:text-gray-300'>
-              <FaRegUser />
-            </div>
-          }
+        <Link
+          className='bg-primary text-white rounded-full p-[10px] hover:text-gray-300'
+          href='/'
         >
-          <div className='flex flex-col gap-1 text-nowrap px-2 py-2'>
-            <Link className='rounded px-1 hover:bg-gray-200' href='/'>
-              Тохиргоо
-            </Link>
-
-            <Link
-              className='text-orange-400 rounded px-1 hover:bg-gray-200'
-              href='/'
-            >
-              Гарах
-            </Link>
-          </div>
-        </Tooltip>
+          <FaRegUser />
+        </Link>
 
         <Popover
           content={

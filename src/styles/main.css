@@ -56,6 +56,21 @@ body *:disabled::placeholder {
     margin: 0;
   }
 
+  .insta_gradient_bg {
+    background: radial-gradient(
+        92.18% 99.11% at 26.56% 107.7%,
+        #fd5 0%,
+        #fd5 10%,
+        #ff543e 50%,
+        #c837ab 100%
+      ),
+      #fff;
+  }
+  .insta_gradient_bg:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+
   .text_balance {
     text-wrap: balance;
   }
