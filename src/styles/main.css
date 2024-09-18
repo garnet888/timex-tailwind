@@ -13,8 +13,9 @@
   --header-z-index: calc(var(--tooltip-z-index) - 1);
 
   --primary-color: #6c30ed;
-  --black-color: #222222;
-  --gray-color: #f3f3f3;
+  --dark-color: #222222;
+  --grey-color: #ededed;
+  --light-grey-color: #f3f3f3;
 
   --header-height: 60px;
   --footer-height: 280px;
@@ -40,7 +41,7 @@
 }
 
 body {
-  color: var(--black-color);
+  color: var(--dark-color);
 }
 
 body *:disabled,
@@ -169,9 +170,9 @@ body *:disabled::placeholder {
 
     height: 34px;
 
-    color: var(--black-color);
+    color: var(--dark-color);
     border-radius: 8px;
-    border: 1px solid gainsboro;
+    border: 1px solid var(--grey-color);
     font-size: 14px;
 
     padding-inline: 8px;

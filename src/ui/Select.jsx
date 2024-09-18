@@ -40,7 +40,7 @@ const Select = ({
     <div className='flex justify-center items-center gap-2'>
       {!isMounted || disabled ? (
         <div
-          className='cursor-not-allowed w-full h-[36px] flex items-center bg-[gainsboro] text-gray-500 px-[8px]'
+          className='cursor-not-allowed w-full h-[36px] flex items-center bg-light_grey text-gray-500 text-sm px-[8px]'
           style={{ borderRadius: round }}
         >
           {getInitialValue() ? getInitialValue().label : _placeholder}
@@ -60,7 +60,10 @@ const Select = ({
             ),
             ClearIndicator: (props) => (
               <components.ClearIndicator {...props}>
-                <IoClose className='text-gray-400' size={18} />
+                <IoClose
+                  className='text-gray-400'
+                  size={18}
+                />
               </components.ClearIndicator>
             ),
           }}
@@ -100,7 +103,7 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
       };
     } else {
       return {
-        border: '1px solid gainsboro',
+        border: '1px solid var(--grey-color)',
         outline: 'none',
       };
     }
@@ -127,15 +130,13 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
       ...base,
       cursor: getCursor(state.isDisabled, state.menuIsOpen, searchable),
       boxShadow: 'none',
-      backgroundColor: state.isDisabled ? 'gainsboro' : 'white',
-      color: state.isDisabled ? 'rgba(0, 0, 0, 0.25)' : '#222222',
+      color: 'var(--dark-color)',
       borderRadius: round,
       border: getBorderOutline(state.menuIsOpen).border,
-      borderColor: state.isDisabled && 'gainsboro',
       outline: getBorderOutline(state.menuIsOpen).outline,
+      fontSize: '14px',
       '&:hover': {
-        border: getBorderOutline(state.menuIsOpen).border,
-        outline: getBorderOutline(state.menuIsOpen).outline,
+        border: '1px solid rgba(108, 48, 237, 0.48)',
       },
     }),
     valueContainer: (base) => ({

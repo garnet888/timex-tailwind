@@ -1,7 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { DiApple, DiAndroid } from 'react-icons/di';
 import Layout from '@/layouts/Layout';
+import InputAddon from '@/ui/InputAddon';
+import Textarea from '@/ui/Textarea';
 import Select from '@/ui/Select';
 
 export default function Home() {
@@ -55,22 +58,139 @@ export default function Home() {
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <input placeholder='Primary' />
-            <input placeholder='Disabled' disabled />
+            <input
+              placeholder='Disabled'
+              disabled
+            />
 
-            <input className='alert_input' placeholder='Alert' />
+            <input
+              className='alert_input'
+              placeholder='Alert'
+            />
             <input
               className='no_arrow'
               placeholder='Number (No arrow)'
               type='number'
             />
-            <input placeholder='Number' type='number' />
-            <input className='rounded_input' placeholder='Rounded' />
+            <input
+              placeholder='Number'
+              type='number'
+            />
+            <input
+              className='rounded_input'
+              placeholder='Rounded'
+            />
+
+            <InputAddon
+              placeholder='Before addon input'
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+            />
+
+            <InputAddon
+              placeholder='Alert before addon input'
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              alert
+            />
+
+            <InputAddon
+              placeholder='After addon input'
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+            />
+
+            <InputAddon
+              placeholder='Alert after addon input'
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              alert
+            />
+
+            <InputAddon
+              placeholder='Both addon input'
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+            />
+
+            <InputAddon
+              placeholder='Both addon input'
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              alert
+            />
+
+            <InputAddon
+              placeholder='Both addon input'
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              disabled
+            />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
-            <textarea placeholder='Primary' />
-            <textarea placeholder='Disabled' disabled />
-            <textarea className='alert_input' placeholder='Alert' />
+            <Textarea placeholder='Primary' />
+            <Textarea
+              placeholder='Disabled'
+              disabled
+            />
+
+            <Textarea
+              placeholder='Counted'
+              shownCount
+              maxLength={100}
+            />
+
+            <Textarea
+              placeholder='Alert'
+              type='alert'
+            />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
@@ -125,7 +245,10 @@ export default function Home() {
 
         <div className='relative'>
           <ul className='fixed top-[80px] w-[320px] h-[320px] overflow-auto list-decimal bg-cyan-200 rounded-lg pl-10 p-2'>
+            <li>Prefix input</li>
+            <li>Password input</li>
             <li>Image Cutter</li>
+            <li>Form inputs</li>
             <li>Avatar</li>
             <li>Upload image</li>
             <li>Preview image</li>

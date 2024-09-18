@@ -19,7 +19,7 @@
     padding: unset;
 
     line-height: normal;
-    color: var(--black-color);
+    color: var(--dark-color);
   }
   .text_btn:active {
     transform: unset;
@@ -40,13 +40,13 @@
   }
 
   .second_btn {
-    background: var(--gray-color);
-    color: var(--black-color);
+    background: var(--grey-color);
+    color: var(--dark-color);
   }
 
   .third_btn {
-    background: var(--black-color);
-    color: var(--gray-color);
+    background: var(--dark-color);
+    color: var(--grey-color);
   }
 
   .normal_btn {

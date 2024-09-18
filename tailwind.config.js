@@ -20,8 +20,9 @@ module.exports = {
       },
       colors: {
         primary: 'var(--primary-color)',
-        blackCLR: 'var(--black-color)',
-        grayCLR: 'var(--gray-color)',
+        dark: 'var(--dark-color)',
+        grey: 'var(--grey-color)',
+        light_grey: 'var(--light-grey-color)',
       },
       height: {
         header: 'var(--header-height)',
