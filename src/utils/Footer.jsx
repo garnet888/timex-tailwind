@@ -40,7 +40,7 @@ const Footer = () => {
 
           <ul className='flex flex-col gap-1 text-nowrap mt-2'>
             <li>
-              <Link href='#'>Системийн танилцуулга</Link>
+              <Link href='/about'>Системийн танилцуулга</Link>
             </li>
             <li>
               <Link href='#'>Заавар</Link>

@@ -20,7 +20,7 @@ const Sidebar = ({ smallMenu, setSmallMenu }) => {
             smallMenu ? 'justify-center' : 'justify-between',
           ].join(' ')}
         >
-          <Link href='/home'>
+          <Link href='/'>
             <Image
               className={[
                 'w-[100px] object-contain',

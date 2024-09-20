@@ -3,10 +3,10 @@ import LoadBox from '@/ui/LoadBox';
 import '../styles/main.css';
 
 export const metadata = {
-  description: 'TIMEX | Цаг захиалгын платформ',
+  description: 'TimeX | Цаг захиалгын платформ',
   title: {
-    default: 'TIMEX',
-    template: 'TIMEX | %s',
+    default: 'TimeX',
+    template: 'TimeX | %s',
   },
   icons: {
     icon: '/favicon.ico',
@@ -14,7 +14,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const isLoading = false;
+  let isLoading;
 
   return (
     <html lang='en'>
