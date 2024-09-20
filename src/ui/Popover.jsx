@@ -13,41 +13,41 @@ const Popover = ({ content, children, placement = 'BR' }) => {
     • LEFT
     • LT = left top */
 
-  let place_class = 'right-0'; // default placement (BR)
+  let place_style = 'right-0'; // default placement (BR)
 
   switch (placement) {
     case 'TL':
-      place_class = 'bottom-full';
+      place_style = 'bottom-full';
       break;
     case 'TOP':
-      place_class = 'bottom-full right-1/2 translate-x-1/2';
+      place_style = 'bottom-full right-1/2 translate-x-1/2';
       break;
     case 'TR':
-      place_class = 'bottom-full right-0';
+      place_style = 'bottom-full right-0';
       break;
     case 'RT':
-      place_class = 'top-0 left-full';
+      place_style = 'top-0 left-full';
       break;
     case 'RIGHT':
-      place_class = 'top-1/2 -translate-y-1/2 left-full';
+      place_style = 'top-1/2 -translate-y-1/2 left-full';
       break;
     case 'RB':
-      place_class = 'bottom-0 left-full';
+      place_style = 'bottom-0 left-full';
       break;
     case 'BOTTOM':
-      place_class = 'right-1/2 translate-x-1/2';
+      place_style = 'right-1/2 translate-x-1/2';
       break;
     case 'BL':
-      place_class = 'top-full';
+      place_style = 'top-full';
       break;
     case 'LB':
-      place_class = 'bottom-0 right-full';
+      place_style = 'bottom-0 right-full';
       break;
     case 'LEFT':
-      place_class = 'top-1/2 -translate-y-1/2 right-full';
+      place_style = 'top-1/2 -translate-y-1/2 right-full';
       break;
     case 'LT':
-      place_class = 'top-0 right-full';
+      place_style = 'top-0 right-full';
       break;
   }
 
@@ -59,7 +59,7 @@ const Popover = ({ content, children, placement = 'BR' }) => {
 
       <div
         className={[
-          place_class,
+          place_style,
           String(placement).includes('B') ? 'mt-[6px]' : 'mb-[6px]',
           String(placement).includes('R') ? 'ml-[6px]' : 'mr-[6px]',
           'hidden group-hover:block',

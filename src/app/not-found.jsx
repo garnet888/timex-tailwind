@@ -7,7 +7,7 @@ export const metadata = { title };
 const NotFound = () => {
   return (
     <Layout>
-      <main className='min-h-content grid place-content-center'>
+      <main className='h-full grid place-content-center'>
         <h1>{title}...</h1>
       </main>
     </Layout>

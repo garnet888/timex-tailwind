@@ -4,12 +4,22 @@
 @layer utilities {
   .alert_input,
   .alert_input:focus {
-    outline: 3.2px solid rgba(255, 0, 0, 0.32);
-    border: 1px solid rgba(255, 0, 0, 0.48);
+    outline: 3.2px solid rgba(255, 0, 0, 0.32) !important;
+    border: 1px solid rgba(255, 0, 0, 0.48) !important;
   }
 }
 
 @layer base {
+  .no_input {
+    border: unset;
+    /* padding-inline: 2px; */
+  }
+  .no_input:hover,
+  .no_input:focus {
+    outline: unset;
+    border: unset;
+  }
+
   .rounded_input {
     border-radius: 58px;
   }

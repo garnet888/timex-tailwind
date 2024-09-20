@@ -1,16 +1,16 @@
 const InputAddon = (props) => {
   const { before, after, alert, disabled } = props;
 
-  let addon_class = 'grid place-content-center bg-grey text-sm px-3';
+  let addon_style = 'grid place-content-center bg-grey text-sm px-3';
 
   if (disabled) {
-    addon_class += ' text-gray-500';
+    addon_style += ' text-gray-500';
   }
 
   return (
     <div className='w-full flex'>
       {before && (
-        <div className={[addon_class, 'rounded-[8px_0_0_8px]'].join(' ')}>
+        <div className={[addon_style, 'rounded-[8px_0_0_8px]'].join(' ')}>
           {before}
         </div>
       )}
@@ -27,7 +27,7 @@ const InputAddon = (props) => {
       />
 
       {after && (
-        <div className={[addon_class, 'rounded-[0_8px_8px_0]'].join(' ')}>
+        <div className={[addon_style, 'rounded-[0_8px_8px_0]'].join(' ')}>
           {after}
         </div>
       )}

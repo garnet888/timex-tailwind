@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { DiApple, DiAndroid } from 'react-icons/di';
 import Layout from '@/layouts/Layout';
 import InputAddon from '@/ui/InputAddon';
+import InputPrefix from '@/ui/InputPrefix';
+import InputPassword from '@/ui/InputPassword';
 import Textarea from '@/ui/Textarea';
 import Select from '@/ui/Select';
 
@@ -68,7 +70,9 @@ const RenderAbout = () => {
             />
             <input placeholder='Number' type='number' />
             <input className='rounded_input' placeholder='Rounded' />
+          </div>
 
+          <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <InputAddon
               placeholder='Before addon input'
               before={<DiApple size={20} color='var(--primary-color)' />}
@@ -110,6 +114,63 @@ const RenderAbout = () => {
               after={<DiAndroid size={20} color='var(--primary-color)' />}
               disabled
             />
+          </div>
+
+          <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
+            <InputPrefix
+              placeholder='Before prefix input'
+              before={<DiApple size={20} color='var(--primary-color)' />}
+            />
+
+            <InputPrefix
+              placeholder='Alert before prefix input'
+              before={<DiApple size={20} color='var(--primary-color)' />}
+              alert
+            />
+
+            <InputPrefix
+              placeholder='After prefix input'
+              after={<DiAndroid size={20} color='var(--primary-color)' />}
+            />
+
+            <InputPrefix
+              placeholder='Alert after prefix input'
+              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              alert
+            />
+
+            <InputPrefix
+              placeholder='Both prefix input'
+              before={<DiApple size={20} color='var(--primary-color)' />}
+              after={<DiAndroid size={20} color='var(--primary-color)' />}
+            />
+
+            <InputPrefix
+              placeholder='Both prefix input'
+              before={<DiApple size={20} color='var(--primary-color)' />}
+              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              alert
+            />
+
+            <InputPrefix
+              placeholder='Both prefix input'
+              before={<DiApple size={20} color='var(--primary-color)' />}
+              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              disabled
+            />
+          </div>
+
+          <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
+            <InputPassword placeholder='Password input' />
+
+            <InputPassword
+              placeholder='Password prefix input'
+              before={<DiApple size={20} color='var(--primary-color)' />}
+            />
+
+            <InputPassword placeholder='Password disabled input' disabled />
+
+            <InputPassword placeholder='Password alert input' alert />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
@@ -173,8 +234,6 @@ const RenderAbout = () => {
 
         <div className='relative grid place-content-center md:place-content-start'>
           <ul className='sticky top-[80px] w-[320px] h-[320px] overflow-auto list-decimal bg-cyan-200 rounded-lg pl-10 p-2'>
-            <li>Prefix input</li>
-            <li>Password input</li>
             <li>Image Cutter</li>
             <li>Form inputs</li>
             <li>Avatar</li>
