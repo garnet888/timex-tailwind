@@ -234,15 +234,17 @@ const RenderAbout = () => {
 
         <div className='relative grid place-content-center md:place-content-start'>
           <ul className='sticky top-[80px] w-[320px] h-[320px] overflow-auto list-decimal bg-cyan-200 rounded-lg pl-10 p-2'>
+            <li>Formik /npm/</li>
+            <li>Modal /npm/</li>
+            <li>Collapse /npm/</li>
+            <li>Checkbox/Radiobox</li>
+            <li>Icons</li>
             <li>Image Cutter</li>
             <li>Form inputs</li>
             <li>Avatar</li>
             <li>Upload image</li>
             <li>Preview image</li>
-            <li>Checkbox/Radiobox</li>
-            <li>Modal /npm/</li>
             <li>Tabs /npm/</li>
-            <li>Collapse /npm/</li>
             <li>Switch</li>
             <li>Date picker</li>
             <li>Carousel</li>
