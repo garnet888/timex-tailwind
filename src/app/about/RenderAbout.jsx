@@ -237,20 +237,21 @@ const RenderAbout = () => {
             <li>Formik /npm/</li>
             <li>Modal /npm/</li>
             <li>Collapse /npm/</li>
-            <li>Checkbox/Radiobox</li>
             <li>Icons</li>
+            <li>Time picker</li>
+            <li>Checkbox/Radiobox</li>
             <li>Image Cutter</li>
-            <li>Form inputs</li>
+            <li>Inputs in the form</li>
             <li>Avatar</li>
             <li>Upload image</li>
             <li>Preview image</li>
             <li>Tabs /npm/</li>
-            <li>Switch</li>
-            <li>Date picker</li>
-            <li>Carousel</li>
-            <li>Toast</li>
+            <li>Switch /npm/</li>
+            <li>Date picker /npm/</li>
+            <li>Carousel /npm/</li>
+            <li>Toast /npm/</li>
             <li>Table</li>
-            <li>Chart</li>
+            <li>Chart js</li>
           </ul>
         </div>
       </div>

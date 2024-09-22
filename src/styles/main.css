@@ -2,6 +2,8 @@
 @tailwind utilities;
 @tailwind base;
 
+@import 'swiper/css';
+@import '../styles/swiper.css';
 @import '../styles/button.css';
 @import '../styles/inputs.css';
 
@@ -15,8 +17,10 @@
   --primary-color: #6c30ed;
   --dark-color: #222222;
   --grey-color: #ededed;
+  --dark-grey-color: #d9d9d9;
   --light-grey-color: #f3f3f3;
 
+  --scrollbar-width: 4px;
   --header-height: 60px;
 }
 
@@ -28,7 +32,7 @@
 } */
 
 *::-webkit-scrollbar {
-  width: 4px;
+  width: var(--scrollbar-width);
   height: 4px;
 
   background-color: rgba(112, 62, 254, 0);
@@ -156,6 +160,7 @@ body *:disabled::placeholder {
   button {
     cursor: pointer;
 
+    line-height: 1.5715;
     width: fit-content;
     height: 34px;
 

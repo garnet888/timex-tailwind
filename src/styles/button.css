@@ -21,6 +21,9 @@
     line-height: normal;
     color: var(--dark-color);
   }
+  .text_btn:hover {
+    background: unset;
+  }
   .text_btn:active {
     transform: unset;
   }

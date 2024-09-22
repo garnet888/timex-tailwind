@@ -6,9 +6,9 @@ const Layout = ({ children }) => {
     <main className='layout'>
       <Header />
 
-      <main className='min-h-content' style={{ gridArea: 'content' }}>
+      <div className='min-h-content' style={{ gridArea: 'content' }}>
         {children}
-      </main>
+      </div>
 
       <Footer />
     </main>

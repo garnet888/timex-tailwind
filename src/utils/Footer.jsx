@@ -140,7 +140,7 @@ const Footer = () => {
         <div className='flex flex-col md:flex-row items-center gap-2'>
           <p>Биднийг дагаарай</p>
 
-          <div className='flex gap-4 md:gap-2'>
+          <div className='flex flex-col md:flex-row gap-4 md:gap-2'>
             <Link
               className='flex gap-[6px] items-center bg-[#1877F2] text-white rounded-full px-[12px] py-2 hover:text-white hover:bg-primary'
               href='https://www.facebook.com/Timex.mn'
