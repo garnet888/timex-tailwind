@@ -1,0 +1,53 @@
+.container {
+  user-select: none;
+
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.container.noneScroll {
+  height: 100%;
+  overflow-y: unset;
+}
+
+.heading {
+  padding-inline: 10px;
+}
+.updatedDate {
+  text-align: right;
+}
+.decs {
+  display: block;
+  margin-bottom: 36px;
+}
+
+.list {
+  counter-reset: item;
+  padding-inline: 10px;
+}
+
+.mainItem_title {
+  font-size: 16px;
+}
+.mainItem:not(:last-child) {
+  margin-bottom: 28px;
+}
+.mainItem::before {
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.list_item {
+  display: block;
+  line-height: 1.25;
+
+  margin-block: 8px;
+}
+.list_item::before {
+  counter-increment: item;
+  content: counters(item, '.') '. ';
+}
+
+.list_item ul li {
+  list-style: disc;
+}

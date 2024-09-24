@@ -46,10 +46,10 @@ const Footer = () => {
               <Link href='#'>Заавар</Link>
             </li>
             <li>
-              <Link href='#'>Үйчилгээний нөхцөл</Link>
+              <Link href='/terms'>Үйчилгээний нөхцөл</Link>
             </li>
             <li>
-              <Link href='#'>Нууцлалын бодлого</Link>
+              <Link href='/privacy'>Нууцлалын бодлого</Link>
             </li>
           </ul>
         </li>

@@ -42,7 +42,7 @@ const Header = () => {
           />
         </Link>
 
-        <div className='hidden md:flex items-center gap-6'>
+        <div className='flex items-center gap-6'>
           <div className='flex gap-1 border border-dark_grey rounded-full p-1'>
             <button
               className={[
@@ -66,29 +66,31 @@ const Header = () => {
           </div>
 
           {isUser ? (
-            <Tooltip content={<button>Апп татах</button>}>
-              <div className='text-nowrap px-2 py-1'>
-                <Link
-                  className='flex items-center gap-2'
-                  href='https://apps.apple.com/mn/app/timex-mn/id6470434425'
-                  target='_blank'
-                >
-                  <DiApple size={18} /> App Store
-                </Link>
+            <div className='hidden md:block'>
+              <Tooltip content={<button>Апп татах</button>}>
+                <div className='text-nowrap px-2 py-1'>
+                  <Link
+                    className='flex items-center gap-2'
+                    href='https://apps.apple.com/mn/app/timex-mn/id6470434425'
+                    target='_blank'
+                  >
+                    <DiApple size={18} /> App Store
+                  </Link>
 
-                <hr className='mt-2 mb-1' />
+                  <hr className='mt-2 mb-1' />
 
-                <Link
-                  className='flex items-center gap-2'
-                  href='https://play.google.com/store/apps/details?id=mn.timex.timex'
-                  target='_blank'
-                >
-                  <DiAndroid size={16} /> Google Store
-                </Link>
-              </div>
-            </Tooltip>
+                  <Link
+                    className='flex items-center gap-2'
+                    href='https://play.google.com/store/apps/details?id=mn.timex.timex'
+                    target='_blank'
+                  >
+                    <DiAndroid size={16} /> Google Store
+                  </Link>
+                </div>
+              </Tooltip>
+            </div>
           ) : (
-            <div className='flex gap-3'>
+            <div className='hidden md:flex gap-3'>
               {/* <Link
                 className='first_btn click_effect h-auto rounded-full p-[10px] hover:bg-primary hover:text-gray-300'
                 href='/admin'

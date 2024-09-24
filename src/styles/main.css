@@ -93,7 +93,7 @@ body *:disabled::placeholder {
     background-image: url('/images/background.png'),
       url('/images/background_grid.svg');
     background-repeat: no-repeat, repeat;
-    background-size: cover;
+    background-size: cover, contain;
   }
 
   .admin_layout {
