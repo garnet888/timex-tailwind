@@ -1,5 +1,5 @@
+import { LoadBox } from '@/ui';
 import { ContextProvider } from '@/context/Context';
-import LoadBox from '@/ui/LoadBox';
 
 import '../styles/main.css';
 

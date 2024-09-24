@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { IoNotifications } from 'react-icons/io5';
-import Tooltip from '@/ui/Tooltip';
+import { Tooltip } from '@/ui';
 import Sidebar from '@/utils/Sidebar';
 
 const AdminLayout = ({ title, children }) => {

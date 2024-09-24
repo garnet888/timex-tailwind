@@ -1,4 +1,4 @@
-import BackedIcon from '@/ui/BackedIcon';
+import { BackedIcon } from '@/ui';
 import {
   Award,
   Like,

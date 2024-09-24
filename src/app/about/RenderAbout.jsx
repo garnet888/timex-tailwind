@@ -2,12 +2,8 @@
 
 import { useState } from 'react';
 import { DiApple, DiAndroid } from 'react-icons/di';
+import { InputAddon, InputPassword, InputPrefix, Select, Textarea } from '@/ui';
 import Layout from '@/layouts/Layout';
-import InputAddon from '@/ui/InputAddon';
-import InputPrefix from '@/ui/InputPrefix';
-import InputPassword from '@/ui/InputPassword';
-import Textarea from '@/ui/Textarea';
-import Select from '@/ui/Select';
 
 const RenderAbout = () => {
   const [selectedOption, setSelectedOption] = useState('');
