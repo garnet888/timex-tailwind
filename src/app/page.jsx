@@ -5,6 +5,19 @@ import Image from 'next/image';
 import { v4 as uuid } from 'uuid';
 import * as ReactSwiper from 'swiper/react';
 import * as SwiperModules from 'swiper/modules';
+import BackedIcon from '@/ui/BackedIcon';
+import {
+  Award,
+  Branch,
+  Company,
+  Employee,
+  Like,
+  Notif,
+  Search,
+  StarLine,
+  TimeRightArrow,
+  User,
+} from '@/utils/icons';
 import Layout from '@/layouts/Layout';
 
 export default function Home() {
@@ -267,6 +280,13 @@ export default function Home() {
 
           <ul className='grid md:grid-cols-2 xl:grid-cols-4 gap-[28px] mt-16'>
             <li className='bg-white border shadow rounded-2xl p-6'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <User />
+              </BackedIcon>
+
               <b className='block font-medium my-2'>Хэрэглэгч</b>
 
               <p className='text-gray-500 text-sm text-justify'>
@@ -278,6 +298,13 @@ export default function Home() {
             </li>
 
             <li className='bg-white border shadow rounded-2xl p-6'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <Employee />
+              </BackedIcon>
+
               <b className='block font-medium my-2'>Ажилтан</b>
 
               <p className='text-gray-500 text-sm text-justify'>
@@ -287,8 +314,14 @@ export default function Home() {
                 төлөвлөх шийдлийг өгнө.
               </p>
             </li>
-
             <li className='bg-white border shadow rounded-2xl p-6'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <Branch />
+              </BackedIcon>
+
               <b className='block font-medium my-2'>Салбар</b>
 
               <p className='text-gray-500 text-sm text-justify'>
@@ -297,8 +330,14 @@ export default function Home() {
                 хяналт хийх, тайлан гаргах боломжтой.
               </p>
             </li>
-
             <li className='bg-white border shadow rounded-2xl p-6'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <Company />
+              </BackedIcon>
+
               <b className='block font-medium my-2'>Байгууллага</b>
 
               <p className='text-gray-500 text-sm text-justify'>
@@ -318,7 +357,14 @@ export default function Home() {
 
           <ul className='grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-16'>
             <li>
-              <b className='block font-medium mb-2'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <StarLine />
+              </BackedIcon>
+
+              <b className='block font-medium my-2'>
                 Үйлчилгээний газруудын мэдээллийг нэг платформоос
               </b>
 
@@ -329,7 +375,14 @@ export default function Home() {
             </li>
 
             <li>
-              <b className='block font-medium mb-2'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <Search />
+              </BackedIcon>
+
+              <b className='block font-medium my-2'>
                 Олон өгөгдлөөр хайлт хийж өөрт тохирох газраа олох
               </b>
 
@@ -341,7 +394,14 @@ export default function Home() {
             </li>
 
             <li>
-              <b className='block font-medium mb-2'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <Like />
+              </BackedIcon>
+
+              <b className='block font-medium my-2'>
                 Үнэлгээ өгөх, үйлчлүүлэгчдийн өгсөн үнэлгээг ранк санал болгоно
               </b>
 
@@ -353,7 +413,14 @@ export default function Home() {
             </li>
 
             <li>
-              <b className='block font-medium mb-2'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <Award />
+              </BackedIcon>
+
+              <b className='block font-medium my-2'>
                 Ур чадварын мэдээллийг харах
               </b>
 
@@ -365,7 +432,14 @@ export default function Home() {
             </li>
 
             <li>
-              <b className='block font-medium mb-2'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <Notif />
+              </BackedIcon>
+
+              <b className='block font-medium my-2'>
                 Захиалга сануулах мэдэгдэл
               </b>
 
@@ -378,7 +452,14 @@ export default function Home() {
             </li>
 
             <li>
-              <b className='block font-medium mb-2'>Захиалгын түүхээ харах</b>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
+                <TimeRightArrow />
+              </BackedIcon>
+
+              <b className='block font-medium my-2'>Захиалгын түүхээ харах</b>
 
               <p className='text-gray-500 text-sm text-justify'>
                 Хэзээ, хаана ямар үйлчилгээ авсан тэмдэглэлээ эргэн харах
