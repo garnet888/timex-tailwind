@@ -1,26 +1,20 @@
 'use client';
 
+import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { v4 as uuid } from 'uuid';
 import * as ReactSwiper from 'swiper/react';
 import * as SwiperModules from 'swiper/modules';
+import Context from '@/context/Context';
 import BackedIcon from '@/ui/BackedIcon';
-import {
-  Award,
-  Branch,
-  Company,
-  Employee,
-  Like,
-  Notif,
-  Search,
-  StarLine,
-  TimeRightArrow,
-  User,
-} from '@/utils/icons';
+import { Branch, Company, Employee, User } from '@/utils/icons';
 import Layout from '@/layouts/Layout';
+import FeaturesOfferedUser from '@/components/Home/FeaturesOfferedUser';
+import FeaturesOfferedBusiness from '@/components/Home/FeaturesOfferedBusiness';
 
 export default function Home() {
+  const { isUser } = useContext(Context);
+
   return (
     <Layout>
       <div className='background_img_2 lg:h-home_top flex flex-col justify-between gap-6 lg:gap-0 py-8 bg-gray-200'>
@@ -31,8 +25,9 @@ export default function Home() {
             </h3>
 
             <p className='text-center md:text-start text-gray-500 my-6'>
-              Бид танд захиалга, үйл ажиллагаагаа төлөвлөх хялбар шийдлийг санал
-              болгож байна.
+              {isUser
+                ? 'Бид танд олон төрлийн үйлчилгээний цагийг нэг дороос захиалах, захиалгаа удирдах хялбар шийдлийг санал болгож байна.'
+                : 'Бид танд захиалга, үйл ажиллагаагаа төлөвлөх хялбар шийдлийг санал болгож байна.'}
             </p>
 
             <div className='flex flex-col gap-2 items-center md:items-start'>
@@ -83,7 +78,11 @@ export default function Home() {
 
           <Image
             className='w-[780px] h-[300px] lg:h-[460px] object-contain'
-            src='/images/home_top_business.png'
+            src={
+              isUser
+                ? '/images/home_top_user.png'
+                : '/images/home_top_business.png'
+            }
             alt='Logo'
             width={1000}
             height={1000}
@@ -269,7 +268,7 @@ export default function Home() {
       <div className='flex flex-col gap-24 background_img_1 px-10 lg:px-[120px] py-24'>
         <div>
           <b className='text-primary font-medium'>Онцлог</b>
-          <h3 className='font-medium my-2'>TIMEX хэрхэн ажилладаг вэ?</h3>
+          <h2 className='font-medium my-2'>TIMEX хэрхэн ажилладаг вэ?</h2>
 
           <p className='text-gray-500'>
             TimeX нь цаг захиалах үйлчилгээ үзүүлэхээс гадна ажилтны цагийн
@@ -278,12 +277,9 @@ export default function Home() {
             мэдээллийг хялбаршуулан автоматжуулсан цогц систем юм.
           </p>
 
-          <ul className='grid md:grid-cols-2 xl:grid-cols-4 gap-[28px] mt-16'>
+          <ul className='grid md:grid-cols-2 xl:grid-cols-4 gap-[28px] mt-10'>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
+              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
                 <User />
               </BackedIcon>
 
@@ -298,10 +294,7 @@ export default function Home() {
             </li>
 
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
+              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
                 <Employee />
               </BackedIcon>
 
@@ -315,10 +308,7 @@ export default function Home() {
               </p>
             </li>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
+              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
                 <Branch />
               </BackedIcon>
 
@@ -331,10 +321,7 @@ export default function Home() {
               </p>
             </li>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
+              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
                 <Company />
               </BackedIcon>
 
@@ -349,125 +336,7 @@ export default function Home() {
           </ul>
         </div>
 
-        <div>
-          <b className='text-primary font-medium'>Онцлог</b>
-          <h3 className='font-medium my-2'>
-            Timex-ээс Хэрэглэгчдэд санал болгож буй боломжууд
-          </h3>
-
-          <ul className='grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-16'>
-            <li>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <StarLine />
-              </BackedIcon>
-
-              <b className='block font-medium my-2'>
-                Үйлчилгээний газруудын мэдээллийг нэг платформоос
-              </b>
-
-              <p className='text-gray-500 text-sm text-justify'>
-                TimeХ нь орон даяарх үйлчилгээний газруудын мэдээллийг нэгтгэн
-                хэрэглэгчид хүргэж буй захиалга, удирдлагын платформ юм.
-              </p>
-            </li>
-
-            <li>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <Search />
-              </BackedIcon>
-
-              <b className='block font-medium my-2'>
-                Олон өгөгдлөөр хайлт хийж өөрт тохирох газраа олох
-              </b>
-
-              <p className='text-gray-500 text-sm text-justify'>
-                Хэрэгцээт үйлчилгээ, түүний хаяг, ойр байршил, үнэлгээ өндөртэй
-                газар гэх мэт хүссэн нөхцөлөөрөө хайлт хийж өөрт тохирох газраа
-                сонгоход тань туслах болно.
-              </p>
-            </li>
-
-            <li>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <Like />
-              </BackedIcon>
-
-              <b className='block font-medium my-2'>
-                Үнэлгээ өгөх, үйлчлүүлэгчдийн өгсөн үнэлгээг ранк санал болгоно
-              </b>
-
-              <p className='text-gray-500 text-sm text-justify'>
-                Захиалагч нь авсан үйлчилгээндээ үнэлгээ өгч, сэтгэгдлээ
-                хуваалцах боломжтой ба үйлчилгээний газар болон ажилчдын үнэлгээ
-                хийгдэнэ.
-              </p>
-            </li>
-
-            <li>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <Award />
-              </BackedIcon>
-
-              <b className='block font-medium my-2'>
-                Ур чадварын мэдээллийг харах
-              </b>
-
-              <p className='text-gray-500 text-sm text-justify'>
-                Үйлчилгээний газар болон үйлчилгээ үзүүлэгчийн ур чадвар,
-                зэрэглэлийн мэдээллийг харж үйлчилгээ авах ажилтнаа өөрөө сонгох
-                боломжийг танд олгож байна.
-              </p>
-            </li>
-
-            <li>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <Notif />
-              </BackedIcon>
-
-              <b className='block font-medium my-2'>
-                Захиалга сануулах мэдэгдэл
-              </b>
-
-              <p className='text-gray-500 text-sm text-justify'>
-                Хийгдсэн захиалгыг мэдэгдэл хэлбэрээр урьдчилан сануулна. Мөн
-                захиалгын хугацаа дөхөж байгааг танд мэдэгдэл очиж сануулах тул
-                захиалгын цагаа мартаад очихгүй өнгөрөөх асуудал дахин гарахгүй
-                боллоо.
-              </p>
-            </li>
-
-            <li>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <TimeRightArrow />
-              </BackedIcon>
-
-              <b className='block font-medium my-2'>Захиалгын түүхээ харах</b>
-
-              <p className='text-gray-500 text-sm text-justify'>
-                Хэзээ, хаана ямар үйлчилгээ авсан тэмдэглэлээ эргэн харах
-                боломжтой.
-              </p>
-            </li>
-          </ul>
-        </div>
+        {isUser ? <FeaturesOfferedUser /> : <FeaturesOfferedBusiness />}
       </div>
     </Layout>
   );

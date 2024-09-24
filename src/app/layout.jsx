@@ -1,3 +1,4 @@
+import { ContextProvider } from '@/context/Context';
 import LoadBox from '@/ui/LoadBox';
 
 import '../styles/main.css';
@@ -14,14 +15,14 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  let isLoading;
-
   return (
     <html lang='en'>
       <body>
-        <LoadBox isLoading={isLoading} />
+        <ContextProvider>
+          <LoadBox />
 
-        {children}
+          {children}
+        </ContextProvider>
       </body>
     </html>
   );

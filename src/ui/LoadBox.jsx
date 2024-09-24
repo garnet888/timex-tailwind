@@ -1,16 +1,20 @@
 'use client';
 
+import { useContext } from 'react';
 import LoadingBar from 'react-top-loading-bar';
+import Context from '@/context/Context';
 
-const LoadBox = ({ isLoading }) => {
-  return (
-    isLoading && (
+const LoadBox = () => {
+  const { reload } = useContext(Context);
+
+  if (reload) {
+    return (
       <main className='fixed z-load_box w-full h-full'>
         <LoadingBar
           className='rounded-[0_8px_8px_0]'
           color='var(--primary-color)'
           height={4}
-          progress={isLoading ? 60 : 100}
+          progress={reload ? 60 : 100}
         />
 
         <div className='w-full h-full flex flex-col justify-center items-center gap-4 bg-[rgba(255,255,255,0.6)]'>
@@ -20,8 +24,8 @@ const LoadBox = ({ isLoading }) => {
           </p>
         </div>
       </main>
-    )
-  );
+    );
+  }
 };
 
 export default LoadBox;

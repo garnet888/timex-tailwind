@@ -11,3 +11,8 @@ export { default as Like } from './Like';
 export { default as Award } from './Award';
 export { default as Notif } from './Notif';
 export { default as TimeRightArrow } from './TimeRightArrow';
+
+export { default as Infinite } from './Infinite';
+export { default as UserEdit } from './UserEdit';
+export { default as DocPlus } from './DocPlus';
+export { default as ChartUp } from './ChartUp';
