@@ -96,15 +96,7 @@ body *:disabled::placeholder {
     background-size: cover, contain;
   }
 
-  .admin_layout {
-    display: grid;
-
-    grid-template-columns: min-content 1fr;
-    grid-template-rows: minmax(100vh, 1fr);
-    grid-template-areas: 'sidebar  admContent';
-  }
-
-  .layout {
+  .mainLayout {
     display: grid;
 
     grid-template-columns: 1fr;
@@ -116,6 +108,14 @@ body *:disabled::placeholder {
       'header'
       'content'
       'footer';
+  }
+
+  .adminLayout {
+    display: grid;
+
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: minmax(100vh, 1fr);
+    grid-template-areas: 'sidebar  admContent';
   }
 }
 

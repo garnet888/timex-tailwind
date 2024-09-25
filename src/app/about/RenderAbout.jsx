@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { DiApple, DiAndroid } from 'react-icons/di';
 import { InputAddon, InputPassword, InputPrefix, Select, Textarea } from '@/ui';
-import Layout from '@/layouts/Layout';
+import MainLayout from '@/layouts/MainLayout';
 
 const RenderAbout = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -22,7 +22,7 @@ const RenderAbout = () => {
   };
 
   return (
-    <Layout>
+    <MainLayout>
       <div className='flex flex-col-reverse md:grid md:grid-cols-2 gap-8 p-4'>
         <div>
           <div className='border-b border-blue-400 pb-4 mb-8'>
@@ -56,58 +56,120 @@ const RenderAbout = () => {
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <input placeholder='Primary' />
-            <input placeholder='Disabled' disabled />
+            <input
+              placeholder='Disabled'
+              disabled
+            />
 
-            <input className='alert_input' placeholder='Alert' />
+            <input
+              className='alert_input'
+              placeholder='Alert'
+            />
             <input
               className='no_arrow'
               placeholder='Number (No arrow)'
               type='number'
             />
-            <input placeholder='Number' type='number' />
-            <input className='rounded_input' placeholder='Rounded' />
+            <input
+              placeholder='Number'
+              type='number'
+            />
+            <input
+              className='rounded_input'
+              placeholder='Rounded'
+            />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <InputAddon
               placeholder='Before addon input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
             />
 
             <InputAddon
               placeholder='Alert before addon input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
               alert
             />
 
             <InputAddon
               placeholder='After addon input'
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
             />
 
             <InputAddon
               placeholder='Alert after addon input'
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
               alert
             />
 
             <InputAddon
               placeholder='Both addon input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
             />
 
             <InputAddon
               placeholder='Both addon input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
               alert
             />
 
             <InputAddon
               placeholder='Both addon input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
               disabled
             />
           </div>
@@ -115,43 +177,93 @@ const RenderAbout = () => {
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <InputPrefix
               placeholder='Before prefix input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
             />
 
             <InputPrefix
               placeholder='Alert before prefix input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
               alert
             />
 
             <InputPrefix
               placeholder='After prefix input'
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
             />
 
             <InputPrefix
               placeholder='Alert after prefix input'
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
               alert
             />
 
             <InputPrefix
               placeholder='Both prefix input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
             />
 
             <InputPrefix
               placeholder='Both prefix input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
               alert
             />
 
             <InputPrefix
               placeholder='Both prefix input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
-              after={<DiAndroid size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
+              after={
+                <DiAndroid
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
               disabled
             />
           </div>
@@ -161,21 +273,42 @@ const RenderAbout = () => {
 
             <InputPassword
               placeholder='Password prefix input'
-              before={<DiApple size={20} color='var(--primary-color)' />}
+              before={
+                <DiApple
+                  size={20}
+                  color='var(--primary-color)'
+                />
+              }
             />
 
-            <InputPassword placeholder='Password disabled input' disabled />
+            <InputPassword
+              placeholder='Password disabled input'
+              disabled
+            />
 
-            <InputPassword placeholder='Password alert input' alert />
+            <InputPassword
+              placeholder='Password alert input'
+              alert
+            />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
             <Textarea placeholder='Primary' />
-            <Textarea placeholder='Disabled' disabled />
+            <Textarea
+              placeholder='Disabled'
+              disabled
+            />
 
-            <Textarea placeholder='Counted' shownCount maxLength={100} />
+            <Textarea
+              placeholder='Counted'
+              shownCount
+              maxLength={100}
+            />
 
-            <Textarea placeholder='Alert' type='alert' />
+            <Textarea
+              placeholder='Alert'
+              type='alert'
+            />
           </div>
 
           <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
@@ -251,7 +384,7 @@ const RenderAbout = () => {
           </ul>
         </div>
       </div>
-    </Layout>
+    </MainLayout>
   );
 };
 

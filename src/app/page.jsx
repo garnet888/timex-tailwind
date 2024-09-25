@@ -8,7 +8,7 @@ import * as SwiperModules from 'swiper/modules';
 import { BackedIcon } from '@/ui';
 import Context from '@/context/Context';
 import { Branch, Company, Employee, User } from '@/utils/icons';
-import Layout from '@/layouts/Layout';
+import MainLayout from '@/layouts/MainLayout';
 import FeaturesOfferedUser from '@/components/Home/FeaturesOfferedUser';
 import FeaturesOfferedBusiness from '@/components/Home/FeaturesOfferedBusiness';
 
@@ -16,7 +16,7 @@ export default function Home() {
   const { isUser } = useContext(Context);
 
   return (
-    <Layout>
+    <MainLayout>
       <div className='background_img_2 lg:h-home_top flex flex-col justify-between gap-6 lg:gap-0 py-8 bg-gray-200'>
         <div className='flex flex-col gap-8 lg:flex-row justify-between items-center px-12 xl:px-[200px]'>
           <div>
@@ -279,7 +279,10 @@ export default function Home() {
 
           <ul className='grid md:grid-cols-2 xl:grid-cols-4 gap-[28px] mt-10'>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
                 <User />
               </BackedIcon>
 
@@ -294,7 +297,10 @@ export default function Home() {
             </li>
 
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
                 <Employee />
               </BackedIcon>
 
@@ -308,7 +314,10 @@ export default function Home() {
               </p>
             </li>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
                 <Branch />
               </BackedIcon>
 
@@ -321,7 +330,10 @@ export default function Home() {
               </p>
             </li>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
                 <Company />
               </BackedIcon>
 
@@ -338,6 +350,6 @@ export default function Home() {
 
         {isUser ? <FeaturesOfferedUser /> : <FeaturesOfferedBusiness />}
       </div>
-    </Layout>
+    </MainLayout>
   );
 }
