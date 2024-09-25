@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import { DiApple, DiAndroid } from 'react-icons/di';
+import Modal from 'react-minimal-modal';
 import { InputAddon, InputPassword, InputPrefix, Select, Textarea } from '@/ui';
 import MainLayout from '@/layouts/MainLayout';
 
 const RenderAbout = () => {
   const [selectedOption, setSelectedOption] = useState('');
+  const [visibleModal, setVisibleModal] = useState(false);
 
   const options = (which = '') => [
     { value: `${which + ' [chocolate]'}`, label: `${which + ' [Chocolate]'}` },
@@ -25,6 +27,20 @@ const RenderAbout = () => {
     <MainLayout>
       <div className='flex flex-col-reverse md:grid md:grid-cols-2 gap-8 p-4'>
         <div>
+          <button onClick={() => setVisibleModal(true)}>Open Modal</button>
+          <Modal
+            title='Hello'
+            width={340}
+            open={visibleModal}
+            hideIcon
+            footer={
+              <button onClick={() => setVisibleModal(false)}>Close</button>
+            }
+            // onOpenChange={setVisibleModal}
+          >
+            <div>I am a modal</div>
+          </Modal>
+
           <div className='border-b border-blue-400 pb-4 mb-8'>
             <h1>Цаг захиалгын платформ</h1>
             <p>
@@ -364,9 +380,7 @@ const RenderAbout = () => {
         <div className='relative grid place-content-center md:place-content-start'>
           <ul className='sticky top-[80px] w-[320px] h-[320px] overflow-auto list-decimal bg-cyan-200 rounded-lg pl-10 p-2'>
             <li>Formik /npm/</li>
-            <li>Modal /npm/</li>
             <li>Collapse /npm/</li>
-            <li>Icons</li>
             <li>Time picker</li>
             <li>Checkbox/Radiobox</li>
             <li>Image Cutter</li>

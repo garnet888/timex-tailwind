@@ -2590,6 +2590,11 @@ react-is@^16.13.1, react-is@^16.7.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-minimal-modal@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-minimal-modal/-/react-minimal-modal-2.1.0.tgz#460c939723558be414edd1849556d1e878b730a6"
+  integrity sha512-rmKJZCImpdbY68mR5zeeo64VA94/I+ZZeBFLLdfOPQzPHcnZ9ksP3ozVZ0+rAgerYALqN50rpPgd2EhH4Q2waA==
+
 react-select@^5.8.0:
   version "5.8.1"
   resolved "https://registry.npmjs.org/react-select/-/react-select-5.8.1.tgz"

@@ -20,4 +20,5 @@ const TimeRightArrow = () => {
     </svg>
   );
 };
+
 export default TimeRightArrow;

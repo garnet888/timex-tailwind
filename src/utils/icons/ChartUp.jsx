@@ -20,4 +20,5 @@ const ChartUp = () => {
     </svg>
   );
 };
+
 export default ChartUp;

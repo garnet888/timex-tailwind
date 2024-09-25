@@ -52,6 +52,15 @@ body *:disabled::placeholder {
   color: hsl(0, 0%, 50%);
 }
 
+.modal__close-button {
+  background: unset;
+  box-shadow: unset;
+  padding: unset;
+
+  min-width: 28px;
+  min-height: 28px;
+}
+
 @layer utilities {
   /* number input-iin arrow-iig alga bolj bn */
   .no_arrow::-webkit-outer-spin-button,
