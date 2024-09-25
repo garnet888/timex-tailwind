@@ -1,11 +1,11 @@
 'use client';
 
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-const Context = createContext();
+const MainContext = createContext();
 
-export const ContextProvider = ({ children }) => {
+export const MainProvider = ({ children }) => {
   const [reload, setReload] = useState(false);
   const [isUser, setIsUser] = useState();
 
@@ -36,7 +36,7 @@ export const ContextProvider = ({ children }) => {
   };
 
   return (
-    <Context.Provider
+    <MainContext.Provider
       value={useMemo(
         () => ({
           reload,
@@ -48,8 +48,8 @@ export const ContextProvider = ({ children }) => {
       )}
     >
       {renderChildren()}
-    </Context.Provider>
+    </MainContext.Provider>
   );
 };
 
-export default Context;
+export const useMainContext = () => useContext(MainContext);

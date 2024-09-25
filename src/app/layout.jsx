@@ -1,5 +1,5 @@
 import { LoadBox } from '@/ui';
-import { ContextProvider } from '@/context/Context';
+import { MainProvider } from '@/context/MainContext';
 
 import '../styles/main.css';
 
@@ -18,11 +18,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <ContextProvider>
+        <MainProvider>
           <LoadBox />
 
           {children}
-        </ContextProvider>
+        </MainProvider>
       </body>
     </html>
   );

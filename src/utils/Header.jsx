@@ -1,17 +1,16 @@
 'use client';
 
-import { useContext } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { DiApple, DiAndroid } from 'react-icons/di';
 import { FaRegUser, FaPowerOff } from 'react-icons/fa';
-import Context from '@/context/Context';
+import { useMainContext } from '@/context/MainContext';
 import Popover from '@/ui/Popover';
 import Tooltip from '@/ui/Tooltip';
 
 const Header = () => {
-  const { reload, isUser, setIsUser } = useContext(Context);
+  const { reload, isUser, setIsUser } = useMainContext();
 
   const router = useRouter();
   const pathname = usePathname();

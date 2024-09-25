@@ -1,19 +1,18 @@
 'use client';
 
-import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import * as ReactSwiper from 'swiper/react';
 import * as SwiperModules from 'swiper/modules';
 import { BackedIcon } from '@/ui';
-import Context from '@/context/Context';
+import { useMainContext } from '@/context/MainContext';
 import { Branch, Company, Employee, User } from '@/utils/icons';
 import MainLayout from '@/layouts/MainLayout';
 import FeaturesOfferedUser from '@/components/Home/FeaturesOfferedUser';
 import FeaturesOfferedBusiness from '@/components/Home/FeaturesOfferedBusiness';
 
 export default function Home() {
-  const { isUser } = useContext(Context);
+  const { isUser } = useMainContext();
 
   return (
     <MainLayout>
