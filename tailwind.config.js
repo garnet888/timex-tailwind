@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       zIndex: {
         load_box: 'var(--load_box-z-index)',
-        message: 'var(--message-z-index)',
+        notif: 'var(--notif-z-index)',
         modal: 'var(--modal-z-index)',
         tooltip: 'var(--tooltip-z-index)',
         header: 'var(--header-z-index)',
@@ -24,6 +24,12 @@ module.exports = {
         grey: 'var(--grey-color)',
         dark_grey: 'var(--dark-grey-color)',
         light_grey: 'var(--light-grey-color)',
+      },
+      width: {
+        menu: 'var(--menu-width)',
+        small_menu: 'var(--small_menu-width)',
+        adn_content: 'var(--adn_content-width)',
+        adn_small_content: 'var(--adn_small_content-width)',
       },
       height: {
         header: 'var(--header-height)',

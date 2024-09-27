@@ -1,3 +1,4 @@
+export { default as Notification } from './Notification';
 export { default as LoadBox } from './LoadBox';
 export { default as BackedIcon } from './BackedIcon';
 

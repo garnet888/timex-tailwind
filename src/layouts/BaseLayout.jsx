@@ -1,9 +1,9 @@
 import Header from '@/utils/Header';
 import Footer from '@/utils/Footer';
 
-const MainLayout = ({ children, shownBackground = false }) => {
+const BaseLayout = ({ children, shownBackground = false }) => {
   return (
-    <main className='mainLayout'>
+    <main className='base_layout'>
       <Header />
 
       <div
@@ -21,4 +21,4 @@ const MainLayout = ({ children, shownBackground = false }) => {
   );
 };
 
-export default MainLayout;
+export default BaseLayout;

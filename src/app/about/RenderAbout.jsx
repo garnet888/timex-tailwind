@@ -3,8 +3,15 @@
 import { useState } from 'react';
 import { DiApple, DiAndroid } from 'react-icons/di';
 import Modal from 'react-minimal-modal';
-import { InputAddon, InputPassword, InputPrefix, Select, Textarea } from '@/ui';
-import MainLayout from '@/layouts/MainLayout';
+import {
+  InputAddon,
+  InputPassword,
+  InputPrefix,
+  Notification,
+  Select,
+  Textarea,
+} from '@/ui';
+import BaseLayout from '@/layouts/BaseLayout';
 
 const RenderAbout = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -24,7 +31,7 @@ const RenderAbout = () => {
   };
 
   return (
-    <MainLayout>
+    <BaseLayout>
       <div className='flex flex-col-reverse md:grid md:grid-cols-2 gap-8 p-4'>
         <div>
           <button onClick={() => setVisibleModal(true)}>Open Modal</button>
@@ -40,6 +47,38 @@ const RenderAbout = () => {
           >
             <div>I am a modal</div>
           </Modal>
+
+          <div className='flex flex-col gap-4 border-t border-b border-blue-400 py-6 my-4'>
+            <button
+              onClick={() =>
+                Notification.success({
+                  title: 'This is success notification',
+                  desc: 'Бид танд захиалга, үйл ажиллагаагаа төлөвлөх хялбар шийдлийг санал болгож байна.',
+                })
+              }
+            >
+              Show success notification
+            </button>
+
+            <button
+              onClick={() =>
+                Notification.warning({
+                  title: 'This is warning notification',
+                  desc: 'Бид танд захиалга, үйл ажиллагаагаа төлөвлөх хялбар шийдлийг санал болгож байна.',
+                })
+              }
+            >
+              Show warning notification
+            </button>
+
+            <button
+              onClick={() =>
+                Notification.error({ title: 'This is error notification' })
+              }
+            >
+              Show error notification
+            </button>
+          </div>
 
           <div className='border-b border-blue-400 pb-4 mb-8'>
             <h1>Цаг захиалгын платформ</h1>
@@ -391,14 +430,12 @@ const RenderAbout = () => {
             <li>Tabs /npm/</li>
             <li>Switch /npm/</li>
             <li>Date picker /npm/</li>
-            <li>Carousel /npm/</li>
-            <li>Toast /npm/</li>
             <li>Table</li>
             <li>Chart js</li>
           </ul>
         </div>
       </div>
-    </MainLayout>
+    </BaseLayout>
   );
 };
 

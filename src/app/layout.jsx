@@ -1,3 +1,4 @@
+import { Slide, ToastContainer } from 'react-toastify';
 import { LoadBox } from '@/ui';
 import { MainProvider } from '@/context/MainContext';
 
@@ -20,6 +21,15 @@ export default function RootLayout({ children }) {
       <body>
         <MainProvider>
           <LoadBox />
+          <ToastContainer
+            className='min-w-full sm:min-w-[456px]'
+            style={{ zIndex: 'var(--notif-z-index)' }}
+            position='top-right'
+            autoClose={2000}
+            transition={Slide}
+            closeButton={false}
+            hideProgressBar
+          />
 
           {children}
         </MainProvider>

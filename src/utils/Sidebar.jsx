@@ -1,88 +1,150 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { PiAirplane, PiCaretDoubleLeft } from 'react-icons/pi';
-import { TbLogout } from 'react-icons/tb';
+import { PiAirplane } from 'react-icons/pi';
 import { v4 as uuid } from 'uuid';
+import { DoubleLeft, Logout, Notification } from './icons';
 
 const Sidebar = ({ smallMenu, setSmallMenu }) => {
+  let badge = 1;
+
+  const renderBadge = () => {
+    if (badge) {
+      return (
+        <p className='absolute -top-[6px] -right-[10px] h-[14px] grid place-content-center bg-white border border-light_grey text-[10px] rounded-[100px] px-1 py-px'>
+          9+
+        </p>
+      );
+    }
+  };
+
   return (
     <aside
-      className={[
-        'width_effect sticky top-0 h-screen flex items-center px-4 py-6',
-        smallMenu ? 'w-[100px]' : 'w-[300px]',
-      ].join(' ')}
       style={{ gridArea: 'sidebar' }}
+      className={[
+        smallMenu ? 'w-small_menu' : 'w-menu',
+        'hidden sm:block width_effect sticky top-0 h-screen p-[20px]',
+      ].join(' ')}
     >
-      <nav className='tmx_scollbar w-full h-full overflow-auto bg-white rounded-xl shadow-sidebar'>
+      <nav className='relative w-full h-full bg-white rounded-2xl'>
         <div
           className={[
-            'sticky top-0 flex items-center bg-white p-3 shadow',
-            smallMenu ? 'justify-center' : 'justify-between',
+            smallMenu ? 'w-[80px]' : 'w-[260px]',
+            'width_effect fixed top-[20px] h-[60px] flex justify-between items-center rounded-t-2xl shadow px-2',
           ].join(' ')}
         >
-          <Link href='/'>
-            <Image
+          <Link
+            className='flex items-center text-nowrap overflow-x-hidden hover:text-dark'
+            href='/'
+          >
+            <span
               className={[
-                'w-[100px] object-contain',
-                smallMenu ? 'h-[30px]' : 'h-[36px]',
+                smallMenu ? 'min-w-[64px]' : 'min-w-[52px]',
+                'flex justify-center',
               ].join(' ')}
-              src={smallMenu ? '/images/logo.png' : '/images/logo_name.png'}
-              alt='Logo'
-              width={300}
-              height={300}
-              priority
-            />
+            >
+              <Image
+                className='w-8 h-8 object-contain'
+                src='/images/logo.png'
+                alt='Logo'
+                width={100}
+                height={100}
+                priority
+              />
+            </span>
+
+            <b className='text-2xl'>timex</b>
           </Link>
 
-          <button
-            className={[
-              'normal_btn p-0 m-0 w-[28px] h-[28px] grid place-content-center',
-              smallMenu && ' absolute -right-[1px]',
-            ].join(' ')}
-            onClick={() => setSmallMenu((prev) => !prev)}
-          >
-            <PiCaretDoubleLeft
-              style={{ transform: `scaleX(${smallMenu ? -1 : 1})` }}
-            />
-          </button>
+          <div className='flex items-center gap-3'>
+            {smallMenu || (
+              <button className='normal_btn relative w-8 h-w-8 grid place-content-center rounded-xl'>
+                <Notification />
+
+                {renderBadge()}
+              </button>
+            )}
+
+            <button
+              className={[
+                smallMenu ? 'absolute -right-[18px]' : '',
+                'normal_btn p-0 m-0 w-[32px] h-[32px] grid place-content-center',
+              ].join(' ')}
+              onClick={() => setSmallMenu((prev) => !prev)}
+            >
+              <DoubleLeft
+                style={{
+                  transform: `scaleX(${smallMenu ? -1 : 1})`,
+                }}
+              />
+
+              {smallMenu && renderBadge()}
+            </button>
+          </div>
         </div>
 
-        <div className='text-[14px]'>
-          <ul className='flex flex-col gap-2 px-2 py-1'>
-            {[...Array(80)].map((_, idx) => (
-              <li key={uuid()}>
-                <Link
-                  className='w-full flex items-center gap-[10px] rounded p-[6px] hover:bg-primary hover:text-white'
-                  href='#'
+        <ul
+          className='absolute top-[60px] w-full flex flex-col gap-y-1 overflow-auto text-[14px] p-2'
+          style={{ height: 'calc(100vh - 200px)' }}
+        >
+          {[...Array(80)].map((_, idx) => (
+            <li key={uuid()}>
+              <Link
+                className='w-full flex items-center text-nowrap overflow-x-hidden rounded  hover:bg-primary hover:text-white'
+                href='#'
+              >
+                <span
+                  className={[
+                    smallMenu ? 'min-w-[60px]' : 'min-w-[48px]',
+                    'width_effect flex justify-center py-2',
+                  ].join(' ')}
                 >
                   <PiAirplane size={18} />
-                  Menu item {idx + 1}
-                </Link>
-              </li>
-            ))}
-          </ul>
+                </span>
 
-          <div className='sticky bottom-0 flex flex-col gap-4 bg-white shadow p-4'>
-            <button className='text_btn flex items-center gap-[10px] w-full text-start hover:text-red-500'>
-              <TbLogout color='red' size={18} />
-              Гарах
-            </button>
+                <span>Menu item {idx + 1}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-            <hr />
+        <div className='absolute bottom-0 w-full h-[100px] flex flex-col justify-center gap-y-2 rounded-b-2xl border-t border-gray-100 px-2'>
+          <button className='text_btn group w-full flex items-center text-start text-nowrap overflow-x-hidden hover:bg-orange-400'>
+            <span
+              className={[
+                smallMenu ? 'min-w-[64px]' : 'min-w-[52px]',
+                'flex justify-center text-red-600 py-2 group-hover:text-white',
+              ].join(' ')}
+            >
+              <Logout />
+            </span>
 
-            <Link className='flex items-center gap-2' href='#'>
+            <span className='text-dark group-hover:text-white'>Гарах</span>
+          </button>
+
+          <hr />
+
+          <Link
+            className='flex items-center text-nowrap overflow-x-hidden mt-1'
+            href='#'
+          >
+            <span
+              className={[
+                smallMenu ? 'min-w-[64px]' : 'min-w-[52px]',
+                'flex justify-center hover:opacity-65',
+              ].join(' ')}
+            >
               <Image
-                className='w-[32px] h-[32px] object-cover rounded-full'
+                className='w-[26px] h-[26px] object-cover rounded-full'
                 src='/images/logo.png'
                 alt='Avatar'
                 width={100}
                 height={100}
                 priority
               />
+            </span>
 
-              <p>Garnet</p>
-            </Link>
-          </div>
+            <span>Garnet</span>
+          </Link>
         </div>
       </nav>
     </aside>

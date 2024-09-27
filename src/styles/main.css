@@ -2,26 +2,32 @@
 @tailwind utilities;
 @tailwind base;
 
+@import 'react-toastify/dist/ReactToastify.css';
 @import 'swiper/css';
+
 @import '../styles/swiper.css';
 @import '../styles/button.css';
 @import '../styles/inputs.css';
 
 :root {
   --load_box-z-index: 99999;
-  --message-z-index: calc(var(--load_box-z-index) - 1);
-  --modal-z-index: calc(var(--message-z-index) - 1);
+  --notif-z-index: calc(var(--load_box-z-index) - 1);
+  --modal-z-index: calc(var(--notif-z-index) - 1);
   --tooltip-z-index: calc(var(--modal-z-index) - 1);
   --header-z-index: calc(var(--tooltip-z-index) - 1);
 
   --primary-color: #6c30ed;
-  --dark-color: #222222;
+  --dark-color: #1c1c1c;
   --grey-color: #ededed;
   --dark-grey-color: #d9d9d9;
   --light-grey-color: #f3f3f3;
 
   --scrollbar-width: 4px;
   --header-height: 60px;
+  --menu-width: 300px;
+  --small_menu-width: 120px;
+  --adn_content-width: calc(100vw - var(--menu-width));
+  --adn_small_content-width: calc(100vw - var(--small_menu-width));
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -105,7 +111,7 @@ body *:disabled::placeholder {
     background-size: cover, contain;
   }
 
-  .mainLayout {
+  .base_layout {
     display: grid;
 
     grid-template-columns: 1fr;
@@ -119,12 +125,12 @@ body *:disabled::placeholder {
       'footer';
   }
 
-  .adminLayout {
+  .admin_layout {
     display: grid;
 
-    grid-template-columns: min-content 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-rows: minmax(100vh, 1fr);
-    grid-template-areas: 'sidebar  admContent';
+    grid-template-areas: 'sidebar  adn_content';
   }
 }
 

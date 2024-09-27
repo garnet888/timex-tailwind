@@ -7,7 +7,7 @@ import * as SwiperModules from 'swiper/modules';
 import { BackedIcon } from '@/ui';
 import { useMainContext } from '@/context/MainContext';
 import { Branch, Company, Employee, User } from '@/utils/icons';
-import MainLayout from '@/layouts/MainLayout';
+import BaseLayout from '@/layouts/BaseLayout';
 import FeaturesOfferedUser from '@/components/Home/FeaturesOfferedUser';
 import FeaturesOfferedBusiness from '@/components/Home/FeaturesOfferedBusiness';
 
@@ -15,7 +15,7 @@ export default function Home() {
   const { isUser } = useMainContext();
 
   return (
-    <MainLayout>
+    <BaseLayout>
       <div className='background_img_2 lg:h-home_top flex flex-col justify-between gap-6 lg:gap-0 py-8 bg-gray-200'>
         <div className='flex flex-col gap-8 lg:flex-row justify-between items-center px-12 xl:px-[200px]'>
           <div>
@@ -349,6 +349,6 @@ export default function Home() {
 
         {isUser ? <FeaturesOfferedUser /> : <FeaturesOfferedBusiness />}
       </div>
-    </MainLayout>
+    </BaseLayout>
   );
 }

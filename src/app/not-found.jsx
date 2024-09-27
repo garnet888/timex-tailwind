@@ -1,4 +1,4 @@
-import MainLayout from '@/layouts/MainLayout';
+import BaseLayout from '@/layouts/BaseLayout';
 
 const title = 'Хуудас олдсонгүй';
 
@@ -6,11 +6,11 @@ export const metadata = { title };
 
 const NotFound = () => {
   return (
-    <MainLayout>
+    <BaseLayout>
       <main className='h-full grid place-content-center'>
         <h1>{title}...</h1>
       </main>
-    </MainLayout>
+    </BaseLayout>
   );
 };
 
