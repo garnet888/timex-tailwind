@@ -1,10 +1,10 @@
 'use client';
 
 import LoadingBar from 'react-top-loading-bar';
-import { useMainContext } from '@/context/MainContext';
+import { useBaseContext } from '@/context/BaseContext';
 
 const LoadBox = () => {
-  const { reload } = useMainContext();
+  const { reload } = useBaseContext();
 
   if (reload) {
     return (

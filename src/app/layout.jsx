@@ -1,6 +1,6 @@
 import { Slide, ToastContainer } from 'react-toastify';
 import { LoadBox } from '@/ui';
-import { MainProvider } from '@/context/MainContext';
+import { BaseProvider } from '@/context/BaseContext';
 
 import '../styles/main.css';
 
@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <MainProvider>
+        <BaseProvider>
           <LoadBox />
           <ToastContainer
             className='min-w-full sm:min-w-[456px]'
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
           />
 
           {children}
-        </MainProvider>
+        </BaseProvider>
       </body>
     </html>
   );

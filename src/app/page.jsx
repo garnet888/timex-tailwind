@@ -5,14 +5,14 @@ import Image from 'next/image';
 import * as ReactSwiper from 'swiper/react';
 import * as SwiperModules from 'swiper/modules';
 import { BackedIcon } from '@/ui';
-import { useMainContext } from '@/context/MainContext';
+import { useBaseContext } from '@/context/BaseContext';
 import { Branch, Company, Employee, User } from '@/utils/icons';
 import BaseLayout from '@/layouts/BaseLayout';
 import FeaturesOfferedUser from '@/components/Home/FeaturesOfferedUser';
 import FeaturesOfferedBusiness from '@/components/Home/FeaturesOfferedBusiness';
 
 export default function Home() {
-  const { isUser } = useMainContext();
+  const { isUser } = useBaseContext();
 
   return (
     <BaseLayout>

@@ -5,12 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { DiApple, DiAndroid } from 'react-icons/di';
 import { FaRegUser, FaPowerOff } from 'react-icons/fa';
-import { useMainContext } from '@/context/MainContext';
+import { useBaseContext } from '@/context/BaseContext';
 import Popover from '@/ui/Popover';
 import Tooltip from '@/ui/Tooltip';
 
 const Header = () => {
-  const { reload, isUser, setIsUser } = useMainContext();
+  const { reload, isUser, setIsUser } = useBaseContext();
 
   const router = useRouter();
   const pathname = usePathname();

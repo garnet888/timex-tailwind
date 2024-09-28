@@ -4,7 +4,7 @@ import { PiAirplane } from 'react-icons/pi';
 import { v4 as uuid } from 'uuid';
 import { DoubleLeft, Logout, Notification } from './icons';
 
-const Sidebar = ({ smallMenu, setSmallMenu }) => {
+const Sidebar = ({ smallMenu, smallMenuHandler }) => {
   let badge = 1;
 
   const renderBadge = () => {
@@ -69,7 +69,7 @@ const Sidebar = ({ smallMenu, setSmallMenu }) => {
                 smallMenu ? 'absolute -right-[18px]' : '',
                 'normal_btn p-0 m-0 w-[32px] h-[32px] grid place-content-center',
               ].join(' ')}
-              onClick={() => setSmallMenu((prev) => !prev)}
+              onClick={smallMenuHandler}
             >
               <DoubleLeft
                 style={{

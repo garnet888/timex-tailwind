@@ -1,16 +1,27 @@
 'use client';
 
 import { useState } from 'react';
+import { disableSmallMenu, enableSmallMenu, getSmallMenu } from '@/lib/helper';
 import Sidebar from '@/utils/Sidebar';
 
 const AdminLayout = ({ children }) => {
-  const [smallMenu, setSmallMenu] = useState(false);
+  const [smallMenu, setSmallMenu] = useState(getSmallMenu() === 'YES');
+
+  const smallMenuHandler = () => {
+    setSmallMenu((prev) => !prev);
+
+    if (smallMenu) {
+      disableSmallMenu();
+    } else {
+      enableSmallMenu();
+    }
+  };
 
   return (
     <main className='admin_layout background_img_2 bg-[#f0f2f5]'>
       <Sidebar
         smallMenu={smallMenu}
-        setSmallMenu={setSmallMenu}
+        smallMenuHandler={smallMenuHandler}
       />
 
       <div
