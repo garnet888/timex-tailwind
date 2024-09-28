@@ -91,12 +91,13 @@ const Login = () => {
 
   return (
     <AuthLoyout title='Нэвтрэх'>
-      <form className='flex flex-col' onSubmit={handleSubmit(loginHandler)}>
-        <FormElement
-          label='Утасны дугаар'
-          errorMsg={errors.phone_number?.message}
-        >
-          {/* <input
+      <form onSubmit={handleSubmit(loginHandler)}>
+        <div className='flex flex-col gap-2'>
+          <FormElement
+            label='Утасны дугаар'
+            message={errors.phone_number?.message}
+          >
+            {/* <input
             className={[
               errors.phone_number ? 'alert_input' : '',
               'rounded_input',
@@ -104,24 +105,25 @@ const Login = () => {
             {...register('phone_number')}
           /> */}
 
-          <InputPrefix
-            id='phone_number'
-            before={<RiSmartphoneLine color='gray' />}
-            alert={errors.phone_number}
-            rounded
-            register={register}
-          />
-        </FormElement>
+            <InputPrefix
+              id='phone_number'
+              before={<RiSmartphoneLine color='gray' />}
+              alert={errors.phone_number}
+              rounded
+              register={register}
+            />
+          </FormElement>
 
-        <FormElement label='Нууц үг' errorMsg={errors.password?.message}>
-          <InputPassword
-            id='password'
-            before={<RiLockPasswordLine color='gray' />}
-            alert={errors.password}
-            rounded
-            register={register}
-          />
-        </FormElement>
+          <FormElement label='Нууц үг' message={errors.password?.message}>
+            <InputPassword
+              id='password'
+              before={<RiLockPasswordLine color='gray' />}
+              alert={errors.password}
+              rounded
+              register={register}
+            />
+          </FormElement>
+        </div>
 
         <div className='flex justify-between text-sm mt-1'>
           <Link href='/reset-password'>Нууц үгээ сэргээх үү?</Link>

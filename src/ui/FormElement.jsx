@@ -1,16 +1,21 @@
-const FormElement = ({ children, label = '', errorMsg }) => {
+const FormElement = ({
+  children,
+  label = '',
+  message,
+  hideAsterisk = false,
+}) => {
   return (
     <div>
       <div className='flex flex-col gap-1'>
         <span>
-          {errorMsg && <span className='text-red-500 mr-1'>*</span>}
+          {hideAsterisk || <span className='text-red-500 mr-1'>*</span>}
           {label}
         </span>
 
         {children}
       </div>
 
-      {errorMsg && <p className='text-red-500 text-sm'>{errorMsg}</p>}
+      {message && <p className='text-red-500 text-sm'>{message}</p>}
     </div>
   );
 };
