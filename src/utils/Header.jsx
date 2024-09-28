@@ -106,10 +106,13 @@ const Header = () => {
                 <p className='text-nowrap'>Системээс гарах</p>
               </Popover> */}
 
-            <button className='text_btn click_effect text-primary hover:opacity-60'>
+            <button
+              className='text_btn click_effect text-primary hover:opacity-60'
+              onClick={() => router.push('/login')}
+            >
               Нэвтрэх
             </button>
-            <button>Бүртгүүлэх</button>
+            <button onClick={() => router.push('/signup')}>Бүртгүүлэх</button>
           </div>
         )}
       </div>

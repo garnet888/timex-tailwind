@@ -1,5 +1,13 @@
 const InputPrefix = (props) => {
-  const { before, after, alert, disabled } = props;
+  const {
+    id,
+    rounded = false,
+    before,
+    after,
+    alert = false,
+    disabled,
+    register,
+  } = props;
 
   const HOVER_INPUT =
     'has-[input:hover]:border has-[input:hover]:border-[rgba(108,48,237,0.48)]';
@@ -13,6 +21,7 @@ const InputPrefix = (props) => {
   return (
     <div
       className={[
+        rounded ? '!rounded-[58px]' : '',
         alert && !disabled ? 'alert_input' : '',
         HOVER_INPUT,
         FOCUS_INPUT,
@@ -22,7 +31,14 @@ const InputPrefix = (props) => {
     >
       {before && <span className='pl-[6px]'>{before}</span>}
 
-      <input className='no_input w-full' {...props} />
+      <input
+        className={[
+          rounded ? 'rounded_input' : 'rounded_iput',
+          'no_input w-full',
+        ].join(' ')}
+        {...(register ? register(id) : {})}
+        {...props}
+      />
 
       {after && <span className='pr-[6px]'>{after}</span>}
     </div>

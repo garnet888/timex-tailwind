@@ -103,7 +103,7 @@ const Footer = () => {
                 target='_blank'
               >
                 <Image
-                  className='w-[148px] h-[36px] lg:w-[320px] xl:w-[148px]  object-contain'
+                  className='w-[148px] h-[36px] lg:w-[320px] xl:w-[148px] object-contain'
                   src='/images/store_google.png'
                   alt='Logo'
                   width={500}
@@ -117,7 +117,7 @@ const Footer = () => {
                 target='_blank'
               >
                 <Image
-                  className='w-[148px] h-[36px] lg:w-[320px] xl:w-[148px]  object-contain'
+                  className='w-[148px] h-[36px] lg:w-[320px] xl:w-[148px] object-contain'
                   src='/images/store_apple.png'
                   alt='Logo'
                   width={500}

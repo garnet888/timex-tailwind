@@ -153,6 +153,7 @@ const callDeleteInstance = async (url, data) =>
 
 const apiList = {
   permissionMenu: '/user/menu/permission',
+  login: '/auth/login',
 };
 
 export {

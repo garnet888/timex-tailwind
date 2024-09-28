@@ -1,11 +1,106 @@
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { PiAirplane } from 'react-icons/pi';
+import { HiChevronDown } from 'react-icons/hi2';
 import { v4 as uuid } from 'uuid';
-import { DoubleLeft, Logout, Notification } from './icons';
+import { DoubleLeft, GetMenuIcon, Logout, Notification } from './icons';
+import { destroyTokens } from '@/lib/auth';
+import { fetchMenu } from '@/lib/helper';
 
 const Sidebar = ({ smallMenu, smallMenuHandler }) => {
   let badge = 1;
+
+  const pathname = usePathname();
+
+  const [menu, setMenu] = useState([]);
+  const [dropedMenu, setDropedMenu] = useState();
+
+  useEffect(() => {
+    fetchMenu(setMenu);
+  }, []);
+
+  const menuIsActive = (link) => String(pathname).includes(link);
+
+  const getItem = (_item) => {
+    const { icon, name, link } = _item;
+
+    return (
+      <div key={uuid()}>
+        <Link
+          className={[
+            menuIsActive(link) ? 'text-primary' : '',
+            icon === 'SmallDashOutlined' ? 'pl-2' : '',
+            'w-full flex items-center text-nowrap overflow-x-hidden rounded py-2 hover:bg-[#F6F0FF]',
+          ].join(' ')}
+          href={link}
+        >
+          {icon === 'SmallDashOutlined' || (
+            <span
+              className={[
+                smallMenu ? 'min-w-[64px]' : 'min-w-[48px]',
+                'width_effect flex justify-center',
+              ].join(' ')}
+            >
+              <GetMenuIcon name={icon} active={menuIsActive(link)} />
+            </span>
+          )}
+
+          <span>{name}</span>
+        </Link>
+      </div>
+    );
+  };
+
+  const getItemChildren = (_item, _children) => {
+    const { id, icon, name } = _item;
+
+    return (
+      <div key={uuid()}>
+        <button
+          className={[
+            menuIsActive(_children[0].link) ? 'text-primary' : '',
+            'text_btn w-full flex items-center text-nowrap overflow-x-hidden rounded py-2 hover:bg-[#F6F0FF]',
+          ].join(' ')}
+          onClick={() => setDropedMenu((prev) => (prev ? '' : id))}
+        >
+          <div className='w-full flex items-center'>
+            <span
+              className={[
+                smallMenu ? 'min-w-[64px]' : 'min-w-[48px]',
+                'width_effect flex justify-center',
+              ].join(' ')}
+            >
+              <GetMenuIcon
+                name={icon}
+                active={menuIsActive(_children[0].link)}
+              />
+            </span>
+
+            <span>{name}</span>
+          </div>
+
+          <HiChevronDown
+            className='mr-2'
+            size={16}
+            style={{
+              transition: 'transform ease 0.3s',
+              transform: `rotate(${dropedMenu === id ? '-180' : '0'}deg)`,
+            }}
+          />
+        </button>
+
+        <div
+          className={[
+            dropedMenu === id && !smallMenu ? 'flex' : 'hidden',
+            'w-full flex-col gap-y-1 pl-10 pr-2',
+          ].join(' ')}
+        >
+          {_children.map((child) => getItem(child))}
+        </div>
+      </div>
+    );
+  };
 
   const renderBadge = () => {
     if (badge) {
@@ -14,6 +109,20 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
           9+
         </p>
       );
+    }
+  };
+
+  const renderMenu = () => {
+    if (menu?.length > 0) {
+      return menu.map((item) => {
+        if (item?.children) {
+          const { children } = item;
+
+          return getItemChildren(item, children);
+        } else {
+          return getItem(item);
+        }
+      });
     }
   };
 
@@ -82,37 +191,22 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
           </div>
         </div>
 
-        <ul
+        <div
           className='absolute top-[60px] w-full flex flex-col gap-y-1 overflow-auto text-[14px] p-2'
           style={{ height: 'calc(100vh - 200px)' }}
         >
-          {[...Array(80)].map((_, idx) => (
-            <li key={uuid()}>
-              <Link
-                className='w-full flex items-center text-nowrap overflow-x-hidden rounded  hover:bg-primary hover:text-white'
-                href='#'
-              >
-                <span
-                  className={[
-                    smallMenu ? 'min-w-[60px]' : 'min-w-[48px]',
-                    'width_effect flex justify-center py-2',
-                  ].join(' ')}
-                >
-                  <PiAirplane size={18} />
-                </span>
-
-                <span>Menu item {idx + 1}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+          {renderMenu()}
+        </div>
 
         <div className='absolute bottom-0 w-full h-[100px] flex flex-col justify-center gap-y-2 rounded-b-2xl border-t border-gray-100 px-2'>
-          <button className='text_btn group w-full flex items-center text-start text-nowrap overflow-x-hidden hover:bg-orange-400'>
+          <button
+            className='text_btn group w-full flex items-center text-start text-nowrap overflow-x-hidden hover:bg-orange-400'
+            onClick={() => destroyTokens()}
+          >
             <span
               className={[
                 smallMenu ? 'min-w-[64px]' : 'min-w-[52px]',
-                'flex justify-center text-red-600 py-2 group-hover:text-white',
+                'flex justify-center text-red-500 py-2 group-hover:text-white',
               ].join(' ')}
             >
               <Logout />
