@@ -1,8 +1,6 @@
 import axios from 'axios';
-import moment from 'moment';
-import AuthCookie from '@/lib/auth';
-import { apiList } from './api';
 import { Notification } from '@/ui';
+import { getToken } from '@/lib/auth';
 
 const baseAxios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -12,54 +10,31 @@ const baseAxios = axios.create({
 });
 
 baseAxios.interceptors.request.use(
-  async (config) => {
-    const token = AuthCookie.getToken();
-    const token_exp = AuthCookie.getTokenExp();
-    const refresh_token = AuthCookie.getRefreshToken();
+  function (config) {
+    const token = getToken();
+    const removeToken = !!config[0];
 
-    let today = moment(new Date());
-    today = today.add(5, 'minutes');
-
-    if (moment(new Date(token_exp)).isSameOrBefore(today)) {
-      const fetchURL = process.env.NEXT_PUBLIC_API_URL + apiList.refreshToken;
-      const fetchtOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refresh_token, token }),
-      };
-
-      const refResponse = await fetch(fetchURL, fetchtOptions);
-      const refData = await refResponse.json();
-
-      if (refData.code == '0000') {
-        const { data: DATA } = refData;
-
-        AuthCookie.setToken(DATA.token, DATA.refresh_token, DATA.exp);
-        config.headers.Authorization = `Bearer ${DATA.token}`;
-
-        return config;
-      }
-    } else {
+    if (token && !removeToken) {
       config.headers.Authorization = `Bearer ${token}`;
-
-      return config;
     }
+
+    return config;
   },
-  (error) => {
+  function (error) {
     return Promise.reject(error);
   }
 );
 
 let count = 0;
 baseAxios.interceptors.response.use(
-  (response) => {
+  function (response) {
     return response;
   },
-  (error) => {
+  function (error) {
     if (error.response?.status === 401 || error.response?.status === 403) {
       if (count === 0) {
         count++;
-        return redirectToLogin();
+        // return redirectToLogin();
       }
     } else {
       return;

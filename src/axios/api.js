@@ -1,6 +1,17 @@
 import baseAxios from './baseAxios';
 import { Notification } from '@/ui';
 
+const callGetExcelInstance = async (url, params) => {
+  const result = await baseAxios.get(url, { responseType: 'blob', params });
+
+  return result?.status === 200 ? result : null;
+};
+
+const callPromiseAllInstance = async (fetch) =>
+  await axios.all(fetch).then(axios.spread((...responses) => responses));
+
+const sList = async (url) => callGet(`${url}`);
+
 const callGet = async (command) => {
   const result = await baseAxios.get(command);
 
@@ -21,15 +32,16 @@ const callPost = async (command, data, hideMsg = false) => {
   }
 
   if (result?.status !== 200 || !result.data) {
-    Notification.error({ desc: 'Та түр хүлээгээд дахин оролдоно уу.' });
+    Notification.error({ desc: defaultMsg.error });
     return;
   }
 
   const resultData = result?.data;
+
   if (resultData.status) {
     if (resultData.msg && resultData?.msg?.length > 0) {
-      resultData.msg?.map((item) => {
-        hideMsg || Notification.success({ title: item });
+      resultData.msg?.map((message) => {
+        hideMsg || Notification.success({ desc: message });
       });
     }
   } else if (
@@ -38,8 +50,43 @@ const callPost = async (command, data, hideMsg = false) => {
     resultData?.msg?.length > 0 &&
     !hideMsg
   ) {
-    resultData.msg?.map((item) => {
-      Notification.error({ desc: item });
+    resultData.msg?.map((message) => {
+      Notification.error({ desc: message });
+    });
+  }
+
+  return resultData;
+};
+
+const callPut = async (url, params) => {
+  const result = await baseAxios.put(url, params);
+
+  if (result?.status === 403) {
+    Notification.error({ desc: 'Хандах эрхгүй' });
+    return;
+  }
+
+  if (!result) {
+    Notification.error({ desc: 'Та интернет холболтоо шалгана уу!' });
+    return;
+  }
+
+  if (result?.status !== 200 || !result.data) {
+    Notification.error({ desc: defaultMsg.error });
+    return;
+  }
+
+  const resultData = result?.data;
+
+  if (resultData.status) {
+    if (resultData.msg && resultData?.msg?.length > 0) {
+      resultData.msg?.map((message) => {
+        Notification.success({ desc: message });
+      });
+    }
+  } else if (resultData.msg && resultData?.msg?.length > 0) {
+    resultData.msg?.map((message) => {
+      Notification.error({ desc: message });
     });
   }
 
@@ -60,7 +107,7 @@ const callPatch = async (command, data, hideMsg = false) => {
   }
 
   if (result?.status !== 200 || !result.data) {
-    Notification.error({ desc: 'Та түр хүлээгээд дахин оролдоно уу.' });
+    Notification.error({ desc: defaultMsg.error });
     return;
   }
 
@@ -68,56 +115,55 @@ const callPatch = async (command, data, hideMsg = false) => {
 
   if (resultData.status) {
     if (resultData.msg && resultData?.msg?.length > 0) {
-      resultData.msg?.map((item) => {
-        hideMsg || Notification.success({ title: item });
+      resultData.msg?.map((message) => {
+        hideMsg || Notification.success({ desc: message });
       });
     }
   } else if (resultData.msg && resultData?.msg?.length > 0) {
-    resultData.msg?.map((item) => Notification.error({ desc: item }));
+    resultData.msg?.map((message) => {
+      Notification.error({ desc: message });
+    });
   }
 
   return resultData;
 };
 
-const callDelete = async (command, hideMsg = false) => {
+const callDelete = async (command) => {
   const result = await baseAxios.delete(command);
 
   const resultData = result?.data;
 
   if (resultData.status) {
     if (resultData.msg && resultData?.msg?.length > 0) {
-      hideMsg ||
-        resultData.msg?.map((item) => Notification.success({ title: item }));
+      resultData.msg?.map((message) => {
+        Notification.success({ desc: message });
+      });
     }
   } else {
-    resultData.msg?.map((item) => Notification.error({ desc: item }));
+    resultData.msg?.map((message) => {
+      Notification.error({ desc: message });
+    });
   }
 
   return resultData;
 };
 
+const callDeleteInstance = async (url, data) =>
+  await baseAxios.delete(url, { data: data });
+
 const apiList = {
-  refData: '/ref/',
-  signup: '/auth/',
-  refreshToken: '/auth/refresh',
-  authConfirm: '/auth/confirm',
-  login: '/auth/login',
-  logout: '/auth/logout',
-  resetPassword: '/auth/password/reset',
-  resetPasswordType: '/auth/password/reset/type',
-  resetPasswordCheck: '/auth/password/reset/check',
-  resetPasswordConfirm: '/auth/password/reset/confirm',
-  danConnect: '/auth/dan',
-  client: '/client/',
-  disconnect: '/disconnect',
-  user: '/user/',
-  abroad: '/user/abroad',
-  deviceRemind: '/user/remind',
-  userDevice: '/user/device',
-  twoFA: '/google/auth',
-  google: '/google/',
-  facebook: '/facebook/',
-  apple: '/apple/',
+  permissionMenu: '/user/menu/permission',
 };
 
-export { apiList, callGet, callPost, callPatch, callDelete };
+export {
+  apiList,
+  callGetExcelInstance,
+  callPromiseAllInstance,
+  sList,
+  callGet,
+  callPost,
+  callPut,
+  callPatch,
+  callDelete,
+  callDeleteInstance,
+};

@@ -6,10 +6,9 @@ import { usePathname } from 'next/navigation';
 const BaseContext = createContext();
 
 export const BaseProvider = ({ children }) => {
-  const [reload, setReload] = useState(false);
-  const [isUser, setIsUser] = useState();
-
   const pathname = usePathname();
+
+  const [isUser, setIsUser] = useState();
 
   useEffect(() => {
     if (pathname === '/login' || pathname === '/register') {
@@ -36,14 +35,7 @@ export const BaseProvider = ({ children }) => {
   };
 
   return (
-    <BaseContext.Provider
-      value={{
-        reload,
-        isUser,
-        setReload,
-        setIsUser,
-      }}
-    >
+    <BaseContext.Provider value={{ isUser, setIsUser }}>
       {renderChildren()}
     </BaseContext.Provider>
   );

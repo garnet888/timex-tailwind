@@ -12,9 +12,9 @@ const StarLine = () => {
           id='Icon'
           d='M12.5227 2.66992V22.7548M19.6238 5.61128L5.42164 19.8134M22.5651 12.7123H2.48029M19.6238 19.8134L5.42164 5.61128'
           stroke='#703EFE'
-          stroke-width='1.50636'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='1.50636'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
       </g>
     </svg>
