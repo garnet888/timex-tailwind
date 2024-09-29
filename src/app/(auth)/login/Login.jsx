@@ -141,7 +141,7 @@ const Login = ({ title }) => {
           type='submit'
           disabled={isLoading}
         >
-          {isLoading ? 'Уншиж байна...' : 'Нэвтрэх'}
+          {isLoading ? <span className='load_spinner w-4' /> : 'Нэвтрэх'}
         </button>
       </form>
     </AuthLoyout>
