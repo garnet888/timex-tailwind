@@ -44,7 +44,6 @@ export const fetchMenu = async (setMenu) => {
     MENU = Object.values(_menu).sort((a, b) => a.sort_order - b.sort_order);
 
     console.log('MENU', MENU);
-
     setMenu(MENU);
   }
 };

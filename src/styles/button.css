@@ -61,12 +61,14 @@
 
 @layer base {
   button:active,
+  .like_btn:active,
   .click_effect:active {
     transform: scale(0.88);
     transition: transform 0.2s ease-out;
   }
 
-  button:hover {
+  button:hover,
+  .like_btn:hover {
     background: white;
     color: var(--primary-color);
     border-color: var(--primary-color);

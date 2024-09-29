@@ -1,6 +1,6 @@
 import Income from './Income';
 
-const title = 'Захиалгын тайлан';
+const title = 'Орлогын тайлан';
 export const metadata = { title };
 
 const IncomePage = () => {

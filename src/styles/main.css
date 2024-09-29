@@ -68,47 +68,15 @@ body *:disabled::placeholder {
 }
 
 @layer utilities {
+  .text_balance {
+    text-wrap: balance;
+  }
+
   /* number input-iin arrow-iig alga bolj bn */
   .no_arrow::-webkit-outer-spin-button,
   .no_arrow::-webkit-inner-spin-button {
     -webkit-appearance: unset;
     margin: 0;
-  }
-
-  .insta_gradient_bg {
-    background: radial-gradient(
-        92.18% 99.11% at 26.56% 107.7%,
-        #fd5 0%,
-        #fd5 10%,
-        #ff543e 50%,
-        #c837ab 100%
-      ),
-      #fff;
-  }
-  .insta_gradient_bg:hover {
-    background: var(--primary-color);
-    color: white;
-  }
-
-  .text_balance {
-    text-wrap: balance;
-  }
-
-  .width_effect {
-    transition: width 0.4s linear;
-  }
-
-  .background_img_1 {
-    background-image: url('/images/background.png');
-    background-repeat: repeat;
-    background-size: cover;
-  }
-
-  .background_img_2 {
-    background-image: url('/images/background.png'),
-      url('/images/background_grid.svg');
-    background-repeat: no-repeat, repeat;
-    background-size: cover, contain;
   }
 
   .base_layout {
@@ -131,6 +99,47 @@ body *:disabled::placeholder {
     grid-template-columns: auto 1fr;
     grid-template-rows: minmax(100vh, 1fr);
     grid-template-areas: 'sidebar  adn_content';
+  }
+  @media (max-width: 426px) {
+    .admin_layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      grid-template-areas:
+        'sidebar'
+        'adn_content';
+    }
+  }
+
+  .insta_gradient_bg {
+    background: radial-gradient(
+        92.18% 99.11% at 26.56% 107.7%,
+        #fd5 0%,
+        #fd5 10%,
+        #ff543e 50%,
+        #c837ab 100%
+      ),
+      #fff;
+  }
+  .insta_gradient_bg:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .width_effect {
+    transition: width 0.4s linear;
+  }
+
+  .background_img_1 {
+    background-image: url('/images/background.png');
+    background-repeat: repeat;
+    background-size: cover;
+  }
+
+  .background_img_2 {
+    background-image: url('/images/background.png'),
+      url('/images/background_grid.svg');
+    background-repeat: no-repeat, repeat;
+    background-size: cover, contain;
   }
 }
 
@@ -172,12 +181,16 @@ body *:disabled::placeholder {
     font-size: 0.68em;
   }
 
-  button {
+  button,
+  .like_btn {
     cursor: pointer;
 
-    line-height: 1.5715;
     width: fit-content;
     height: 34px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     color: white;
     background: linear-gradient(

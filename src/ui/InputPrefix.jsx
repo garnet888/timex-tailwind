@@ -2,6 +2,7 @@ const InputPrefix = ({
   id,
   before,
   after,
+  type,
   alert = false,
   disabled = false,
   rounded = false,
@@ -34,7 +35,8 @@ const InputPrefix = ({
           rounded === true ? 'rounded_input' : '',
           'no_input w-full',
         ].join(' ')}
-        {...(register && register(id))}
+        {...(register ? register(id) : {})}
+        type={type}
       />
 
       {after && <span className='pr-[6px]'>{after}</span>}

@@ -20,7 +20,11 @@ const InputPassword = (props) => {
       {...props}
       type={type}
       after={
-        <button className='text_btn px mt-2' type='button' onClick={seeOnClick}>
+        <button
+          className='text_btn mt-[2px]'
+          type='button'
+          onClick={seeOnClick}
+        >
           {type === 'password' ? (
             <FaRegEye size={18} color='gray' />
           ) : (

@@ -1,104 +1,127 @@
 import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { HiChevronDown } from 'react-icons/hi2';
-import { v4 as uuid } from 'uuid';
-import { DoubleLeft, GetMenuIcon, Logout, Notification } from './icons';
+import { DoubleLeft, Logout, Notification } from './icons';
 import { destroyTokens } from '@/lib/auth';
 import { fetchMenu } from '@/lib/helper';
+import MenuItem from './MenuItem';
+
+let badge = 1;
+
+const MENU_WIDTH = '260px';
+const SMALL_MENU_WIDTH = '80px';
 
 const Sidebar = ({ smallMenu, smallMenuHandler }) => {
-  let badge = 1;
-
-  const pathname = usePathname();
-
   const [menu, setMenu] = useState([]);
-  const [dropedMenu, setDropedMenu] = useState();
 
   useEffect(() => {
     fetchMenu(setMenu);
   }, []);
 
-  const menuIsActive = (link) => String(pathname).includes(link);
-
   const getItem = (_item) => {
-    const { icon, name, link } = _item;
-
     return (
-      <div key={uuid()}>
-        <Link
-          className={[
-            menuIsActive(link) ? 'text-primary' : '',
-            icon === 'SmallDashOutlined' ? 'pl-2' : '',
-            'w-full flex items-center text-nowrap overflow-x-hidden rounded py-2 hover:bg-[#F6F0FF]',
-          ].join(' ')}
-          href={link}
-        >
-          {icon === 'SmallDashOutlined' || (
-            <span
-              className={[
-                smallMenu ? 'min-w-[64px]' : 'min-w-[48px]',
-                'width_effect flex justify-center',
-              ].join(' ')}
-            >
-              <GetMenuIcon name={icon} active={menuIsActive(link)} />
-            </span>
-          )}
+      <MenuItem
+        key={_item.id}
+        smallMenu={smallMenu}
+        MENU_WIDTH={MENU_WIDTH}
+        SMALL_MENU_WIDTH={SMALL_MENU_WIDTH}
+        {..._item}
+      />
 
-          <span>{name}</span>
-        </Link>
-      </div>
+      // <div
+      //   key={id}
+      //   className={[
+      //     smallMenu ? `w-[${SMALL_MENU_WIDTH}]` : `w-[${MENU_WIDTH}]`,
+      //     fromItem ? `!w-[${MENU_WIDTH}]` : '',
+      //     `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}] hover:pr-0`,
+      //   ].join(' ')}
+      // >
+      //   <button
+      //     className={[
+      //       menuIsActive(link) ? 'text-primary' : '',
+      //       'text_btn w-full text-nowrap rounded py-2 hover:bg-[#F6F0FF]',
+      //     ].join(' ')}
+      //     onClick={() => router.push(link)}
+      //   >
+      //     <div className='w-full flex items-center'>
+      //       <span
+      //         className={[
+      //           smallMenu
+      //             ? `min-w-[${SMALL_MENU_WIDTH}] pr-4`
+      //             : 'min-w-[48px]',
+      //           'width_effect flex justify-center',
+      //         ].join(' ')}
+      //       >
+      //         <GetMenuIcon name={icon} active={menuIsActive(link)} />
+      //       </span>
+
+      //       <span>{name}</span>
+      //     </div>
+      //   </button>
+      // </div>
     );
   };
 
-  const getItemChildren = (_item, _children) => {
-    const { id, icon, name } = _item;
-
+  const getSubMenu = (_item, subMenu) => {
     return (
-      <div key={uuid()}>
-        <button
-          className={[
-            menuIsActive(_children[0].link) ? 'text-primary' : '',
-            'text_btn w-full flex items-center text-nowrap overflow-x-hidden rounded py-2 hover:bg-[#F6F0FF]',
-          ].join(' ')}
-          onClick={() => setDropedMenu((prev) => (prev ? '' : id))}
-        >
-          <div className='w-full flex items-center'>
-            <span
-              className={[
-                smallMenu ? 'min-w-[64px]' : 'min-w-[48px]',
-                'width_effect flex justify-center',
-              ].join(' ')}
-            >
-              <GetMenuIcon
-                name={icon}
-                active={menuIsActive(_children[0].link)}
-              />
-            </span>
+      <MenuItem
+        key={_item.id}
+        smallMenu={smallMenu}
+        subMenu={subMenu}
+        MENU_WIDTH={MENU_WIDTH}
+        SMALL_MENU_WIDTH={SMALL_MENU_WIDTH}
+        {..._item}
+      />
 
-            <span>{name}</span>
-          </div>
+      // <div
+      //   key={id}
+      //   className={[
+      //     smallMenu ? `w-[${SMALL_MENU_WIDTH}]` : `w-[${MENU_WIDTH}]`,
+      //     `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}] hover:pr-0`,
+      //   ].join(' ')}
+      // >
+      //   <button
+      //     className={[
+      //       menuIsActive(subMenu[0].link) ? 'text-primary' : '',
+      //       'text_btn w-full text-nowrap rounded pr-2 py-2 hover:bg-[#F6F0FF]',
+      //     ].join(' ')}
+      //     onClick={() => setDropedMenu((prev) => (prev ? '' : id))}
+      //   >
+      //     <div className='w-full flex items-center'>
+      //       <span
+      //         className={[
+      //           smallMenu
+      //             ? `min-w-[${SMALL_MENU_WIDTH}] pr-4`
+      //             : 'min-w-[48px]',
+      //           'width_effect flex justify-center',
+      //         ].join(' ')}
+      //       >
+      //         <GetMenuIcon name={icon} active={menuIsActive(subMenu[0].link)} />
+      //       </span>
 
-          <HiChevronDown
-            className='mr-2'
-            size={16}
-            style={{
-              transition: 'transform ease 0.3s',
-              transform: `rotate(${dropedMenu === id ? '-180' : '0'}deg)`,
-            }}
-          />
-        </button>
+      //       <span>{name}</span>
+      //     </div>
 
-        <div
-          className={[
-            dropedMenu === id && !smallMenu ? 'flex' : 'hidden',
-            'w-full flex-col gap-y-1 pl-10 pr-2',
-          ].join(' ')}
-        >
-          {_children.map((child) => getItem(child))}
-        </div>
-      </div>
+      //     <HiChevronDown
+      //       size={16}
+      //       style={{
+      //         transition: 'transform ease 0.3s',
+      //         transform: `rotate(${dropedMenu === id ? '-180' : '0'}deg)`,
+      //       }}
+      //     />
+      //   </button>
+
+      //   {subMenu && (
+      //     <div
+      //       className={[
+      //         dropedMenu === id ? 'flex' : 'hidden',
+      //         'w-full flex-col',
+      //       ].join(' ')}
+      //     >
+      //       {subMenu.map((child) => getItem(child, true))}
+      //     </div>
+      //   )}
+      // </div>
     );
   };
 
@@ -118,7 +141,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
         if (item?.children) {
           const { children } = item;
 
-          return getItemChildren(item, children);
+          return getSubMenu(item, children);
         } else {
           return getItem(item);
         }
@@ -134,11 +157,11 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
         'hidden sm:block width_effect sticky top-0 h-screen p-[20px]',
       ].join(' ')}
     >
-      <nav className='relative w-full h-full bg-white rounded-2xl'>
+      <nav className='relative h-full bg-white rounded-2xl'>
         <div
           className={[
-            smallMenu ? 'w-[80px]' : 'w-[260px]',
-            'width_effect fixed top-[20px] h-[60px] flex justify-between items-center rounded-t-2xl shadow px-2',
+            smallMenu ? `w-[${SMALL_MENU_WIDTH}]` : `w-[${MENU_WIDTH}]`,
+            'width_effect fixed top-[20px] h-[60px] flex justify-between items-center px-2',
           ].join(' ')}
         >
           <Link
@@ -147,7 +170,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
           >
             <span
               className={[
-                smallMenu ? 'min-w-[64px]' : 'min-w-[52px]',
+                smallMenu ? `min-w-[${SMALL_MENU_WIDTH}] pr-4` : 'min-w-[52px]',
                 'flex justify-center',
               ].join(' ')}
             >
@@ -166,7 +189,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
 
           <div className='flex items-center gap-3'>
             {smallMenu || (
-              <button className='normal_btn relative w-8 h-w-8 grid place-content-center rounded-xl'>
+              <button className='normal_btn p-0 relative w-8 h-w-8 rounded-xl'>
                 <Notification />
 
                 {renderBadge()}
@@ -176,7 +199,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
             <button
               className={[
                 smallMenu ? 'absolute -right-[18px]' : '',
-                'normal_btn p-0 m-0 w-[32px] h-[32px] grid place-content-center',
+                'normal_btn p-0 m-0 w-[32px] h-[32px]',
               ].join(' ')}
               onClick={smallMenuHandler}
             >
@@ -192,53 +215,75 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
         </div>
 
         <div
-          className='absolute top-[60px] w-full flex flex-col gap-y-1 overflow-auto text-[14px] p-2'
+          className='absolute top-[60px] flex flex-col gap-y-1 overflow-auto text-[14px]'
           style={{ height: 'calc(100vh - 200px)' }}
         >
           {renderMenu()}
         </div>
 
-        <div className='absolute bottom-0 w-full h-[100px] flex flex-col justify-center gap-y-2 rounded-b-2xl border-t border-gray-100 px-2'>
-          <button
-            className='text_btn group w-full flex items-center text-start text-nowrap overflow-x-hidden hover:bg-orange-400'
-            onClick={() => destroyTokens()}
+        <div className='absolute bottom-0 w-full h-[100px] flex flex-col justify-center gap-y-2 rounded-b-2xl border-t border-gray-100'>
+          <div
+            className={[
+              smallMenu
+                ? `w-[${SMALL_MENU_WIDTH}] hover:pr-0`
+                : `w-[${MENU_WIDTH}]`,
+              `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}]`,
+            ].join(' ')}
           >
-            <span
-              className={[
-                smallMenu ? 'min-w-[64px]' : 'min-w-[52px]',
-                'flex justify-center text-red-500 py-2 group-hover:text-white',
-              ].join(' ')}
+            <button
+              className='text_btn group w-full justify-start text-nowrap overflow-x-hidden hover:bg-orange-400'
+              onClick={() => destroyTokens()}
             >
-              <Logout />
-            </span>
+              <span
+                className={[
+                  smallMenu
+                    ? `min-w-[${SMALL_MENU_WIDTH}] pr-4`
+                    : 'min-w-[48px]',
+                  'flex justify-center text-red-500 py-2 group-hover:text-white',
+                ].join(' ')}
+              >
+                <Logout />
+              </span>
 
-            <span className='text-dark group-hover:text-white'>Гарах</span>
-          </button>
+              <span className='text-dark group-hover:text-white'>Гарах</span>
+            </button>
+          </div>
 
-          <hr />
+          <hr className='mx-4' />
 
-          <Link
-            className='flex items-center text-nowrap overflow-x-hidden mt-1'
-            href='#'
+          <div
+            className={[
+              smallMenu
+                ? `w-[${SMALL_MENU_WIDTH}] hover:pr-0`
+                : `w-[${MENU_WIDTH}]`,
+              `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}]`,
+            ].join(' ')}
           >
-            <span
-              className={[
-                smallMenu ? 'min-w-[64px]' : 'min-w-[52px]',
-                'flex justify-center hover:opacity-65',
-              ].join(' ')}
+            <Link
+              className='flex items-center text-nowrap overflow-x-hidden py-1'
+              href='#'
             >
-              <Image
-                className='w-[26px] h-[26px] object-cover rounded-full'
-                src='/images/logo.png'
-                alt='Avatar'
-                width={100}
-                height={100}
-                priority
-              />
-            </span>
+              <span
+                className={[
+                  smallMenu
+                    ? `min-w-[${SMALL_MENU_WIDTH}] pr-4`
+                    : 'min-w-[48px]',
+                  'flex justify-center hover:opacity-65',
+                ].join(' ')}
+              >
+                <Image
+                  className='w-[26px] h-[26px] object-cover rounded-full'
+                  src='/images/logo.png'
+                  alt='Avatar'
+                  width={100}
+                  height={100}
+                  priority
+                />
+              </span>
 
-            <span>Garnet</span>
-          </Link>
+              <span>Garnet</span>
+            </Link>
+          </div>
         </div>
       </nav>
     </aside>
