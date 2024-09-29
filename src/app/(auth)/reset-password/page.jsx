@@ -1,7 +1,10 @@
-import AuthLoyout from '@/layouts/AuthLoyout';
+import ResetPassword from './ResetPassword';
 
-const ResetPassword = () => {
-  return <AuthLoyout>ResetPassword</AuthLoyout>;
+const title = 'Нууц үг сэргээх';
+export const metadata = { title };
+
+const ResetPasswordPage = () => {
+  return <ResetPassword title={title} />;
 };
 
-export default ResetPassword;
+export default ResetPasswordPage;

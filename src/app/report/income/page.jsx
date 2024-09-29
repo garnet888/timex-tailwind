@@ -1,7 +1,10 @@
-import AdminLayout from '@/layouts/AdminLayout';
+import Income from './Income';
 
-const Income = () => {
-  return <AdminLayout>Income</AdminLayout>;
+const title = 'Захиалгын тайлан';
+export const metadata = { title };
+
+const IncomePage = () => {
+  return <Income title={title} />;
 };
 
-export default Income;
+export default IncomePage;

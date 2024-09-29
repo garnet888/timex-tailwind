@@ -17,10 +17,10 @@ const AuthLoyout = ({ children, title = '', step, changeStep }) => {
   };
 
   return (
-    <div className='h-screen grid sm:grid-cols-2 md:grid-cols-[3.4fr_2fr] lg:grid-cols-[4fr_2fr] xl:grid-cols-[6fr_2fr]'>
-      <div className='hidden sm:block h-full bg-purple-500'></div>
+    <div className='h-screen grid lg:grid-cols-[4fr_2fr] xl:grid-cols-[6fr_2fr]'>
+      <div className='hidden lg:block h-full bg-purple-500'></div>
 
-      <div className='relative flex flex-col justify-center bg-white px-8'>
+      <div className='relative flex flex-col justify-center bg-white px-8 md:px-48 lg:px-8'>
         <Link className='absolute top-8 lef-8' href='/'>
           <Image
             className='w-[100px] h-[32px] object-contain'

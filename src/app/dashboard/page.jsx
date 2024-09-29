@@ -1,11 +1,10 @@
-import RenderDashboard from './RenderDashboard';
+import Dashboard from './Dashboard';
 
 const title = 'Тавтай морилно уу';
-
 export const metadata = { title };
 
-const Dashboard = () => {
-  return <RenderDashboard title={title} />;
+const DashboardPage = () => {
+  return <Dashboard title={title} />;
 };
 
-export default Dashboard;
+export default DashboardPage;

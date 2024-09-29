@@ -1,11 +1,10 @@
-import RenderAbout from './RenderAbout';
+import About from './About';
 
 const title = 'Системийн танилцуулга';
-
 export const metadata = { title };
 
-const About = () => {
-  return <RenderAbout title={title} />;
+const AboutPage = () => {
+  return <About title={title} />;
 };
 
-export default About;
+export default AboutPage;

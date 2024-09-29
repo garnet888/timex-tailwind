@@ -13,7 +13,7 @@ import {
 } from '@/ui';
 import BaseLayout from '@/layouts/BaseLayout';
 
-const RenderAbout = () => {
+const About = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [visibleModal, setVisibleModal] = useState(false);
 
@@ -305,4 +305,4 @@ const RenderAbout = () => {
   );
 };
 
-export default RenderAbout;
+export default About;

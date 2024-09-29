@@ -1,7 +1,10 @@
-import AuthLoyout from '@/layouts/AuthLoyout';
+import Signup from './Signup';
 
-const Signup = () => {
-  return <AuthLoyout>Signup</AuthLoyout>;
+const title = 'Бүртгүүлэх';
+export const metadata = { title };
+
+const SignupPage = () => {
+  return <Signup title={title} />;
 };
 
-export default Signup;
+export default SignupPage;
