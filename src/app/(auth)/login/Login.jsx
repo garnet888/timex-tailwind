@@ -90,7 +90,10 @@ const Login = ({ title }) => {
   };
 
   return (
-    <AuthLoyout title={title}>
+    <AuthLoyout
+      title={title}
+      covers={[...Array(1)].fill('/images/cover_login.png')}
+    >
       <form onSubmit={handleSubmit(loginHandler)}>
         <div className='flex flex-col gap-2'>
           <FormElement
@@ -98,12 +101,12 @@ const Login = ({ title }) => {
             message={errors.phone_number?.message}
           >
             {/* <input
-            className={[
-              errors.phone_number ? 'alert_input' : '',
-              'rounded_input',
-            ].join(' ')}
-            {...register('phone_number')}
-          /> */}
+              className={[
+                errors.phone_number ? 'alert_input' : '',
+                'rounded_input',
+              ].join(' ')}
+              {...register('phone_number')}
+            /> */}
 
             <InputPrefix
               id='phone_number'
@@ -114,7 +117,10 @@ const Login = ({ title }) => {
             />
           </FormElement>
 
-          <FormElement label='Нууц үг' message={errors.password?.message}>
+          <FormElement
+            label='Нууц үг'
+            message={errors.password?.message}
+          >
             <InputPassword
               id='password'
               before={<RiLockPasswordLine color='gray' />}

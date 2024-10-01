@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+.swiper-slide .swiper-slide-active .swiper-slide-next {
+  /* width: unset !important; */
+}
+
 .swiper-slide img {
   /* display: block;
   width: 100%;
