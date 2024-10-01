@@ -111,7 +111,7 @@ const Header = () => {
 
             {isUser ? (
               <Link
-                className='like_btn !w-full'
+                className='like_btn block lg:hidden !w-full'
                 href='https://onelink.to/5ttqsq'
                 target='_blank'
               >
