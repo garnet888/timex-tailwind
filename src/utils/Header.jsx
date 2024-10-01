@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -15,9 +15,12 @@ const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
 
+  const [token, setToken] = useState();
   const [shownToggle, setShownToggle] = useState(false);
 
-  const token = getToken();
+  useEffect(() => {
+    setToken(getToken());
+  }, []);
 
   const modeHandler = (mode) => {
     if (mode === 'user') {

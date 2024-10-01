@@ -8,8 +8,9 @@ import MenuItem from './MenuItem';
 
 let badge = 1;
 
-const MENU_WIDTH = '260px';
-const SMALL_MENU_WIDTH = '80px';
+const MENU_WIDTH = 'w-[260px]';
+const SMALL_MENU_WIDTH = 'w-[80px]';
+const SMALL_MIN_MENU_WIDTH = 'min-w-[80px]';
 
 const Sidebar = ({ smallMenu, smallMenuHandler }) => {
   const [menu, setMenu] = useState([]);
@@ -25,15 +26,16 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
         smallMenu={smallMenu}
         MENU_WIDTH={MENU_WIDTH}
         SMALL_MENU_WIDTH={SMALL_MENU_WIDTH}
+        SMALL_MIN_MENU_WIDTH={SMALL_MIN_MENU_WIDTH}
         {..._item}
       />
 
       // <div
       //   key={id}
       //   className={[
-      //     smallMenu ? `w-[${SMALL_MENU_WIDTH}]` : `w-[${MENU_WIDTH}]`,
-      //     fromItem ? `!w-[${MENU_WIDTH}]` : '',
-      //     `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}] hover:pr-0`,
+      //     smallMenu ? SMALL_MENU_WIDTH : MENU_WIDTH,
+      //     fromItem ? `!${MENU_WIDTH}` : '',
+      //     `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:${MENU_WIDTH} hover:pr-0`,
       //   ].join(' ')}
       // >
       //   <button
@@ -47,7 +49,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
       //       <span
       //         className={[
       //           smallMenu
-      //             ? `min-w-[${SMALL_MENU_WIDTH}] pr-4`
+      //             ? `${SMALL_MIN_MENU_WIDTH} pr-4`
       //             : 'min-w-[48px]',
       //           'width_effect flex justify-center',
       //         ].join(' ')}
@@ -70,14 +72,15 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
         subMenu={subMenu}
         MENU_WIDTH={MENU_WIDTH}
         SMALL_MENU_WIDTH={SMALL_MENU_WIDTH}
+        SMALL_MIN_MENU_WIDTH={SMALL_MIN_MENU_WIDTH}
         {..._item}
       />
 
       // <div
       //   key={id}
       //   className={[
-      //     smallMenu ? `w-[${SMALL_MENU_WIDTH}]` : `w-[${MENU_WIDTH}]`,
-      //     `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}] hover:pr-0`,
+      //     smallMenu ? SMALL_MENU_WIDTH : MENU_WIDTH,
+      //     `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:${MENU_WIDTH} hover:pr-0`,
       //   ].join(' ')}
       // >
       //   <button
@@ -91,7 +94,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
       //       <span
       //         className={[
       //           smallMenu
-      //             ? `min-w-[${SMALL_MENU_WIDTH}] pr-4`
+      //             ? `${SMALL_MIN_MENU_WIDTH} pr-4`
       //             : 'min-w-[48px]',
       //           'width_effect flex justify-center',
       //         ].join(' ')}
@@ -160,7 +163,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
       <nav className='relative h-full bg-white rounded-2xl'>
         <div
           className={[
-            smallMenu ? `w-[${SMALL_MENU_WIDTH}]` : `w-[${MENU_WIDTH}]`,
+            smallMenu ? SMALL_MENU_WIDTH : MENU_WIDTH,
             'width_effect fixed top-[20px] h-[60px] flex justify-between items-center px-2',
           ].join(' ')}
         >
@@ -170,7 +173,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
           >
             <span
               className={[
-                smallMenu ? `min-w-[${SMALL_MENU_WIDTH}] pr-4` : 'min-w-[52px]',
+                smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[52px]',
                 'flex justify-center',
               ].join(' ')}
             >
@@ -224,10 +227,8 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
         <div className='absolute bottom-0 w-full h-[100px] flex flex-col justify-center gap-y-2 rounded-b-2xl border-t border-gray-100'>
           <div
             className={[
-              smallMenu
-                ? `w-[${SMALL_MENU_WIDTH}] hover:pr-0`
-                : `w-[${MENU_WIDTH}]`,
-              `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}]`,
+              smallMenu ? `${SMALL_MENU_WIDTH} hover:pr-0` : MENU_WIDTH,
+              `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[260px]`,
             ].join(' ')}
           >
             <button
@@ -236,16 +237,14 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
             >
               <span
                 className={[
-                  smallMenu
-                    ? `min-w-[${SMALL_MENU_WIDTH}] pr-4`
-                    : 'min-w-[48px]',
+                  smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
                   'flex justify-center text-red-500 py-2 group-hover:text-white',
                 ].join(' ')}
               >
                 <Logout />
               </span>
 
-              <span className='text-dark group-hover:text-white'>Гарах</span>
+              <span className='font-light group-hover:text-white'>Гарах</span>
             </button>
           </div>
 
@@ -253,10 +252,8 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
 
           <div
             className={[
-              smallMenu
-                ? `w-[${SMALL_MENU_WIDTH}] hover:pr-0`
-                : `w-[${MENU_WIDTH}]`,
-              `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}]`,
+              smallMenu ? `${SMALL_MENU_WIDTH} hover:pr-0` : MENU_WIDTH,
+              `width_effect bg-white font-light rounded-lg overflow-x-hidden px-2 hover:${MENU_WIDTH}`,
             ].join(' ')}
           >
             <Link
@@ -265,9 +262,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
             >
               <span
                 className={[
-                  smallMenu
-                    ? `min-w-[${SMALL_MENU_WIDTH}] pr-4`
-                    : 'min-w-[48px]',
+                  smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
                   'flex justify-center hover:opacity-65',
                 ].join(' ')}
               >

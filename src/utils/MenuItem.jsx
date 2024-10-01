@@ -13,6 +13,7 @@ const MenuItem = ({
   subMenu = [],
   MENU_WIDTH,
   SMALL_MENU_WIDTH,
+  SMALL_MIN_MENU_WIDTH,
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -40,8 +41,8 @@ const MenuItem = ({
   return (
     <div
       className={[
-        smallMenu ? `w-[${SMALL_MENU_WIDTH}] hover:pr-0` : `w-[${MENU_WIDTH}]`,
-        `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[${MENU_WIDTH}]`,
+        smallMenu ? `${SMALL_MENU_WIDTH} hover:pr-0` : MENU_WIDTH,
+        `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:${MENU_WIDTH}`,
       ].join(' ')}
     >
       <button
@@ -51,19 +52,23 @@ const MenuItem = ({
         ].join(' ')}
         onClick={onClickHandler}
       >
-        <div className='w-full flex items-center'>
+        <div className='w-full flex items-center font-light'>
           <span
             className={[
-              smallMenu ? `min-w-[${SMALL_MENU_WIDTH}] pr-4` : 'min-w-[48px]',
+              smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
               'width_effect flex justify-center',
             ].join(' ')}
           >
             {icon === 'SmallDashOutlined' ? (
               <GoDotFill />
             ) : (
-              <GetMenuIcon name={icon} active={menuIsActive()} />
+              <GetMenuIcon
+                name={icon}
+                active={menuIsActive()}
+              />
             )}
           </span>
+
           <span>{name}</span>
         </div>
 
@@ -86,7 +91,10 @@ const MenuItem = ({
           ].join(' ')}
         >
           {subMenu.map((item) => (
-            <MenuItem key={item.id} {...item} />
+            <MenuItem
+              key={item.id}
+              {...item}
+            />
           ))}
         </div>
       )}

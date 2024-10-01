@@ -27,7 +27,10 @@ const AdminLayout = ({ children }) => {
   if (isMounted) {
     return (
       <main className='admin_layout background_img_2 bg-[#f0f2f5]'>
-        <Sidebar smallMenu={smallMenu} smallMenuHandler={smallMenuHandler} />
+        <Sidebar
+          smallMenu={smallMenu}
+          smallMenuHandler={smallMenuHandler}
+        />
 
         <div
           style={{ gridArea: 'adn_content' }}
@@ -35,7 +38,7 @@ const AdminLayout = ({ children }) => {
             smallMenu
               ? 'pl-[12px] ml-4 sm:ml-0 sm:w-adn_small_content'
               : 'ml-4 sm:ml-0 sm:w-adn_content',
-            'width_effect h-screen overflow-auto',
+            'width_effect h-screen overflow-auto pt-[20px]',
           ]}
         >
           {children}
