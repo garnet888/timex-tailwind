@@ -16,15 +16,14 @@ import AuthLoyout from '@/layouts/AuthLoyout';
 const schema = Yup.object({
   phone_number: Yup.string()
     .required('Утасны дугаараа оруулна уу.')
-    .min(8, 'Хамгийн багадаа 8 тэмдэгт байх ёстой.')
-    .max(8, 'Хамгийн ихдээ 8 тэмдэгт байх ёстой.'),
-  password: Yup.string().required('Нууц үгээ оруулна уу.'),
-  // .min(8, 'Хамгийн багадаа 8 тэмдэгт байх ёстой.')
-  // .max(16, 'Хамгийн ихдээ 16 тэмдэгт байх ёстой.')
-  // .matches(
-  //   /^(?=.*[\W_])(?=.*\d)(?=.*[A-Z])[A-Za-z0-9!@#%^&*()_+{}[\]:;<>,.?/~`'"\-|=№₮¥$\\]*$/,
-  //   'Таны нууц үг латин үсгээр, том үсэг, жижиг үсэг, тоо, тусгай тэмдэгт агуулсан байх ёстой.'
-  // ),
+    .matches(/^\d{8}$/, '8 ширхэг тоо байх ёстой.'),
+  password: Yup.string()
+    .required('Нууц үгээ оруулна уу.')
+    .min(6, 'Хамгийн багадаа 6 тэмдэгт байх ёстой.')
+    .matches(
+      /^(?=.*[\W_])(?=.*\d)(?=.*[A-Z])[A-Za-z0-9!@#%^&*()_+{}[\]:;<>,.?/~`'"\-|=№₮¥$\\]*$/,
+      'Таны нууц үг латин үсгээр, ядаж 1 том үсэг, жижиг үсэг, тоо, тусгай тэмдэгт агуулсан байх ёстой.'
+    ),
 });
 
 const Login = ({ title }) => {
@@ -131,7 +130,7 @@ const Login = ({ title }) => {
           </FormElement>
         </div>
 
-        <div className='flex justify-between text-sm mt-1'>
+        <div className='flex justify-between text-sm mt-2'>
           <Link href='/reset-password'>Нууц үгээ сэргээх үү?</Link>
 
           <Link

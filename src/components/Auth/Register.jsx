@@ -1,0 +1,101 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { RiSmartphoneLine, RiLockPasswordLine } from 'react-icons/ri';
+import { FormElement, InputPassword, InputPrefix } from '@/ui';
+
+const schema = Yup.object({
+  phone_number: Yup.string()
+    .required('Утасны дугаараа оруулна уу.')
+    .matches(/^\d{8}$/, '8 ширхэг тоо байх ёстой.'),
+  password: Yup.string()
+    .required('Нууц үгээ оруулна уу.')
+    .min(6, 'Хамгийн багадаа 6 тэмдэгт байх ёстой.')
+    .matches(
+      /^(?=.*[\W_])(?=.*\d)(?=.*[A-Z])[A-Za-z0-9!@#%^&*()_+{}[\]:;<>,.?/~`'"\-|=№₮¥$\\]*$/,
+      'Таны нууц үг латин үсгээр, ядаж 1 том үсэг, жижиг үсэг, тоо, тусгай тэмдэгт агуулсан байх ёстой.'
+    ),
+  rePassword: Yup.string()
+    .required('Нууц үгээ давтан оруулна уу.')
+    .oneOf([Yup.ref('password')], 'Нууц үг таарахгүй байна'),
+});
+
+const Register = ({ setUserID, setPhone, changeStep }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    formState: { errors },
+    register,
+    getValues,
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const signupHandler = () => {
+    setIsLoading(true);
+
+    setUserID();
+    setPhone(getValues('phone_number'));
+    changeStep(2);
+
+    setIsLoading(false);
+  };
+
+  return (
+    <form
+      className='flex flex-col gap-2'
+      onSubmit={handleSubmit(signupHandler)}
+    >
+      <FormElement
+        label='Утасны дугаар'
+        message={errors.phone_number?.message}
+      >
+        <InputPrefix
+          id='phone_number'
+          before={<RiSmartphoneLine color='gray' />}
+          alert={errors.phone_number}
+          rounded
+          register={register}
+        />
+      </FormElement>
+
+      <FormElement
+        label='Нууц үг'
+        message={errors.password?.message}
+      >
+        <InputPassword
+          id='password'
+          before={<RiLockPasswordLine color='gray' />}
+          alert={errors.password}
+          rounded
+          register={register}
+        />
+      </FormElement>
+
+      <FormElement
+        label='Нууц үг давтах'
+        message={errors.rePassword?.message}
+      >
+        <InputPassword
+          id='rePassword'
+          before={<RiLockPasswordLine color='gray' />}
+          alert={errors.rePassword}
+          rounded
+          register={register}
+        />
+      </FormElement>
+
+      <button
+        className='w-full rounded-full mt-6'
+        type='submit'
+        disabled={isLoading}
+      >
+        {isLoading ? <span className='load_spinner w-4' /> : 'Бүртгүүлэх'}
+      </button>
+    </form>
+  );
+};
+
+export default Register;

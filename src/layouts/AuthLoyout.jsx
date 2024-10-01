@@ -9,6 +9,8 @@ import * as SwiperModules from 'swiper/modules';
 import { v4 as uuid } from 'uuid';
 
 const AuthLoyout = ({ children, title = '', covers, step, changeStep }) => {
+  const router = useRouter();
+
   /* ======== Neg zurag bhad div-ee duurgej haragdahgui bga tul bichiw ======== */
   let COVERS = covers && [...covers];
 
@@ -16,8 +18,6 @@ const AuthLoyout = ({ children, title = '', covers, step, changeStep }) => {
     COVERS = [...covers, covers[0]];
   }
   /* ========================================================================== */
-
-  const router = useRouter();
 
   const goBackHandler = () => {
     if (step === 1) {
