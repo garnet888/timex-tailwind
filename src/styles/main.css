@@ -58,6 +58,11 @@ body *:disabled::placeholder {
   color: hsl(0, 0%, 50%);
 }
 
+::selection {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 .modal__close-button {
   background: unset;
   box-shadow: unset;
