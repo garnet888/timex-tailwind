@@ -78,7 +78,7 @@ const AuthLoyout = ({ children, title = '', covers, step, changeStep }) => {
           />
         </Link>
 
-        <h3 className='relative h-8 flex justify-center items-center font-semibold mb-8'>
+        <h3 className='relative h-8 flex justify-center items-center text-center font-semibold pl-2 mb-8'>
           {step > 0 && step < 4 && (
             <button
               className='normal_btn absolute left-0 grid place-content-center p-2'

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { FormElement, InputPrefix } from '@/ui';
+import { apiList, callPost } from '@/axios/api';
 
 const schema = Yup.object({
   phone_number: Yup.string()
@@ -26,10 +27,16 @@ const EnterPhone = ({ setPhone, changeStep }) => {
   const sendHandler = () => {
     setIsLoading(true);
 
-    setPhone(getValues('phone_number'));
-    changeStep(2);
+    callPost(`${apiList.auth}/reset/password`, {
+      phoneNumber: getValues('phone_number'),
+    }).then((res) => {
+      if (res.status) {
+        setPhone(getValues('phone_number'));
+        changeStep(2);
+      }
 
-    setIsLoading(false);
+      setIsLoading(false);
+    });
   };
 
   return (
@@ -38,7 +45,7 @@ const EnterPhone = ({ setPhone, changeStep }) => {
       onSubmit={handleSubmit(sendHandler)}
     >
       <FormElement
-        label='Утасны дугаар'
+        label='Та бүртгэлтэй утасны дугаараа оруулна уу'
         message={errors.phone_number?.message}
       >
         <InputPrefix

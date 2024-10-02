@@ -41,7 +41,7 @@ const callPost = async (command, data, hideMsg = false) => {
   if (resultData.status) {
     if (resultData.msg && resultData?.msg?.length > 0) {
       resultData.msg?.map((message) => {
-        hideMsg || Notification.success({ desc: message });
+        hideMsg || Notification.success({ desc: null });
       });
     }
   } else if (
@@ -81,7 +81,7 @@ const callPut = async (url, params) => {
   if (resultData.status) {
     if (resultData.msg && resultData?.msg?.length > 0) {
       resultData.msg?.map((message) => {
-        Notification.success({ desc: message });
+        Notification.success({ desc: null });
       });
     }
   } else if (resultData.msg && resultData?.msg?.length > 0) {
@@ -116,7 +116,7 @@ const callPatch = async (command, data, hideMsg = false) => {
   if (resultData.status) {
     if (resultData.msg && resultData?.msg?.length > 0) {
       resultData.msg?.map((message) => {
-        hideMsg || Notification.success({ desc: message });
+        hideMsg || Notification.success({ desc: null });
       });
     }
   } else if (resultData.msg && resultData?.msg?.length > 0) {
@@ -136,7 +136,7 @@ const callDelete = async (command) => {
   if (resultData.status) {
     if (resultData.msg && resultData?.msg?.length > 0) {
       resultData.msg?.map((message) => {
-        Notification.success({ desc: message });
+        Notification.success({ desc: null });
       });
     }
   } else {
@@ -153,6 +153,7 @@ const callDeleteInstance = async (url, data) =>
 
 const apiList = {
   permissionMenu: '/user/menu/permission',
+  auth: '/auth',
   login: '/auth/login',
 };
 

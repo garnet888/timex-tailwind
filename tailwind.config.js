@@ -19,7 +19,7 @@ module.exports = {
         header: 'var(--header-z-index)',
       },
       colors: {
-        primary: 'var(--primary-color)',
+        primary: '#6c30ed',
         dark: 'var(--dark-color)',
         grey: 'var(--grey-color)',
         dark_grey: 'var(--dark-grey-color)',

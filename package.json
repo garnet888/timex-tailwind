@@ -21,6 +21,7 @@
     "react-select": "^5.8.0",
     "react-toastify": "^10.0.5",
     "react-top-loading-bar": "^2.3.1",
+    "react-verification-input": "^4.1.2",
     "swiper": "^11.1.14",
     "uuid": "^10.0.0",
     "yup": "^1.4.0"

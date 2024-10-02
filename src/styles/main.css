@@ -67,6 +67,12 @@ body *:disabled::placeholder {
   min-height: 28px;
 }
 
+.vi__container input:hover,
+.vi__container input:focus {
+  outline: unset;
+  border: unset;
+}
+
 @layer utilities {
   .text_balance {
     text-wrap: balance;
@@ -146,6 +152,12 @@ body *:disabled::placeholder {
 @layer base {
   input[type='file'] {
     display: none;
+  }
+
+  input[type='checkbox']:hover,
+  input[type='checkbox']:focus {
+    outline: unset;
+    border: unset;
   }
 
   a:hover {

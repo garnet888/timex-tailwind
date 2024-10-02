@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { RiLockPasswordLine } from 'react-icons/ri';
+import { useRouter } from 'next/navigation';
+import { RiKeyboardLine, RiLockPasswordLine } from 'react-icons/ri';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { FormElement, InputPassword, InputPrefix } from '@/ui';
+import { apiList, callPost } from '@/axios/api';
 
 const schema = Yup.object({
   code: Yup.string()
@@ -22,31 +24,57 @@ const schema = Yup.object({
 });
 
 const EnterNewPassword = ({ phone }) => {
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const {
     formState: { errors },
     register,
     getValues,
+    resetField,
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const sendHandler = () => {};
+  const sendHandler = () => {
+    setIsLoading(true);
+
+    setIsLoading(true);
+
+    callPost(`${apiList.auth}/reset/password/confirm`, {
+      code: getValues('code'),
+      password: btoa(getValues('password')),
+      passwordMatch: btoa(getValues('rePassword')),
+      phoneNumber: phone,
+    }).then((res) => {
+      if (res.status) {
+        router.push('/login');
+      } else {
+        resetField();
+      }
+
+      setIsLoading(false);
+    });
+  };
 
   return (
     <form
       className='flex flex-col gap-2'
       onSubmit={handleSubmit(sendHandler)}
     >
+      <p className='text-stone-500 text-sm mb-2'>
+        Таны бүртгэлтэй утасны дугаар луу баталгаажуулах код илгээгдлээ.
+      </p>
+
       <FormElement
         label='Баталгаажуулах код'
         message={errors.code?.message}
       >
         <InputPrefix
           id='code'
-          before={<RiLockPasswordLine color='gray' />}
+          before={<RiKeyboardLine color='gray' />}
           alert={errors.code}
           rounded
           register={register}
