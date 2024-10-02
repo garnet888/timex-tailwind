@@ -36,9 +36,9 @@ const AdminLayout = ({ children }) => {
           style={{ gridArea: 'adn_content' }}
           className={[
             smallMenu
-              ? 'pl-[12px] ml-4 sm:ml-0 sm:w-adn_small_content'
-              : 'ml-4 sm:ml-0 sm:w-adn_content',
-            'width_effect h-screen overflow-auto pt-[20px]',
+              ? 'px-4 sm:w-adn_small_content'
+              : 'mx-3 sm:mx-0 sm:w-adn_content',
+            'width_effect sm:min-h-screen overflow-auto pt-[20px] pb-2',
           ]}
         >
           {children}

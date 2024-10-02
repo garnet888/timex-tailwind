@@ -1,4 +1,4 @@
-const Notification = () => {
+const Doll = () => {
   return (
     <svg
       width='20'
@@ -18,4 +18,4 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default Doll;

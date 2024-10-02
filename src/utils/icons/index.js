@@ -1,7 +1,7 @@
 export { default as GetMenuIcon } from './menu/getIcon';
 
 export { default as DefaultAvatar } from './DefaultAvatar';
-export { default as Notification } from './Notification';
+export { default as Doll } from './Doll';
 export { default as DoubleLeft } from './DoubleLeft';
 export { default as Logout } from './Logout';
 

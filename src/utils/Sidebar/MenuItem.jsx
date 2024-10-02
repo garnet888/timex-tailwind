@@ -3,14 +3,16 @@
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { GoChevronDown, GoDotFill } from 'react-icons/go';
-import { GetMenuIcon } from './icons';
+import { GetMenuIcon } from '../icons';
 
 const MenuItem = ({
+  inMobile = false,
   smallMenu,
   icon,
   name,
   link,
   subMenu = [],
+  fromSub = false,
   MENU_WIDTH,
   SMALL_MENU_WIDTH,
   SMALL_MIN_MENU_WIDTH,
@@ -44,30 +46,42 @@ const MenuItem = ({
         smallMenu ? `${SMALL_MENU_WIDTH} hover:pr-0` : MENU_WIDTH,
         `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:${MENU_WIDTH}`,
       ].join(' ')}
+      style={
+        inMobile
+          ? {
+              width: 'auto',
+              paddingInline: 0,
+            }
+          : {}
+      }
     >
       <button
         className={[
           menuIsActive() ? 'text-primary' : '',
-          'text_btn w-full text-nowrap rounded pr-2 py-2 hover:bg-[#F6F0FF]',
+          fromSub ? 'py-[6px]' : 'py-2',
+          'text_btn w-full text-nowrap rounded pr-2 hover:bg-[#F6F0FF]',
         ].join(' ')}
         onClick={onClickHandler}
       >
-        <div className='w-full flex items-center font-light'>
-          <span
-            className={[
-              smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
-              'width_effect flex justify-center',
-            ].join(' ')}
-          >
-            {icon === 'SmallDashOutlined' ? (
+        <div className='w-full flex items-center text-sm font-light'>
+          {icon === 'SmallDashOutlined' ? (
+            <span className='min-w-4 ml-1 mr-2'>
               <GoDotFill />
-            ) : (
+            </span>
+          ) : (
+            <span
+              className={[
+                smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
+                'width_effect flex justify-center',
+              ].join(' ')}
+              style={inMobile ? { minWidth: 'auto', paddingInline: 8 } : {}}
+            >
               <GetMenuIcon
                 name={icon}
                 active={menuIsActive()}
               />
-            )}
-          </span>
+            </span>
+          )}
 
           <span>{name}</span>
         </div>
@@ -87,12 +101,14 @@ const MenuItem = ({
         <div
           className={[
             isOpenMenu ? 'flex' : 'hidden',
-            'w-full flex-col pl-10',
+            smallMenu ? 'pl-8 sm:pl-[58px] pb-2' : 'pl-8',
+            'w-full flex-col gap-1',
           ].join(' ')}
         >
           {subMenu.map((item) => (
             <MenuItem
               key={item.id}
+              fromSub
               {...item}
             />
           ))}
