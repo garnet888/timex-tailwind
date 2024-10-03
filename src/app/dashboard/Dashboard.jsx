@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import AdminLayout from '@/layouts/AdminLayout';
+import BarChart from '@/components/Charts/MultiColumnChart';
 
 const Dashboard = ({ title }) => {
   return (
@@ -10,9 +11,11 @@ const Dashboard = ({ title }) => {
         </div>
       </header>
 
-      {[...Array(80)].map((_, idx) => (
+      {/* {[...Array(80)].map((_, idx) => (
         <div key={uuid()}>Information {idx + 1}</div>
-      ))}
+      ))} */}
+
+      <BarChart />
     </AdminLayout>
   );
 };

@@ -2,10 +2,9 @@ import { useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LuMenu } from 'react-icons/lu';
-import { destroyTokens } from '@/lib/auth';
 import { Doll, Logout } from '../icons';
 
-const MobileSbar = ({ menu, badgeNumber }) => {
+const MobileSbar = ({ menu, badgeNumber, shownAlert }) => {
   const drawerRef = useRef();
 
   const [shownDrawer, setShownDrawer] = useState(false);
@@ -19,30 +18,17 @@ const MobileSbar = ({ menu, badgeNumber }) => {
   return (
     <div className='background_img_1 h-full block sm:hidden bg-white border-b border-white'>
       <div className='w-full h-full flex justify-between items-center px-3'>
-        <div className='flex items-center gap-3'>
-          <button
-            className='normal_btn p-2'
-            onClick={() => setShownDrawer((prev) => !prev)}
-          >
-            <LuMenu size={20} />
-          </button>
+        <button
+          className='normal_btn p-2'
+          onClick={() => setShownDrawer((prev) => !prev)}
+        >
+          <LuMenu size={20} />
+        </button>
 
-          <button className='normal_btn p-0 relative w-8 h-w-8 rounded-xl'>
-            <Doll />
-            {badgeNumber}
-          </button>
-        </div>
-
-        <Link href='/'>
-          <Image
-            className='w-[100px] h-[32px] object-contain'
-            src='/images/logo_name.png'
-            alt='Logo'
-            width={300}
-            height={300}
-            priority
-          />
-        </Link>
+        <button className='normal_btn p-0 relative w-8 h-w-8 rounded-xl'>
+          <Doll />
+          {badgeNumber}
+        </button>
       </div>
 
       {shownDrawer && (
@@ -55,7 +41,7 @@ const MobileSbar = ({ menu, badgeNumber }) => {
             <div className='sticky top-0 flex justify-between items-center bg-white border-b px-4 py-3'>
               <Link
                 className='flex items-center gap-2'
-                href='#'
+                href='/profile'
               >
                 <Image
                   className='w-[36px] h-[36px] object-cover rounded-full'
@@ -70,8 +56,8 @@ const MobileSbar = ({ menu, badgeNumber }) => {
               </Link>
 
               <button
-                className='text_btn'
-                onClick={() => destroyTokens()}
+                className='normal_btn px-[6px]'
+                onClick={shownAlert}
               >
                 <Logout />
               </button>

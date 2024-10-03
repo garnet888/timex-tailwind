@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { DoubleLeft, Logout, Doll } from '../icons';
+import { Alert } from '@/ui';
 import { destroyTokens } from '@/lib/auth';
 import { fetchMenu } from '@/lib/helper';
 import MobileSbar from './MobileSbar';
@@ -15,6 +16,7 @@ const SMALL_MIN_MENU_WIDTH = 'min-w-[80px]';
 
 const Sidebar = ({ smallMenu, smallMenuHandler }) => {
   const [menu, setMenu] = useState([]);
+  const [showAlert, setShownAlert] = useState(false);
 
   useEffect(() => {
     fetchMenu(setMenu);
@@ -75,9 +77,17 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
 
   return (
     <div style={{ gridArea: 'sidebar' }}>
+      <Alert
+        text='Та гарахдаа итгэлтэй байна уу?'
+        visible={showAlert}
+        noOnClick={() => setShownAlert(false)}
+        yesOnClick={() => destroyTokens()}
+      />
+
       <MobileSbar
         menu={renderMenu(true)}
         badgeNumber={renderBadgeNumber()}
+        shownAlert={() => setShownAlert(true)}
       />
 
       <aside
@@ -158,7 +168,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
             >
               <button
                 className='text_btn group w-full justify-start text-nowrap overflow-x-hidden text-sm hover:bg-orange-400'
-                onClick={() => destroyTokens()}
+                onClick={() => setShownAlert(true)}
               >
                 <span
                   className={[
@@ -183,7 +193,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
             >
               <Link
                 className='flex items-center text-nowrap overflow-x-hidden text-sm py-1'
-                href='#'
+                href='/profile'
               >
                 <span
                   className={[
