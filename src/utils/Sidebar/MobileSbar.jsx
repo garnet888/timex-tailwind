@@ -2,9 +2,16 @@ import { useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LuMenu } from 'react-icons/lu';
-import { Doll, Logout } from '../icons';
+import { DefaultAvatar, Doll, Logout } from '../icons';
 
-const MobileSbar = ({ menu, badgeNumber, shownAlert }) => {
+const MobileSbar = ({
+  profile,
+  lastName,
+  firstName,
+  menu,
+  badgeNumber,
+  shownAlert,
+}) => {
   const drawerRef = useRef();
 
   const [shownDrawer, setShownDrawer] = useState(false);
@@ -45,14 +52,20 @@ const MobileSbar = ({ menu, badgeNumber, shownAlert }) => {
               >
                 <Image
                   className='w-[36px] h-[36px] object-cover rounded-full'
-                  src='/images/logo.png'
-                  alt='Avatar'
+                  src={profile}
+                  alt='Profile'
                   width={100}
                   height={100}
                   priority
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/default_avatar.svg';
+                  }}
                 />
 
-                <span>Garnet</span>
+                <span className='font-semibold'>
+                  {firstName ? firstName : lastName}
+                </span>
               </Link>
 
               <button

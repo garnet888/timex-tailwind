@@ -10,8 +10,8 @@ import { apiList, callPost } from '@/axios/api';
 
 const schema = Yup.object({
   code: Yup.string()
-    .required('Баталгаажуулах кодоо оруулна уу.')
-    .matches(/^\d{6}$/, '6 ширхэг тоо байх ёстой.'),
+    .required('Баталгаажуулах кодоо оруулна уу')
+    .matches(/^\d{6}$/, '6 ширхэг тоо байх ёстой'),
 });
 
 const ConfirmPhone = ({ userID, phone }) => {

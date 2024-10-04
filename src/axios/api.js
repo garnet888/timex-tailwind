@@ -155,6 +155,7 @@ const apiList = {
   permissionMenu: '/user/menu/permission',
   auth: '/auth',
   login: '/auth/login',
+  user: '/user',
 };
 
 export {

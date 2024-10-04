@@ -8,8 +8,8 @@ import { apiList, callPost } from '@/axios/api';
 
 const schema = Yup.object({
   phone_number: Yup.string()
-    .required('Утасны дугаараа оруулна уу.')
-    .matches(/^\d{8}$/, '8 ширхэг тоо байх ёстой.'),
+    .required('Утасны дугаараа оруулна уу')
+    .matches(/^\d{8}$/, '8 ширхэг тоо байх ёстой'),
 });
 
 const EnterPhone = ({ setPhone, changeStep }) => {

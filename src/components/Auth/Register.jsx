@@ -16,17 +16,17 @@ import TermsContent from '../TermsPrivacy/TermsContent';
 
 const schema = Yup.object({
   phone_number: Yup.string()
-    .required('Утасны дугаараа оруулна уу.')
-    .matches(/^\d{8}$/, '8 ширхэг тоо байх ёстой.'),
+    .required('Утасны дугаараа оруулна уу')
+    .matches(/^\d{8}$/, '8 ширхэг тоо байх ёстой'),
   password: Yup.string()
-    .required('Нууц үгээ оруулна уу.')
-    .min(6, 'Хамгийн багадаа 6 тэмдэгт байх ёстой.')
+    .required('Нууц үгээ оруулна уу')
+    .min(6, 'Хамгийн багадаа 6 тэмдэгт байх ёстой')
     .matches(
       /^(?=.*[\W_])(?=.*\d)(?=.*[A-Z])[A-Za-z0-9!@#%^&*()_+{}[\]:;<>,.?/~`'"\-|=№₮¥$\\]*$/,
-      'Таны нууц үг латин үсгээр, ядаж 1 том үсэг, жижиг үсэг, тоо, тусгай тэмдэгт агуулсан байх ёстой.'
+      'Таны нууц үг латин үсгээр, ядаж 1 том үсэг, жижиг үсэг, тоо, тусгай тэмдэгт агуулсан байх ёстой'
     ),
   rePassword: Yup.string()
-    .required('Нууц үгээ давтан оруулна уу.')
+    .required('Нууц үгээ давтан оруулна уу')
     .oneOf([Yup.ref('password')], 'Нууц үг таарахгүй байна'),
 });
 
@@ -87,16 +87,17 @@ const Register = ({ setUserID, setPhone, changeStep }) => {
         width={800}
         open={visibleTerms}
         onClose={() => setVisibleTerms(false)}
+        footer={
+          <button
+            className='w-full mt-6'
+            disabled={termsPer < 94}
+            onClick={allowTerms}
+          >
+            Зөвшөөрч байна
+          </button>
+        }
       >
         <TermsContent setTermsPer={setTermsPer} />
-
-        <button
-          className='w-full mt-6'
-          disabled={termsPer < 94}
-          onClick={allowTerms}
-        >
-          Зөвшөөрч байна
-        </button>
       </Modal>
 
       <form

@@ -63,6 +63,9 @@ body *:disabled::placeholder {
   color: white;
 }
 
+.modal__body {
+  overflow-y: unset;
+}
 .modal__close-button {
   background: unset;
   box-shadow: unset;

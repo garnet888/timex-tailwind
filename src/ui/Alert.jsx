@@ -26,7 +26,7 @@ const Alert = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
       hideIcon
       onClose={onClose}
       footer={
-        <div className='flex justify-end gap-4'>
+        <div className='flex justify-end gap-4 mt-4'>
           <button
             className='normal_btn'
             disabled={isLoading}
@@ -45,7 +45,7 @@ const Alert = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
         </div>
       }
     >
-      <span className='flex items-end gap-2 mb-4'>
+      <span className='flex items-end gap-2'>
         <BiSolidError
           size={26}
           color='orange'

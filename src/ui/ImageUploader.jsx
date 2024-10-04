@@ -50,7 +50,7 @@ const ImageUploader = ({ file, getFile, avatar = false }) => {
         onChange={handleFileChanger}
       />
       <label
-        className='group cursor-pointer w-full flex flex-col items-center gap-6 bg-[#fafafa] rounded border border-dashed border-[#d9d9d9] transition duration-300 py-6 hover:border-primary'
+        className='group cursor-pointer w-full flex flex-col items-center gap-6 bg-[#fafafa] rounded border border-dashed border-[#d9d9d9] transition duration-300 p-8 hover:border-primary'
         htmlFor={inputID}
       >
         {hasFile && (
@@ -67,7 +67,7 @@ const ImageUploader = ({ file, getFile, avatar = false }) => {
           </figure>
         )}
 
-        <div className='w-full flex flex-col justify-center items-center'>
+        <div className='w-full flex flex-col justify-center items-center text-center'>
           <div className='grid place-content-center'>
             <div className='w-[48px] h-[48px] grid place-content-center bg-[#f2f3f5] rounded-full p-1 group-hover:bg-purple-200'>
               <div className='w-[36px] h-[36px] grid place-content-center bg-[#e6e8ea] rounded-full p-2 group-hover:bg-purple-300 group-hover:text-gray-100'>

@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 import AdminLayout from '@/layouts/AdminLayout';
 import BarChart from '@/components/Charts/MultiColumnChart';
 

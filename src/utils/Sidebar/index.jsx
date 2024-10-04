@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useMainContext } from '@/context/MainContext';
 import { DoubleLeft, Logout, Doll } from '../icons';
 import { Alert } from '@/ui';
 import { destroyTokens } from '@/lib/auth';
@@ -10,11 +11,15 @@ import MenuItem from './MenuItem';
 
 let badge = 1;
 
+const IMG_URL = process.env.NEXT_PUBLIC_IMG_URL;
+
 const MENU_WIDTH = 'w-[260px]';
 const SMALL_MENU_WIDTH = 'w-[80px]';
 const SMALL_MIN_MENU_WIDTH = 'min-w-[80px]';
 
 const Sidebar = ({ smallMenu, smallMenuHandler }) => {
+  const { userInfo } = useMainContext();
+
   const [menu, setMenu] = useState([]);
   const [showAlert, setShownAlert] = useState(false);
 
@@ -85,6 +90,9 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
       />
 
       <MobileSbar
+        profile={IMG_URL + userInfo?.profileImage}
+        firstName={userInfo?.firstName}
+        lastName={userInfo?.lastName}
         menu={renderMenu(true)}
         badgeNumber={renderBadgeNumber()}
         shownAlert={() => setShownAlert(true)}
@@ -159,7 +167,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
             <div className='flex flex-col gap-1'>{renderMenu()}</div>
           </div>
 
-          <div className='absolute bottom-0 w-full h-[100px] flex flex-col justify-center gap-y-2 rounded-b-2xl border-t border-gray-100'>
+          <div className='absolute bottom-0 w-full h-[120px] flex flex-col justify-center gap-y-2 rounded-b-2xl border-t border-gray-100'>
             <div
               className={[
                 smallMenu ? `${SMALL_MENU_WIDTH} hover:pr-0` : MENU_WIDTH,
@@ -167,13 +175,13 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
               ].join(' ')}
             >
               <button
-                className='text_btn group w-full justify-start text-nowrap overflow-x-hidden text-sm hover:bg-orange-400'
+                className='text_btn group w-full justify-start text-nowrap overflow-x-hidden text-sm py-2 hover:bg-orange-400'
                 onClick={() => setShownAlert(true)}
               >
                 <span
                   className={[
                     smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
-                    'flex justify-center text-red-500 py-2 group-hover:text-white',
+                    'flex justify-center text-red-500 group-hover:text-white',
                   ].join(' ')}
                 >
                   <Logout />
@@ -192,7 +200,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
               ].join(' ')}
             >
               <Link
-                className='flex items-center text-nowrap overflow-x-hidden text-sm py-1'
+                className='flex items-center text-nowrap overflow-x-hidden text-sm'
                 href='/profile'
               >
                 <span
@@ -202,16 +210,23 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
                   ].join(' ')}
                 >
                   <Image
-                    className='w-[26px] h-[26px] object-cover rounded-full'
-                    src='/images/logo.png'
+                    className='w-[34px] h-[34px] object-cover rounded-full'
+                    src={IMG_URL + userInfo?.profileImage}
                     alt='Avatar'
                     width={100}
                     height={100}
                     priority
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/default_avatar.svg';
+                    }}
                   />
                 </span>
 
-                <span>Garnet</span>
+                <span className='flex flex-col'>
+                  {userInfo?.lastName}
+                  <b className='font-semibold'>{userInfo?.firstName}</b>
+                </span>
               </Link>
             </div>
           </div>

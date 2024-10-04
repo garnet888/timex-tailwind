@@ -3,19 +3,32 @@ const FormElement = ({
   label = '',
   message,
   hideAsterisk = false,
+  shownInputAsterrisk = false,
 }) => {
   return (
     <div>
-      <div className='flex flex-col gap-1'>
+      <div className='flex flex-col'>
         <span className='flex'>
           {hideAsterisk || <span className='text-red-500 mr-1'>*</span>}
           {label && <p className='text-sm'>{label}</p>}
         </span>
 
-        {children}
+        <span className='flex gap-1'>
+          {shownInputAsterrisk && <span className='text-red-500 mr-1'>*</span>}
+          {children}
+        </span>
       </div>
 
-      {message && <p className='text-red-500 text-sm'>{message}</p>}
+      {message && (
+        <p
+          className={[
+            shownInputAsterrisk ? 'ml-4' : '',
+            'text-red-500 text-sm',
+          ].join(' ')}
+        >
+          {message}
+        </p>
+      )}
     </div>
   );
 };

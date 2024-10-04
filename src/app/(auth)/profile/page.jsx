@@ -1,6 +1,6 @@
 import Profile from './Profile';
 
-const title = 'Профайл';
+const title = 'Ерөнхий мэдээлэл';
 export const metadata = { title };
 
 const ProfilePage = () => {
