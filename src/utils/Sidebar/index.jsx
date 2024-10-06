@@ -18,12 +18,13 @@ const SMALL_MENU_WIDTH = 'w-[80px]';
 const SMALL_MIN_MENU_WIDTH = 'min-w-[80px]';
 
 const Sidebar = ({ smallMenu, smallMenuHandler }) => {
-  const { userInfo } = useMainContext();
+  const { userInfo, fecthUserInfo } = useMainContext();
 
   const [menu, setMenu] = useState([]);
-  const [showAlert, setShownAlert] = useState(false);
+  const [shownAlert, setShownAlert] = useState(false);
 
   useEffect(() => {
+    fecthUserInfo();
     fetchMenu(setMenu);
   }, []);
 
@@ -84,7 +85,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
     <div style={{ gridArea: 'sidebar' }}>
       <Alert
         text='Та гарахдаа итгэлтэй байна уу?'
-        visible={showAlert}
+        visible={shownAlert}
         noOnClick={() => setShownAlert(false)}
         yesOnClick={() => destroyTokens()}
       />

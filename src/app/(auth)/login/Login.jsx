@@ -116,10 +116,7 @@ const Login = ({ title }) => {
             />
           </FormElement>
 
-          <FormElement
-            label='Нууц үг'
-            message={errors.password?.message}
-          >
+          <FormElement label='Нууц үг' message={errors.password?.message}>
             <InputPassword
               id='password'
               before={<RiLockPasswordLine color='gray' />}

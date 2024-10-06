@@ -41,17 +41,14 @@ const MobileSbar = ({
       {shownDrawer && (
         <div
           ref={drawerRef}
-          className='bg-gray-300/60 fixed top-0 z-50 w-full h-screen '
+          className='bg-gray-300/60 fixed top-0 z-50 w-full h-screen'
           onClick={closeOnClick}
         >
           <aside className='w-2/3 h-full overflow-y-auto bg-white shadow-md border-r'>
             <div className='sticky top-0 flex justify-between items-center bg-white border-b px-4 py-3'>
-              <Link
-                className='flex items-center gap-2'
-                href='/profile'
-              >
+              <Link className='flex items-center gap-2' href='/profile'>
                 <Image
-                  className='w-[36px] h-[36px] object-cover rounded-full'
+                  className='min-w-[36px] min-h-[36px] w-[36px] h-[36px] object-cover rounded-full'
                   src={profile}
                   alt='Profile'
                   width={100}
@@ -63,15 +60,12 @@ const MobileSbar = ({
                   }}
                 />
 
-                <span className='font-semibold'>
+                <span className='font-semibold leading-tight'>
                   {firstName ? firstName : lastName}
                 </span>
               </Link>
 
-              <button
-                className='normal_btn px-[6px]'
-                onClick={shownAlert}
-              >
+              <button className='normal_btn px-[6px]' onClick={shownAlert}>
                 <Logout />
               </button>
             </div>

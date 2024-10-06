@@ -42,7 +42,7 @@ const ImageUploader = ({ file, getFile, avatar = false }) => {
   };
 
   return (
-    <div>
+    <div className='w-full'>
       <input
         type='file'
         id={inputID}

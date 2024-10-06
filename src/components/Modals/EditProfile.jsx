@@ -141,17 +141,14 @@ const EditProfile = ({ which, label, open, setOpen }) => {
             <InputPassword
               id='rePassword'
               alert={errors.rePassword}
+              rounded
               register={register}
             />
           </FormElement>
         )}
 
         <div className='flex justify-end gap-3 mt-1'>
-          <button
-            className='normal_btn'
-            type='button'
-            onClick={closeHandler}
-          >
+          <button className='normal_btn' type='button' onClick={closeHandler}>
             Болих
           </button>
 

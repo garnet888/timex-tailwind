@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const BaseContext = createContext();
@@ -35,7 +35,15 @@ export const BaseProvider = ({ children }) => {
   };
 
   return (
-    <BaseContext.Provider value={{ isUser, setIsUser }}>
+    <BaseContext.Provider
+      value={useMemo(
+        () => ({
+          isUser,
+          setIsUser,
+        }),
+        [isUser, setIsUser]
+      )}
+    >
       {renderChildren()}
     </BaseContext.Provider>
   );

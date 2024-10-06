@@ -25,34 +25,26 @@ const Alert = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
       open={visible}
       hideIcon
       onClose={onClose}
-      footer={
-        <div className='flex justify-end gap-4 mt-4'>
-          <button
-            className='normal_btn'
-            disabled={isLoading}
-            onClick={noOnClick}
-          >
-            Үгүй
-          </button>
-
-          <button
-            className='normal_btn bg-orange-400 text-white hover:text-primary'
-            disabled={isLoading}
-            onClick={yesHandler}
-          >
-            {isLoading ? <span className='load_spinner w-4' /> : 'Тийм'}
-          </button>
-        </div>
-      }
     >
-      <span className='flex items-end gap-2'>
-        <BiSolidError
-          size={26}
-          color='orange'
-        />
+      <span className='flex gap-2'>
+        <BiSolidError className='mt-1' size={26} color='orange' />
 
         {text}
       </span>
+
+      <div className='flex justify-end gap-4 mt-4'>
+        <button className='normal_btn' disabled={isLoading} onClick={noOnClick}>
+          Үгүй
+        </button>
+
+        <button
+          className='normal_btn bg-orange-400 text-white hover:text-primary'
+          disabled={isLoading}
+          onClick={yesHandler}
+        >
+          {isLoading ? <span className='load_spinner w-4' /> : 'Тийм'}
+        </button>
+      </div>
     </Modal>
   );
 };
