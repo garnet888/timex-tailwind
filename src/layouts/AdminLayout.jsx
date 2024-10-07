@@ -37,8 +37,8 @@ const AdminLayout = ({ children }) => {
           className={[
             smallMenu
               ? 'sm:w-adn_small_content'
-              : 'sm:pl-0 sm:pr-4 sm:w-adn_content',
-            'width_effect sm:min-h-screen overflow-auto px-4 pt-[20px] pb-2',
+              : 'sm:pl-0 sm:pr-5 sm:w-adn_content',
+            'width_effect sm:min-h-screen overflow-auto p-5',
           ]}
         >
           {children}

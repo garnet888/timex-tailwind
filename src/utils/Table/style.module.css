@@ -1,0 +1,36 @@
+.container {
+  overflow: auto;
+
+  background-color: white;
+}
+
+.container table {
+  width: 100%;
+
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+.container table td,
+.container table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.container table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.container table tr:hover {
+  background-color: #ddd;
+}
+
+.container table th,
+.container tfoot td {
+  text-align: center;
+
+  background-color: #4caf50;
+  color: white;
+
+  padding-block: 12px;
+}
