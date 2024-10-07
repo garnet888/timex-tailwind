@@ -10,8 +10,6 @@ import {
 import { columnDef } from './columns';
 import dataJSON from './data.json';
 
-import css from './style.module.css';
-
 const SortingTable = () => {
   const finalData = useMemo(() => dataJSON, []);
   const finalColumnDef = useMemo(() => columnDef, []);
@@ -30,14 +28,15 @@ const SortingTable = () => {
   });
 
   return (
-    <div className={css.container}>
-      <table>
+    <div className='overflow-auto bg-white'>
+      <table className='w-full border-collapse'>
         <thead>
           {tableInstance.getHeaderGroups().map((headerEl) => (
             <tr key={headerEl.id}>
               {headerEl.headers.map((columnEl) => (
                 <th
                   key={columnEl.id}
+                  className='bg-[#4caf50] text-white text-center border p-2'
                   colSpan={columnEl.colSpan}
                   onClick={columnEl.column.getToggleSortingHandler()}
                 >
@@ -64,7 +63,7 @@ const SortingTable = () => {
           {tableInstance.getRowModel().rows.map((rowEl) => (
             <tr key={rowEl.id}>
               {rowEl.getVisibleCells().map((cellEl) => (
-                <td key={cellEl.id}>
+                <td key={cellEl.id} className='border p-2'>
                   {flexRender(
                     cellEl.column.columnDef.cell,
                     cellEl.getContext()
