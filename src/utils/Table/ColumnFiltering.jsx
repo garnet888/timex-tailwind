@@ -35,9 +35,9 @@ const ColumnFiltering = () => {
   });
 
   return (
-    <div className='overflow-auto bg-white'>
+    <div className='overflow-auto bg-white rounded-t-[18px]'>
       <table className='w-full border-collapse'>
-        <thead>
+        <thead className='bg-dark'>
           {tableInstance.getHeaderGroups().map((headerEl) => (
             <tr key={headerEl.id}>
               {headerEl.headers.map((columnEl) => {
@@ -49,7 +49,7 @@ const ColumnFiltering = () => {
                 return (
                   <th
                     key={columnEl.id}
-                    className='bg-[#4caf50] text-white text-center border p-2'
+                    className='text-white text-center border p-2'
                     colSpan={columnEl.colSpan}
                   >
                     {columnEl.isPlaceholder ? null : (
@@ -77,16 +77,22 @@ const ColumnFiltering = () => {
         <tbody>
           {tableInstance.getRowModel().rows.map((rowEl) => (
             <tr key={rowEl.id}>
-              {rowEl.getVisibleCells().map((cellEl) => {
-                return (
-                  <td key={cellEl.id} className='border p-2'>
-                    {flexRender(
-                      cellEl.column.columnDef.cell,
-                      cellEl.getContext()
-                    )}
-                  </td>
-                );
-              })}
+              {rowEl.getVisibleCells().map((cellEl) => (
+                <td
+                  key={cellEl.id}
+                  className={[
+                    cellEl.column.columnDef.header === 'ID'
+                      ? 'text-center'
+                      : '',
+                    'border p-2',
+                  ].join(' ')}
+                >
+                  {flexRender(
+                    cellEl.column.columnDef.cell,
+                    cellEl.getContext()
+                  )}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>

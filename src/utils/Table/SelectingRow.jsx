@@ -4,38 +4,34 @@ import { useMemo, useState } from 'react';
 import {
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { columnDef } from './columns';
+import { columnDefWithCheckBox } from './columns';
 import dataJSON from './data.json';
 
-const GlobalFiltering = () => {
+const SelectingRow = () => {
   const finalData = useMemo(() => dataJSON, []);
-  const finalColumnDef = useMemo(() => columnDef, []);
+  const finalColumnDef = useMemo(() => columnDefWithCheckBox, []);
 
-  const [filtering, setFiltering] = useState('');
+  const [rowSelection, setRowSelection] = useState({});
 
   const tableInstance = useReactTable({
     columns: finalColumnDef,
     data: finalData,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     state: {
-      globalFilter: filtering,
+      rowSelection: rowSelection,
     },
-    onGlobalFilterChange: setFiltering,
+    onRowSelectionChange: setRowSelection,
+    enableRowSelection: true,
   });
 
   return (
     <div className='overflow-auto bg-white rounded-t-[18px]'>
-      <input
-        type='text'
-        value={filtering}
-        onChange={(e) => setFiltering(e.target.value)}
-      />
-
-      <hr />
+      {console.log(
+        'getSelectedRowModel--->',
+        tableInstance.getSelectedRowModel()
+      )}
 
       <table className='w-full border-collapse'>
         <thead className='bg-dark'>
@@ -46,21 +42,12 @@ const GlobalFiltering = () => {
                   key={columnEl.id}
                   className='text-white text-center border p-2'
                   colSpan={columnEl.colSpan}
-                  onClick={columnEl.column.getToggleSortingHandler()}
                 >
-                  {columnEl.isPlaceholder
-                    ? null
-                    : flexRender(
-                        columnEl.column.columnDef.header,
-                        columnEl.getContext()
-                      )}
-
-                  {/* CODE FOR UP AND DOWN SORTING */}
-                  {
-                    { asc: '-UP', desc: '-DOWN' }[
-                      columnEl.column.getIsSorted() ?? null
-                    ]
-                  }
+                  {columnEl.isPlaceholder ||
+                    flexRender(
+                      columnEl.column.columnDef.header,
+                      columnEl.getContext()
+                    )}
                 </th>
               ))}
             </tr>
@@ -74,7 +61,8 @@ const GlobalFiltering = () => {
                 <td
                   key={cellEl.id}
                   className={[
-                    cellEl.column.columnDef.header === 'ID'
+                    cellEl.column.columnDef.header === 'ID' ||
+                    cellEl.column.columnDef.id === 'checkbox'
                       ? 'text-center'
                       : '',
                     'border p-2',
@@ -90,8 +78,14 @@ const GlobalFiltering = () => {
           ))}
         </tbody>
       </table>
+
+      <ul>
+        {tableInstance.getSelectedRowModel().flatRows.map((item) => (
+          <li key={item.id}>{JSON.stringify(item.original)}</li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default GlobalFiltering;
+export default SelectingRow;

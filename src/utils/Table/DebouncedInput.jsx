@@ -22,7 +22,7 @@ function DebouncedInput({
 
   return (
     <input
-      className='w-fit h-auto font-light px-1 py-[2px]'
+      className='w-fit h-auto font-light px-1 py-[2px] mb-1'
       {...props}
       value={value}
       onChange={(e) => setValue(e.target.value)}

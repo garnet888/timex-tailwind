@@ -20,15 +20,15 @@ const BasicTable = () => {
   });
 
   return (
-    <div className='overflow-auto bg-white'>
+    <div className='overflow-auto bg-white rounded-t-[18px]'>
       <table className='w-full border-collapse'>
-        <thead>
+        <thead className='bg-dark'>
           {tableInstance.getHeaderGroups().map((headerEl) => (
             <tr key={headerEl.id}>
               {headerEl.headers.map((columnEl) => (
                 <th
                   key={columnEl.id}
-                  className='bg-[#4caf50] text-white text-center border p-2'
+                  className='text-white text-center border p-2'
                   colSpan={columnEl.colSpan}
                 >
                   {columnEl.isPlaceholder ||
@@ -43,10 +43,18 @@ const BasicTable = () => {
         </thead>
 
         <tbody>
-          {tableInstance.getCoreRowModel().rows.map((rowEl) => (
+          {tableInstance.getRowModel().rows.map((rowEl) => (
             <tr key={rowEl.id}>
               {rowEl.getVisibleCells().map((cellEl) => (
-                <td key={cellEl.id} className='border p-2'>
+                <td
+                  key={cellEl.id}
+                  className={[
+                    cellEl.column.columnDef.header === 'ID'
+                      ? 'text-center'
+                      : '',
+                    'border p-2',
+                  ].join(' ')}
+                >
                   {flexRender(
                     cellEl.column.columnDef.cell,
                     cellEl.getContext()
