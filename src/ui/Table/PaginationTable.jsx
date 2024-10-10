@@ -22,51 +22,53 @@ const PaginationTable = () => {
   });
 
   return (
-    <div className='overflow-auto rounded-t-[18px]'>
-      <table className='w-full bg-white border-collapse'>
-        <thead className='bg-dark'>
-          {tableInstance.getHeaderGroups().map((headerEl) => (
-            <tr key={headerEl.id}>
-              {headerEl.headers.map((columnEl) => (
-                <th
-                  key={columnEl.id}
-                  className='text-white text-center border p-2'
-                  colSpan={columnEl.colSpan}
-                >
-                  {columnEl.isPlaceholder ||
-                    flexRender(
-                      columnEl.column.columnDef.header,
-                      columnEl.getContext()
-                    )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
+    <div>
+      <div className='overflow-auto rounded-t-[18px]'>
+        <table className='w-full bg-white border-collapse'>
+          <thead className='bg-dark'>
+            {tableInstance.getHeaderGroups().map((headerEl) => (
+              <tr key={headerEl.id}>
+                {headerEl.headers.map((columnEl) => (
+                  <th
+                    key={columnEl.id}
+                    className='text-white text-center border p-2'
+                    colSpan={columnEl.colSpan}
+                  >
+                    {columnEl.isPlaceholder ||
+                      flexRender(
+                        columnEl.column.columnDef.header,
+                        columnEl.getContext()
+                      )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
 
-        <tbody>
-          {tableInstance.getRowModel().rows.map((rowEl) => (
-            <tr key={rowEl.id}>
-              {rowEl.getVisibleCells().map((cellEl) => (
-                <td
-                  key={cellEl.id}
-                  className={[
-                    cellEl.column.columnDef.header === 'ID'
-                      ? 'text-center'
-                      : '',
-                    'border p-2',
-                  ].join(' ')}
-                >
-                  {flexRender(
-                    cellEl.column.columnDef.cell,
-                    cellEl.getContext()
-                  )}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <tbody>
+            {tableInstance.getRowModel().rows.map((rowEl) => (
+              <tr key={rowEl.id}>
+                {rowEl.getVisibleCells().map((cellEl) => (
+                  <td
+                    key={cellEl.id}
+                    className={[
+                      cellEl.column.columnDef.header === 'ID'
+                        ? 'text-center'
+                        : '',
+                      'border p-2',
+                    ].join(' ')}
+                  >
+                    {flexRender(
+                      cellEl.column.columnDef.cell,
+                      cellEl.getContext()
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <div className='flex justify-end gap-2 mt-4'>
         <button

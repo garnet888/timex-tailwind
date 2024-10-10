@@ -2,6 +2,7 @@ export { default as Alert } from './Alert';
 export { default as Notification } from './Notification';
 export { default as LoadBox } from './LoadBox';
 export { default as BackedIcon } from './BackedIcon';
+export { default as Table } from './Table';
 
 export { default as FormElement } from './FormElement';
 export { default as ImageUploader } from './ImageUploader';

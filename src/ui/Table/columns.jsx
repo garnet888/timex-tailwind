@@ -21,7 +21,11 @@ export const columnDef = [
   {
     accessorKey: 'date',
     header: 'Date',
-    cell: ({ getValue }) => moment(new Date(getValue())).format('MMM Do YY'),
+    cell: ({ getValue }) => (
+      <p className='text-nowrap'>
+        {moment(new Date(getValue())).format('MMM Do YY')}
+      </p>
+    ),
   },
 ];
 
@@ -59,27 +63,62 @@ export const columnDefWithGrouping = [
 ];
 
 export const columnDefWithFilter = [
-  columnHelper.accessor('id', {
-    header: 'ID',
-    enableColumnFilter: false,
-  }),
+  // columnHelper.accessor('id', {
+  //   header: 'ID',
+  //   enableColumnFilter: false,
+  // }),
   {
-    accessorFn: (row) => `${row.first_name}`,
-    header: 'First Name',
-  },
-  {
-    accessorKey: 'last_name',
-    header: 'Last Name',
+    accessorKey: 'name',
+    accessorFn: (row) => `${row.last_name}. ${row.first_name}`,
+    header: 'Нэр',
   },
   {
     accessorKey: 'email',
-    header: 'Email',
+    header: 'И-Мэйл',
+    inputType: 'select',
     enableColumnFilter: false,
   },
   {
+    accessorKey: 'phone',
+    header: 'Утас',
+    cell: ({ getValue }) => <p className='whitespace-nowrap'>{getValue()}</p>,
+  },
+  {
+    accessorKey: 'gender',
+    header: 'Хүйс',
+    inputType: 'select',
+    selectOptions: [
+      {
+        label: 'Эмэгтэй',
+        value: 'Female',
+      },
+      {
+        label: 'Эрэгтэй',
+        value: 'Male',
+      },
+      {
+        label: 'Ажендэр',
+        value: 'Agender',
+      },
+      {
+        label: 'Полижендэр',
+        value: 'Polygender',
+      },
+      {
+        label: 'Хоосон',
+        value: 'Non-binary',
+      },
+    ],
+  },
+  {
     accessorKey: 'date',
-    header: 'Date',
-    cell: ({ getValue }) => moment(new Date(getValue())).format('MMM Do YY'),
+    header: 'Огноо',
+    inputType: 'date',
+    cell: ({ getValue }) => (
+      <p className='text-center whitespace-nowrap'>
+        {moment(new Date(getValue())).format('YYYY/MM/DD')}
+      </p>
+    ),
   },
 ];
 

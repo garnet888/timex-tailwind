@@ -63,7 +63,7 @@ const Popover = ({ content, children, placement = 'BR' }) => {
           String(placement).includes('B') ? 'mt-[6px]' : 'mb-[6px]',
           String(placement).includes('R') ? 'ml-[6px]' : 'mr-[6px]',
           'hidden group-hover:block',
-          'absolute z-tooltip bg-white rounded shadow-tooltip p-2 pt-1',
+          'absolute z-tooltip bg-white rounded overflow-hidden shadow-tooltip px-2 py-1',
         ].join(' ')}
       >
         {children}

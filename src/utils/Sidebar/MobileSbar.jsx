@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LuMenu } from 'react-icons/lu';
-import { DefaultAvatar, Doll, Logout } from '../icons';
+import { Doll, Logout } from '../icons';
 
 const MobileSbar = ({
   profile,
@@ -46,7 +46,10 @@ const MobileSbar = ({
         >
           <aside className='w-2/3 h-full overflow-y-auto bg-white shadow-md border-r'>
             <div className='sticky top-0 flex justify-between items-center bg-white border-b px-4 py-3'>
-              <Link className='flex items-center gap-2' href='/profile'>
+              <Link
+                className='flex items-center gap-2'
+                href='/profile'
+              >
                 <Image
                   className='min-w-[36px] min-h-[36px] w-[36px] h-[36px] object-cover rounded-full'
                   src={profile}
@@ -65,7 +68,10 @@ const MobileSbar = ({
                 </span>
               </Link>
 
-              <button className='normal_btn px-[6px]' onClick={shownAlert}>
+              <button
+                className='normal_btn px-[6px]'
+                onClick={shownAlert}
+              >
                 <Logout />
               </button>
             </div>

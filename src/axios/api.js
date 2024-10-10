@@ -10,7 +10,7 @@ const callGetExcelInstance = async (url, params) => {
 const callPromiseAllInstance = async (fetch) =>
   await axios.all(fetch).then(axios.spread((...responses) => responses));
 
-const sList = async (url) => callGet(`${url}`);
+const callGetList = async (url) => callGet(`${url}`);
 
 const callGet = async (command) => {
   const result = await baseAxios.get(command);
@@ -162,7 +162,7 @@ export {
   apiList,
   callGetExcelInstance,
   callPromiseAllInstance,
-  sList,
+  callGetList,
   callGet,
   callPost,
   callPut,

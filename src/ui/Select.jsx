@@ -10,6 +10,7 @@ const Select = ({
   value,
   rounded = false,
   searchable = false,
+  hiddenClear = false,
   multiple = false,
   disabled = false,
   onChange,
@@ -70,7 +71,7 @@ const Select = ({
           placeholder={_placeholder}
           options={options}
           value={getInitialValue()}
-          isClearable
+          isClearable={!hiddenClear}
           isSearchable={searchable}
           isMulti={multiple}
           isDisabled={disabled}
@@ -78,11 +79,11 @@ const Select = ({
         />
       )}
 
-      <p>{getInitialValue()?.value}</p>
+      {/* <p>{getInitialValue()?.value}</p>
 
       <button onClick={() => setIsError((prev) => !prev)}>
         Toggle Error State
-      </button>
+      </button> */}
     </div>
   );
 };
