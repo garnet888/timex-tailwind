@@ -26,7 +26,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
   useEffect(() => {
     fecthUserInfo();
     fetchMenu(setMenu);
-  }, []);
+  }, [fecthUserInfo]);
 
   const getItem = (_item, _inMobile) => {
     return (

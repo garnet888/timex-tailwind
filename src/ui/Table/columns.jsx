@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Popover } from '@/ui';
 import { Bin, Settings } from '@/utils/icons';
 
-export const getColumns = ({
+export const GetColumns = ({
   columns,
   actionHeader,
   actions,
@@ -119,7 +119,7 @@ export const getColumns = ({
     }
 
     return edited;
-  }, []);
+  }, [columns, actionHeader, actions, actionsHandler, rowOnClick]);
 
   return COLUMNS;
 };

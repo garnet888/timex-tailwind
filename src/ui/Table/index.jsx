@@ -10,7 +10,7 @@ import {
 } from '@tanstack/react-table';
 import { callGetList } from '@/axios/api';
 import { getQueryToTable } from '@/lib/helper';
-import { getColumns } from './columns';
+import { GetColumns } from './columns';
 import Filters from './Filters';
 
 const Table = ({
@@ -52,7 +52,7 @@ const Table = ({
     };
 
     fetchList();
-  }, [filterValues, currentPage, pageSize]);
+  }, [api, customQuery, filterValues, currentPage, pageSize, noPagination]);
 
   const DATA = useMemo(
     () =>
@@ -63,7 +63,7 @@ const Table = ({
     [fetchData]
   );
 
-  const COLUMNS = getColumns({
+  const COLUMNS = GetColumns({
     columns,
     actionHeader,
     actions,
