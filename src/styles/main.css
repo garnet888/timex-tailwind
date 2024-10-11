@@ -5,9 +5,10 @@
 @import 'react-toastify/dist/ReactToastify.css';
 @import 'swiper/css';
 
-@import '../styles/swiper.css';
-@import '../styles/button.css';
-@import '../styles/inputs.css';
+@import './custom.css';
+@import './swiper.css';
+@import './button.css';
+@import './inputs.css';
 
 :root {
   --load_box-z-index: 99999;
@@ -63,24 +64,6 @@ body *:disabled::placeholder {
   color: white;
 }
 
-.modal__body {
-  overflow-y: unset;
-}
-.modal__close-button {
-  background: unset;
-  box-shadow: unset;
-  padding: unset;
-
-  min-width: 28px;
-  min-height: 28px;
-}
-
-.vi__container input:hover,
-.vi__container input:focus {
-  outline: unset;
-  border: unset;
-}
-
 @layer utilities {
   .text_balance {
     text-wrap: balance;
@@ -111,18 +94,24 @@ body *:disabled::placeholder {
     display: grid;
 
     grid-template-columns: auto 1fr;
-    grid-template-rows: minmax(100vh, 1fr);
-    grid-template-areas: 'sidebar  adn_content';
+    grid-template-rows:
+      minmax(100vh, 1fr)
+      auto;
+    grid-template-areas:
+      'sidebar  adn_content'
+      'footer   footer';
   }
   @media (max-width: 426px) {
     .admin_layout {
       grid-template-columns: 1fr;
       grid-template-rows:
         var(--header-height)
-        minmax(calc(100vh - var(--header-height)), 1fr);
+        minmax(calc(100vh - var(--header-height)), 1fr)
+        auto;
       grid-template-areas:
         'sidebar'
-        'adn_content';
+        'adn_content'
+        'footer';
     }
   }
 
@@ -160,16 +149,6 @@ body *:disabled::placeholder {
 }
 
 @layer base {
-  input[type='file'] {
-    display: none;
-  }
-
-  input[type='checkbox']:hover,
-  input[type='checkbox']:focus {
-    outline: unset;
-    border: unset;
-  }
-
   a:hover {
     color: var(--primary-color);
   }
@@ -233,8 +212,19 @@ body *:disabled::placeholder {
     padding-inline: 12px;
   }
 
+  input[type='file'] {
+    display: none;
+  }
+
+  input[type='checkbox']:hover,
+  input[type='radio']:focus {
+    outline: unset;
+    border: unset;
+  }
+
   input,
-  textarea {
+  textarea,
+  select {
     outline: unset;
 
     height: 34px;

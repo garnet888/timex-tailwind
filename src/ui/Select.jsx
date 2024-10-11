@@ -61,10 +61,7 @@ const Select = ({
             ),
             ClearIndicator: (props) => (
               <components.ClearIndicator {...props}>
-                <IoClose
-                  className='text-gray-400'
-                  size={18}
-                />
+                <IoClose className='text-gray-400' size={18} />
               </components.ClearIndicator>
             ),
           }}
@@ -154,6 +151,7 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
     }),
     option: (base, state) => ({
       ...base,
+      zIndex: 99999,
       cursor: 'pointer',
       height: '28px !important',
       lineHeight: '30px',

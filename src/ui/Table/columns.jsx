@@ -1,168 +1,125 @@
-import { createColumnHelper } from '@tanstack/react-table';
+'use client';
+
+import { useMemo } from 'react';
 import moment from 'moment';
-import MagicCheckbox from './MagicCheckbox';
+import { Popover } from '@/ui';
+import { Bin, Settings } from '@/utils/icons';
 
-const columnHelper = createColumnHelper();
+export const getColumns = ({
+  columns,
+  actionHeader,
+  actions,
+  actionsHandler,
+  rowOnClick,
+}) => {
+  const COLUMNS = useMemo(() => {
+    const _columns = columns.map((col) => {
+      if (col?.filterType === 'dateHMS') {
+        return {
+          ...col,
+          cell: ({ getValue }) => (
+            <center>{moment(getValue()).format('YYYY-MM-DD HH:mm:ss')}</center>
+          ),
+        };
+      } else {
+        return col;
+      }
+    });
 
-export const columnDef = [
-  columnHelper.accessor('id', { header: 'ID' }),
-  {
-    accessorFn: (row) => `${row.first_name}`,
-    header: 'First Name',
-  },
-  {
-    accessorKey: 'last_name',
-    header: 'Last Name',
-  },
-  {
-    accessorKey: 'email',
-    header: 'Email',
-  },
-  {
-    accessorKey: 'date',
-    header: 'Date',
-    cell: ({ getValue }) => (
-      <p className='text-nowrap'>
-        {moment(new Date(getValue())).format('MMM Do YY')}
-      </p>
-    ),
-  },
-];
+    const edited = [
+      {
+        accessorKey: 'number',
+        header: '№',
+        enableColumnFilter: false,
+      },
+      ..._columns,
+      {
+        accessorKey: 'action',
+        header: actionHeader,
+        enableColumnFilter: false,
+        cell: ({ row }) => (
+          <div className='flex justify-center gap-1 text-[20px]'>
+            {actions.map((action) => {
+              switch (action.key) {
+                case 'EDIT':
+                  return (
+                    <Popover
+                      key={action.key}
+                      placement='LEFT'
+                      content={
+                        <button
+                          className='text_btn click_effect p-[2px] hover:bg-sky-400'
+                          onClick={
+                            actionsHandler
+                              ? () => actionsHandler(action.key, row.original)
+                              : null
+                          }
+                        >
+                          <Settings />
+                        </button>
+                      }
+                    >
+                      <p className='text-sm text-nowrap'>Засах</p>
+                    </Popover>
+                  );
+                case 'DELETE':
+                  return (
+                    <Popover
+                      key={action.key}
+                      placement='LEFT'
+                      content={
+                        <button
+                          className='text_btn click_effect p-[2px] hover:bg-red-500'
+                          onClick={
+                            actionsHandler
+                              ? () => actionsHandler(action.key, row.original)
+                              : null
+                          }
+                        >
+                          <Bin />
+                        </button>
+                      }
+                    >
+                      <p className='bg-red-500 text-white text-sm text-nowrap px-2 py-1 -mx-2 -my-1'>
+                        Устгах
+                      </p>
+                    </Popover>
+                  );
 
-const columnDefWithCellMerge = [
-  columnHelper.accessor('id', { header: 'ID' }),
-  {
-    accessorFn: (row) => `${row.first_name} ${row.last_name}`,
-    header: 'Name',
-  },
-];
+                default:
+                  return (
+                    <Popover
+                      key={action.key}
+                      placement='LEFT'
+                      content={
+                        <button
+                          className='text_btn click_effect'
+                          onClick={
+                            actionsHandler
+                              ? () => actionsHandler(action.key, row.original)
+                              : null
+                          }
+                        >
+                          {action.icon}
+                        </button>
+                      }
+                    >
+                      <p className='text-sm text-nowrap'>{action.label}</p>
+                    </Popover>
+                  );
+              }
+            })}
+          </div>
+        ),
+      },
+    ];
 
-export const columnDefWithGrouping = [
-  columnHelper.accessor('id', { header: 'ID' }),
-  {
-    header: 'Name',
-    columns: [
-      {
-        accessorFn: (row) => `${row.first_name}`,
-        header: 'First Name',
-      },
-      {
-        accessorKey: 'last_name',
-        header: 'Last Name',
-      },
-    ],
-  },
-  {
-    accessorKey: 'email',
-    header: 'Email',
-  },
-  {
-    accessorKey: 'date',
-    header: 'Date',
-  },
-];
+    if (rowOnClick) {
+      edited.pop();
+    }
 
-export const columnDefWithFilter = [
-  // columnHelper.accessor('id', {
-  //   header: 'ID',
-  //   enableColumnFilter: false,
-  // }),
-  {
-    accessorKey: 'name',
-    accessorFn: (row) => `${row.last_name}. ${row.first_name}`,
-    header: 'Нэр',
-  },
-  {
-    accessorKey: 'email',
-    header: 'И-Мэйл',
-    inputType: 'select',
-    enableColumnFilter: false,
-  },
-  {
-    accessorKey: 'phone',
-    header: 'Утас',
-    cell: ({ getValue }) => <p className='whitespace-nowrap'>{getValue()}</p>,
-  },
-  {
-    accessorKey: 'gender',
-    header: 'Хүйс',
-    inputType: 'select',
-    selectOptions: [
-      {
-        label: 'Эмэгтэй',
-        value: 'Female',
-      },
-      {
-        label: 'Эрэгтэй',
-        value: 'Male',
-      },
-      {
-        label: 'Ажендэр',
-        value: 'Agender',
-      },
-      {
-        label: 'Полижендэр',
-        value: 'Polygender',
-      },
-      {
-        label: 'Хоосон',
-        value: 'Non-binary',
-      },
-    ],
-  },
-  {
-    accessorKey: 'date',
-    header: 'Огноо',
-    inputType: 'date',
-    cell: ({ getValue }) => (
-      <p className='text-center whitespace-nowrap'>
-        {moment(new Date(getValue())).format('YYYY/MM/DD')}
-      </p>
-    ),
-  },
-];
+    return edited;
+  }, []);
 
-export const columnDefWithCheckBox = [
-  {
-    id: 'checkbox',
-    header: ({ table }) => (
-      <MagicCheckbox
-        {...{
-          checked: table.getIsAllRowsSelected(),
-          indeterminate: table.getIsSomeRowsSelected(),
-          onChange: table.getToggleAllRowsSelectedHandler(),
-        }}
-      />
-    ),
-    cell: ({ row }) => (
-      <MagicCheckbox
-        {...{
-          checked: row.getIsSelected(),
-          disabled: !row.getCanSelect(),
-          indeterminate: row.getIsSomeSelected(),
-          onChange: row.getToggleSelectedHandler(),
-        }}
-      />
-    ),
-  },
-  columnHelper.accessor('id', {
-    header: 'ID',
-  }),
-  {
-    accessorFn: (row) => `${row.first_name}`,
-    header: 'First Name',
-  },
-  {
-    accessorKey: 'last_name',
-    header: 'Last Name',
-  },
-  {
-    accessorKey: 'email',
-    header: 'Email',
-  },
-  {
-    accessorKey: 'date',
-    header: 'Date',
-    cell: ({ getValue }) => moment(new Date(getValue())).format('MMM Do YY'),
-  },
-];
+  return COLUMNS;
+};

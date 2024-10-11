@@ -2,7 +2,7 @@
 
 import AdminLayout from '@/layouts/AdminLayout';
 import { Table } from '@/ui';
-import { customers } from '@/utils/TableColumns/customers';
+import { customers } from '@/lib/TableColumns/customers';
 
 const Customers = ({ title }) => {
   const actionsHandler = (key, data) => {
@@ -19,11 +19,11 @@ const Customers = ({ title }) => {
   return (
     <AdminLayout>
       <div className='bg-white rounded-[18px] p-[18px]'>
-        <h3 className='w-full h-[40px] text-xl font-semibold mb-1'>{title}</h3>
+        <h3 className='text-xl font-semibold mb-4 leading-none'>{title}</h3>
 
         <Table
           api='/customer'
-          customQuery='sort=-firstOrder'
+          // customQuery='sort=-firstOrder'
           columns={customers}
           actions={[{ key: 'EDIT' }, { key: 'DELETE' }]}
           actionsHandler={actionsHandler}

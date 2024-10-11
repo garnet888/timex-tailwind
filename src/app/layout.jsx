@@ -24,12 +24,10 @@ export default function RootLayout({ children }) {
           <MainProvider>
             <LoadBox />
             <ToastContainer
-              className='min-w-full sm:min-w-[456px]'
               style={{ zIndex: 'var(--notif-z-index)' }}
               position='top-right'
               autoClose={2000}
               transition={Slide}
-              closeButton={false}
               hideProgressBar
             />
 

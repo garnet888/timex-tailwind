@@ -1,0 +1,27 @@
+.Toastify__close-button {
+  height: auto;
+
+  box-shadow: unset;
+  padding: 6px;
+}
+.Toastify__close-button:hover {
+  color: red;
+}
+
+.modal__body {
+  overflow-y: unset;
+}
+.modal__close-button {
+  background: unset;
+  box-shadow: unset;
+  padding: unset;
+
+  min-width: 28px;
+  min-height: 28px;
+}
+
+.vi__container input:hover,
+.vi__container input:focus {
+  outline: unset;
+  border: unset;
+}

@@ -34,7 +34,7 @@ baseAxios.interceptors.response.use(
     if (error.response?.status === 401 || error.response?.status === 403) {
       if (count === 0) {
         count++;
-        // return redirectToLogin();
+        return redirectToLogin();
       }
     } else {
       return;

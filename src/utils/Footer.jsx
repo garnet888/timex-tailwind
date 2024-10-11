@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer
       style={{ gridArea: 'footer' }}
-      className='shadow-footer px-8 xl:px-[120px] py-8'
+      className='bg-white shadow-footer px-8 xl:px-[120px] py-8'
     >
       <ul
         className={[

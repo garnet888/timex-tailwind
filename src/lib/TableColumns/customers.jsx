@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { Popover } from '@/ui';
 
 export const customers = [
@@ -47,10 +46,7 @@ export const customers = [
     cell: ({ getValue }) =>
       getValue() && (
         <center>
-          <Popover
-            placement='TOP'
-            content='...'
-          >
+          <Popover placement='TOP' content='...'>
             {getValue()}
           </Popover>
         </center>
@@ -59,9 +55,6 @@ export const customers = [
   {
     accessorKey: 'date',
     header: 'Огноо',
-    inputType: 'date',
-    cell: ({ getValue }) => (
-      <center>{moment(getValue()).format('YYYY-MM-DD HH:mm:ss')}</center>
-    ),
+    filterType: 'dateHMS',
   },
 ];

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { disableSmallMenu, enableSmallMenu, getSmallMenu } from '@/lib/helper';
 import Sidebar from '@/utils/Sidebar';
+import Footer from '@/utils/Footer';
 
 const AdminLayout = ({ children }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -27,10 +28,7 @@ const AdminLayout = ({ children }) => {
   if (isMounted) {
     return (
       <main className='admin_layout background_img_2 bg-[#f0f2f5]'>
-        <Sidebar
-          smallMenu={smallMenu}
-          smallMenuHandler={smallMenuHandler}
-        />
+        <Sidebar smallMenu={smallMenu} smallMenuHandler={smallMenuHandler} />
 
         <div
           style={{ gridArea: 'adn_content' }}
@@ -43,6 +41,8 @@ const AdminLayout = ({ children }) => {
         >
           {children}
         </div>
+
+        <Footer />
       </main>
     );
   }

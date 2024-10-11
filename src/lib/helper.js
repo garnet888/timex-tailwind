@@ -47,3 +47,102 @@ export const fetchMenu = async (setMenu) => {
     setMenu(MENU);
   }
 };
+
+export const getQueryToTable = (
+  api,
+  customQuery,
+  filterValues,
+  page,
+  pageSize,
+  noPagination = false
+) => {
+  let query = noPagination
+    ? '?no_paginate=1&is_excel=1'
+    : `?page=${page - 1}&size=${pageSize}`;
+
+  // if (sort) {
+  //   query += `&sort=${sort.sort}${sort.colId}`;
+  // }
+
+  let filters = '';
+  const fields = [];
+
+  if (filterValues?.size > 0) {
+    filters += '&filters=[';
+
+    filterValues.forEach((key, value) => {
+      fields.push(`["${value}", "like", "${key}"]`);
+    });
+
+    fields.forEach((item, idx) => {
+      filters += `${item},`;
+
+      if (fields.length - 1 === idx) {
+        filters += item;
+      }
+    });
+
+    filters += ']';
+  }
+
+  // if (!_.isEmpty(filter)) {
+  //   let sFields = [];
+
+  //   Object.entries(filter).forEach(([key, value]) => {
+  //     if (value.type === 'between') {
+  //       if (value.filterType === 'date' || value.filterType === 'datetime') {
+  //         sFields.push(
+  //           `["${key}", "${value.type}", ["${value.filter}","${value.filterTo} 23:59:59%2B08:00"]]`
+  //         );
+  //       } else {
+  //         sFields.push(
+  //           `["${key}", "${value.type}", ["${value.filter}","${value.filterTo}"]]`
+  //         );
+  //       }
+  //     }
+
+  //     if (value.type === 'like' || value.type === '=') {
+  //       sFields.push(`["${key}", "${value.type}", "${value.filter}"]`);
+  //     }
+
+  //     if (value.type === '>=') {
+  //       sFields.push(`["${key}", "${value.type}", "${value.filter}"]`);
+  //     }
+
+  //     if (value.type === '<=') {
+  //       sFields.push(`["${key}", "${value.type}", "${value.filterTo}"]`);
+  //     }
+  //   });
+
+  //   if (pageAndSizeParm) {
+  //     filters = `&`;
+  //   } else {
+  //     query = ``;
+  //     filters = `?`;
+  //   }
+  //   filters += 'filters=[';
+  //   sFields.forEach((el, index) => {
+  //     filters += `${el}`;
+  //     if (index !== sFields.length - 1) {
+  //       filters += `,`;
+  //     }
+  //   });
+  //   filters += `]`;
+  // } else if (initParams) {
+  //   setInitialParams();
+  // }
+
+  // if (code?.includes('?&filters')) {
+  //   const initFilter = code.split('?');
+  //   code = initFilter[0];
+  //   filters += initFilter[1];
+  // }
+
+  // if (code?.includes('ref?')) {
+  //   query = ``;
+  // }
+
+  query += customQuery;
+
+  return { query, filters };
+};
