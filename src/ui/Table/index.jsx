@@ -5,11 +5,11 @@ import {
   useReactTable,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
 } from '@tanstack/react-table';
+// import Pagination from 'rc-pagination';
+import Pagination from 'react-responsive-pagination';
 import { callGetList } from '@/axios/api';
-import { getQueryToTable } from '@/lib/helper';
+import { getParamsTable } from '@/lib/helper';
 import { GetColumns } from './columns';
 import Filters from './Filters';
 
@@ -27,40 +27,40 @@ const Table = ({
   rowOnClick,
 }) => {
   const [fetchData, setFetchData] = useState([]);
-  const [filterValues, setFilterValues] = useState(new Map());
+  const [filterMap, setFilterMap] = useState(new Map());
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(rowCount);
+  const [totalCount, setTotalCount] = useState(null);
+  const [totalPages, setTotalPages] = useState(null);
 
   useEffect(() => {
-    const params = getQueryToTable(
+    const params = getParamsTable(
       api,
       customQuery,
-      filterValues,
+      filterMap,
       currentPage,
       pageSize,
       noPagination
     );
 
-    console.log('Params:::', params);
-    console.log('Filter Values:::', filterValues);
-
     const fetchList = async () => {
-      // const res = await sList(`${code}${params.query}${params.filters}`);
-      const res = await callGetList(`${api}${params.query}${params.filters}`);
+      const res = await callGetList(`${api}${params}`);
 
       setFetchData(res?.items || []);
+      setTotalCount(res?.total);
+      setTotalPages(res?.total_pages);
     };
 
     fetchList();
-  }, [api, customQuery, filterValues, currentPage, pageSize, noPagination]);
+  }, [api, customQuery, filterMap, currentPage, pageSize, noPagination]);
 
   const DATA = useMemo(
     () =>
       fetchData.map((item, idx) => ({
         ...item,
-        number: idx + 1,
+        number: (currentPage - 1) * pageSize + idx + 1,
       })),
-    [fetchData]
+    [fetchData, currentPage, pageSize]
   );
 
   const COLUMNS = GetColumns({
@@ -74,23 +74,27 @@ const Table = ({
   const TABLE = useReactTable({
     columns: COLUMNS,
     data: DATA,
-    initialState: {
-      pagination: {
-        pageSize: rowCount,
-      },
-    },
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
   });
+
+  const pageSizeOnChange = (e) => {
+    const { value } = e.target;
+    const _totalPages = Math.ceil(totalCount / value);
+
+    if (currentPage > _totalPages) {
+      setCurrentPage(_totalPages);
+    }
+
+    setPageSize(value);
+  };
 
   return (
     <>
       {noFilter || (
         <Filters
           TABLE={TABLE}
-          filterValues={filterValues}
-          setFilterValues={setFilterValues}
+          filterMap={filterMap}
+          setFilterMap={setFilterMap}
         />
       )}
 
@@ -144,58 +148,40 @@ const Table = ({
       </div>
 
       {noPagination || (
-        <div className='relative z-50 flex justify-end items-center gap-4 mt-3'>
-          <p className='text-sm'>Нийт: {DATA.length}</p>
+        <div className='flex justify-between items-center gap-2 sm:gap-4 mt-3'>
+          <p className='text-sm whitespace-nowrap'>Нийт: {totalCount}</p>
 
-          <div className='flex items-center gap-2'>
-            <button
-              className='normal_btn'
-              disabled={!TABLE.getCanPreviousPage()}
-              onClick={() => {
-                TABLE.previousPage();
-                setCurrentPage(TABLE.options.state.pagination.pageIndex);
-              }}
-            >
-              {'<'}
-            </button>
-
-            <p>{TABLE.options.state.pagination.pageIndex + 1}</p>
-            <button
-              className='normal_btn'
-              disabled={!TABLE.getCanNextPage()}
-              onClick={() => {
-                TABLE.nextPage();
-                setCurrentPage(TABLE.options.state.pagination.pageIndex);
-              }}
-            >
-              {'>'}
-            </button>
-          </div>
-
-          {/* <Select
-            value={TABLE.options.state.pagination.pageSize}
-            options={[5, 10, 25, 50, 100, 500, 1000, 5000].map((item) => ({
-              label: item,
-              value: item,
-            }))}
-            hiddenClear
-            onChange={(opt) => TABLE.setPageSize(opt?.value)}
+          {/* <Pagination
+            className='pagination'
+            current={currentPage}
+            pageSize={pageSize}
+            total={totalCount}
+            onChange={setCurrentPage}
           /> */}
 
-          <select
-            className='cursor-pointer px-1'
-            value={TABLE.options.state.pagination.pageSize}
-            onChange={(e) => {
-              TABLE.setPageSize(e.target.value);
-              setPageSize(e.target.value);
-            }}
-          >
-            {[5, 10, 25, 50, 100, 500, 1000, 5000].map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+          <div className='flex gap-4'>
+            <div className='rct_paginate'>
+              <Pagination
+                current={currentPage}
+                total={totalPages}
+                onPageChange={setCurrentPage}
+                previousLabel='<'
+                nextLabel='>'
+              />
+            </div>
+
+            <select
+              className='hidden sm:block cursor-pointer w-fit px-1'
+              value={pageSize}
+              onChange={pageSizeOnChange}
+            >
+              {[5, 10, 25, 50, 100, 500, 1000, 5000].map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       )}
     </>

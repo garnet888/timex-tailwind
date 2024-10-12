@@ -25,3 +25,61 @@
   outline: unset;
   border: unset;
 }
+
+/* ======== PAGINATION (start) ======== */
+.rct_paginate .pagination {
+  justify-content: end;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.rct_paginate .page-item:first-of-type .page-link,
+.rct_paginate .page-item:last-of-type .page-link {
+  font-size: 16px;
+  font-weight: bolder;
+
+  border-width: 2px;
+}
+
+.rct_paginate .page-link {
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-content: center;
+
+  color: var(--dark-color);
+  font-size: 12.8px;
+
+  margin: 0;
+}
+
+.rct_paginate .page-link:hover {
+  background: white;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.rct_paginate .page-link:active {
+  transform: scale(0.88);
+  transition: transform 0.2s ease-out;
+}
+.rct_paginate .active .page-link {
+  cursor: default;
+
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid transparent;
+}
+.rct_paginate .active .page-link:active {
+  transform: unset;
+}
+
+.rct_paginate .disabled .page-link {
+  background: #f4f4f4;
+  border-color: #d9d9d9;
+}
+.rct_paginate .disabled {
+  cursor: not-allowed;
+}
+/* ======== PAGINATION (end) ========== */

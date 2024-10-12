@@ -1,12 +1,65 @@
 import { GrRotateLeft } from 'react-icons/gr';
 import { Select } from '@/ui';
 import { Searching } from '@/utils/icons';
+import { dataType, filterActions } from '@/lib/constants';
 
-const Filters = ({ TABLE, filterValues, setFilterValues }) => {
-  const onChangeHandler = (key, value) => {
-    const seting = filterValues.set(key, value);
+const Filters = ({
+  TABLE,
+  filterMap,
+  filterCols,
+  setFilterMap,
+  setFilterCols,
+}) => {
+  const getAction = (value, type) => {
+    switch (type) {
+      case dataType.NUMBER:
+      case dataType.SELECT:
+        return {
+          filtering: value,
+          action: filterActions.EQUALS,
+        };
 
-    setFilterValues(new Map(seting));
+      case dataType.TEXT:
+      case dataType.TEXTAREA:
+        return {
+          filtering: value,
+          action: filterActions.CONTAINS,
+        };
+
+      case dataType.AMOUNT:
+      case dataType.DATE:
+      case dataType.DATETIME:
+        return {
+          filtering: value,
+          action: filterActions.IN_RANGE,
+        };
+
+      default:
+        break;
+    }
+  };
+
+  const onChangeHandler = (key, value, type) => {
+    const addMap = filterMap.set(key, getAction(value, type));
+    let addObject = [];
+
+    if (filterCols) {
+      addObject = [
+        ...filterCols,
+        {
+          [key]: getAction(value, type),
+        },
+      ];
+    } else {
+      addObject = [
+        {
+          [key]: getAction(value, type),
+        },
+      ];
+    }
+
+    setFilterMap(new Map(addMap));
+    setFilterCols(addObject);
   };
 
   const renderFilterInput = (header) => {
@@ -18,21 +71,27 @@ const Filters = ({ TABLE, filterValues, setFilterValues }) => {
         placeholder='Хайх...'
         // value={header.column.getFilterValue() ?? ''}
         // onChange={(e) => header.column.setFilterValue(e.target.value)}
-        value={filterValues.get(columnDef.accessorKey) ?? ''}
-        onChange={(e) => onChangeHandler(columnDef.accessorKey, e.target.value)}
+        value={filterMap.get(columnDef.accessorKey)?.filtering ?? ''}
+        onChange={(e) =>
+          onChangeHandler(columnDef.accessorKey, e.target.value, dataType.TEXT)
+        }
       />
     );
 
-    if (columnDef?.filterType === 'select') {
+    if (columnDef?.filterType === dataType.SELECT) {
       INPUT = (
         <div className='min-w-44'>
           <Select
             options={columnDef?.selectOptions}
             rounded
             // onChange={(opt) => header.column.setFilterValue(opt?.value)}
-            value={filterValues.get(columnDef.accessorKey) ?? ''}
+            value={filterMap.get(columnDef.accessorKey)?.filtering ?? ''}
             onChange={(e) =>
-              onChangeHandler(columnDef.accessorKey, e.target.value)
+              onChangeHandler(
+                columnDef.accessorKey,
+                e.target.value,
+                columnDef.filterType
+              )
             }
           />
         </div>
@@ -44,9 +103,13 @@ const Filters = ({ TABLE, filterValues, setFilterValues }) => {
         <input
           className='rounded_input '
           type='date'
-          value={filterValues.get(columnDef.accessorKey) ?? ''}
+          value={filterMap.get(columnDef.accessorKey)?.filtering ?? ''}
           onChange={(e) =>
-            onChangeHandler(columnDef.accessorKey, e.target.value)
+            onChangeHandler(
+              columnDef.accessorKey,
+              e.target.value,
+              columnDef.filterType
+            )
           }
         />
       );
@@ -78,7 +141,7 @@ const Filters = ({ TABLE, filterValues, setFilterValues }) => {
       {/* <div className='flex justify-between lg:justify-end gap-3'>
         <button
           className='normal_btn w-[124px] flex gap-2 bg-orange-400 text-white'
-          onClick={() => setFilterValues(new Map())}
+          onClick={() => setFilterMap(new Map())}
         >
           <GrRotateLeft />
           Цэвэрлэх

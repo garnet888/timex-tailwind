@@ -48,17 +48,17 @@ export const fetchMenu = async (setMenu) => {
   }
 };
 
-export const getQueryToTable = (
+export const getParamsTable = (
   api,
   customQuery,
-  filterValues,
-  page,
+  filterMap,
+  currentPage,
   pageSize,
   noPagination = false
 ) => {
   let query = noPagination
     ? '?no_paginate=1&is_excel=1'
-    : `?page=${page - 1}&size=${pageSize}`;
+    : `?page=${Number(currentPage) - 1}&size=${pageSize}`;
 
   // if (sort) {
   //   query += `&sort=${sort.sort}${sort.colId}`;
@@ -67,11 +67,11 @@ export const getQueryToTable = (
   let filters = '';
   const fields = [];
 
-  if (filterValues?.size > 0) {
+  if (filterMap.size > 0) {
     filters += '&filters=[';
 
-    filterValues.forEach((key, value) => {
-      fields.push(`["${value}", "like", "${key}"]`);
+    Array.from(filterMap).forEach(([key, obj]) => {
+      fields.push(`["${key}", "${obj.action}", "${obj.filtering}"]`);
     });
 
     fields.forEach((item, idx) => {
@@ -144,5 +144,5 @@ export const getQueryToTable = (
 
   query += customQuery;
 
-  return { query, filters };
+  return query + filters;
 };

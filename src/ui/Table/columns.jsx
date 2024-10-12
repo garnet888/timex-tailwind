@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import moment from 'moment';
 import { Popover } from '@/ui';
+import { dataType, dateFormats } from '@/lib/constants';
 import { Bin, Settings } from '@/utils/icons';
 
 export const GetColumns = ({
@@ -11,14 +12,14 @@ export const GetColumns = ({
   actions,
   actionsHandler,
   rowOnClick,
-}) => {
-  const COLUMNS = useMemo(() => {
+}) =>
+  useMemo(() => {
     const _columns = columns.map((col) => {
-      if (col?.filterType === 'dateHMS') {
+      if (col?.filterType === dataType.DATETIME) {
         return {
           ...col,
           cell: ({ getValue }) => (
-            <center>{moment(getValue()).format('YYYY-MM-DD HH:mm:ss')}</center>
+            <center>{moment(getValue()).format(dateFormats.WITH_TIME)}</center>
           ),
         };
       } else {
@@ -114,12 +115,7 @@ export const GetColumns = ({
       },
     ];
 
-    if (rowOnClick) {
-      edited.pop();
-    }
+    rowOnClick && edited.pop();
 
     return edited;
   }, [columns, actionHeader, actions, actionsHandler, rowOnClick]);
-
-  return COLUMNS;
-};

@@ -42,7 +42,7 @@ const AdminLayout = ({ children }) => {
           {children}
         </div>
 
-        <Footer />
+        {/* <Footer /> */}
       </main>
     );
   }

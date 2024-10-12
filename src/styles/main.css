@@ -4,6 +4,8 @@
 
 @import 'react-toastify/dist/ReactToastify.css';
 @import 'swiper/css';
+/* @import 'rc-pagination/assets/index.css'; */
+@import 'react-responsive-pagination/themes/classic.css';
 
 @import './custom.css';
 @import './swiper.css';
@@ -193,6 +195,8 @@ body *:disabled::placeholder {
     justify-content: center;
     align-items: center;
 
+    text-wrap: nowrap;
+
     color: white;
     background: linear-gradient(
       136deg,
@@ -200,8 +204,6 @@ body *:disabled::placeholder {
       #4a19d6 52.52%,
       #33b3ca 122.64%
     );
-
-    text-wrap: nowrap;
 
     border-radius: 8px;
     border: 1px solid transparent;
@@ -235,6 +237,10 @@ body *:disabled::placeholder {
     font-size: 14px;
 
     padding-inline: 8px;
+  }
+
+  select:hover {
+    border: 1px solid var(--primary-color);
   }
 
   textarea {

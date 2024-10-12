@@ -1,4 +1,5 @@
 import { Popover } from '@/ui';
+import { dataType } from '../constants';
 
 export const customers = [
   {
@@ -55,6 +56,6 @@ export const customers = [
   {
     accessorKey: 'date',
     header: 'Огноо',
-    filterType: 'dateHMS',
+    filterType: dataType.DATETIME,
   },
 ];

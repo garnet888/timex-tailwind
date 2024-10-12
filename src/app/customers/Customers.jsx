@@ -25,6 +25,7 @@ const Customers = ({ title }) => {
           api='/customer'
           // customQuery='sort=-firstOrder'
           columns={customers}
+          rowCount={5}
           actions={[{ key: 'EDIT' }, { key: 'DELETE' }]}
           actionsHandler={actionsHandler}
         />
