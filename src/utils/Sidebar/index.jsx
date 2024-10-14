@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMainContext } from '@/context/MainContext';
-import { DoubleLeft, Logout, Doll } from '../icons';
-import { Alert } from '@/ui';
 import { destroyTokens } from '@/lib/auth';
 import { fetchMenu } from '@/lib/helper';
+import { Warning } from '@/ui';
+import { DoubleLeft, Logout, Doll } from '../icons';
 import MobileSbar from './MobileSbar';
 import MenuItem from './MenuItem';
 
@@ -83,7 +83,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
 
   return (
     <div style={{ gridArea: 'sidebar' }}>
-      <Alert
+      <Warning
         text='Та гарахдаа итгэлтэй байна уу?'
         visible={shownAlert}
         noOnClick={() => setShownAlert(false)}

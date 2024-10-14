@@ -23,6 +23,7 @@
     "react-minimal-modal": "^2.1.0",
     "react-responsive-pagination": "^2.8.0",
     "react-select": "^5.8.0",
+    "react-switch": "^7.0.0",
     "react-toastify": "^10.0.5",
     "react-top-loading-bar": "^2.3.1",
     "react-verification-input": "^4.1.2",

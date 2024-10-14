@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Modal from 'react-minimal-modal';
 import { BiSolidError } from 'react-icons/bi';
 
-const Alert = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
+const Warning = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onClose = () => {
@@ -33,12 +33,16 @@ const Alert = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
       </span>
 
       <div className='flex justify-end gap-4 mt-4'>
-        <button className='normal_btn' disabled={isLoading} onClick={noOnClick}>
+        <button
+          className='normal_btn text-dark'
+          disabled={isLoading}
+          onClick={noOnClick}
+        >
           Үгүй
         </button>
 
         <button
-          className='normal_btn bg-orange-400 text-white hover:text-primary'
+          className='normal_btn bg-orange-400 text-white hover:text-orange-400 hover:border-orange-400'
           disabled={isLoading}
           onClick={yesHandler}
         >
@@ -49,4 +53,4 @@ const Alert = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
   );
 };
 
-export default Alert;
+export default Warning;

@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { disableSmallMenu, enableSmallMenu, getSmallMenu } from '@/lib/helper';
 import Sidebar from '@/utils/Sidebar';
-import Footer from '@/utils/Footer';
 
 const AdminLayout = ({ children }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -41,8 +40,6 @@ const AdminLayout = ({ children }) => {
         >
           {children}
         </div>
-
-        {/* <Footer /> */}
       </main>
     );
   }

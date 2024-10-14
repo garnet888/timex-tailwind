@@ -128,7 +128,7 @@ const Header = () => {
                 >
                   Нэвтрэх
                 </button>
-                <button onClick={() => router.push('/signup')}>
+                <button onClick={() => router.push('/register')}>
                   Бүртгүүлэх
                 </button>
               </div>

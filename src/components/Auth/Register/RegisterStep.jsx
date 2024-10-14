@@ -12,7 +12,7 @@ import {
   Notification,
 } from '@/ui';
 import { apiList, callPost } from '@/axios/api';
-import TermsContent from '../TermsPrivacy/TermsContent';
+import TermsContent from '../../TermsPrivacy/TermsContent';
 
 const schema = Yup.object({
   phone_number: Yup.string()
@@ -30,7 +30,7 @@ const schema = Yup.object({
     .oneOf([Yup.ref('password')], 'Нууц үг таарахгүй байна'),
 });
 
-const Register = ({ setUserID, setPhone, changeStep }) => {
+const RegisterStep = ({ setUserID, setPhone, changeStep }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [visibleTerms, setVisibleTerms] = useState(false);
@@ -58,7 +58,7 @@ const Register = ({ setUserID, setPhone, changeStep }) => {
     setAgreeTerms(true);
   };
 
-  const signupHandler = () => {
+  const registerHandler = () => {
     if (agreeTerms) {
       setIsLoading(true);
 
@@ -102,7 +102,7 @@ const Register = ({ setUserID, setPhone, changeStep }) => {
 
       <form
         className='flex flex-col gap-2'
-        onSubmit={handleSubmit(signupHandler)}
+        onSubmit={handleSubmit(registerHandler)}
       >
         <FormElement
           label='Утасны дугаар'
@@ -117,10 +117,7 @@ const Register = ({ setUserID, setPhone, changeStep }) => {
           />
         </FormElement>
 
-        <FormElement
-          label='Нууц үг'
-          message={errors.password?.message}
-        >
+        <FormElement label='Нууц үг' message={errors.password?.message}>
           <InputPassword
             id='password'
             before={<RiLockPasswordLine color='gray' />}
@@ -143,10 +140,7 @@ const Register = ({ setUserID, setPhone, changeStep }) => {
           />
         </FormElement>
 
-        <Checkbox
-          checked={agreeTerms}
-          onChange={termsOnCheckHandler}
-        >
+        <Checkbox checked={agreeTerms} onChange={termsOnCheckHandler}>
           {`Үйлчилгээний нөхцөл${agreeTerms ? ' зөвшөөрсөн' : 'тэй танилцах'}`}
         </Checkbox>
 
@@ -162,4 +156,4 @@ const Register = ({ setUserID, setPhone, changeStep }) => {
   );
 };
 
-export default Register;
+export default RegisterStep;

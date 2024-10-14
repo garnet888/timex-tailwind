@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import AuthLoyout from '@/layouts/AuthLoyout';
-import Register from '@/components/Auth/Register';
-import ConfirmPhone from '@/components/Auth/ConfirmPhone';
+import RegisterStep from '@/components/Auth/Register/RegisterStep';
+import ConfirmPhone from '@/components/Auth/Register/ConfirmPhone';
 
-const Signup = () => {
+const Register = () => {
   const [step, setStep] = useState(1);
   const [userID, setUserID] = useState('');
   const [phone, setPhone] = useState('');
@@ -23,7 +23,7 @@ const Signup = () => {
     switch (step) {
       case 1:
         return (
-          <Register
+          <RegisterStep
             setUserID={setUserID}
             setPhone={setPhone}
             changeStep={setStep}
@@ -31,12 +31,7 @@ const Signup = () => {
         );
 
       case 2:
-        return (
-          <ConfirmPhone
-            userID={userID}
-            phone={phone}
-          />
-        );
+        return <ConfirmPhone userID={userID} phone={phone} />;
 
       default:
         return;
@@ -46,7 +41,7 @@ const Signup = () => {
   return (
     <AuthLoyout
       title={getTitle()}
-      covers={[...Array(1)].fill('/images/cover_signup.png')}
+      covers={[...Array(1)].fill('/images/cover_register.png')}
       step={step}
       changeStep={setStep}
     >
@@ -55,4 +50,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;

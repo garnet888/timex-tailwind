@@ -132,7 +132,7 @@ const Login = ({ title }) => {
 
           <Link
             className='flex items-center text-primary hover:opacity-60'
-            href='/signup'
+            href='/register'
           >
             Бүртгүүлэх <HiChevronRight className='mt-[3.2px]' />
           </Link>

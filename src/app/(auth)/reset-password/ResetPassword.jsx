@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import AuthLoyout from '@/layouts/AuthLoyout';
-import EnterNewPassword from '@/components/Auth/EnterNewPassword';
-import EnterPhone from '@/components/Auth/EnterPhone';
+import EnterNewPassword from '@/components/Auth/ResetPassword/EnterNewPassword';
+import EnterPhone from '@/components/Auth/ResetPassword/EnterPhone';
 
 const ResetPassword = () => {
   const [step, setStep] = useState(1);
@@ -21,12 +21,7 @@ const ResetPassword = () => {
   const renderContent = () => {
     switch (step) {
       case 1:
-        return (
-          <EnterPhone
-            setPhone={setPhone}
-            changeStep={setStep}
-          />
-        );
+        return <EnterPhone setPhone={setPhone} changeStep={setStep} />;
 
       case 2:
         return <EnterNewPassword phone={phone} />;
@@ -37,11 +32,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <AuthLoyout
-      title={getTitle()}
-      step={step}
-      changeStep={setStep}
-    >
+    <AuthLoyout title={getTitle()} step={step} changeStep={setStep}>
       {renderContent()}
     </AuthLoyout>
   );
