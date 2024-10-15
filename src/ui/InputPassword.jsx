@@ -20,9 +20,8 @@ const InputPassword = (props) => {
       {...props}
       type={type}
       after={
-        <button
-          className='text_btn mt-[2px]'
-          type='button'
+        <span
+          className='cursor-pointer select-none mt-[2px]'
           onClick={seeOnClick}
         >
           {type === 'password' ? (
@@ -30,7 +29,7 @@ const InputPassword = (props) => {
           ) : (
             <FaEyeSlash size={18} color='gray' />
           )}
-        </button>
+        </span>
       }
     />
   );

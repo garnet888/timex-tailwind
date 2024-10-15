@@ -8,24 +8,22 @@ import OrgaInfo from '@/components/Auth/Info/OrgaInfo';
 import { apiList, callGet } from '@/axios/api';
 
 const Info = () => {
-  const role = getRole();
-
   const [data, setData] = useState();
   const [step, setStep] = useState(1);
   const [userType, setUserType] = useState('');
 
-  let _role = role;
-
-  if (!role || role === 'undefined' || role === 'null') {
-    _role = null;
-  }
-
   useEffect(() => {
-    if (_role) {
+    let role = getRole();
+
+    if (!role || role === 'undefined' || role === 'null') {
+      role = null;
+    }
+
+    if (role) {
       setStep(2);
     }
 
-    if (_role) {
+    if (role) {
       if (role === 'INDIVIDUAL_ADMIN') {
         setUserType('user');
       } else {
@@ -38,7 +36,7 @@ const Info = () => {
         setData(res.data);
       }
     });
-  }, [_role]);
+  }, []);
 
   const renderContent = () => {
     switch (step) {
