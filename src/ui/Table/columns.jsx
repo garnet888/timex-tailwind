@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import moment from 'moment';
-import { Popover } from '@/ui';
+import { Tooltip } from '@/ui';
 import { dataType, dateFormats } from '@/lib/constants';
 import { Bin, Settings } from '@/utils/icons';
 
@@ -44,69 +44,63 @@ export const GetColumns = ({
               switch (action.key) {
                 case 'EDIT':
                   return (
-                    <Popover
+                    <Tooltip
                       key={action.key}
-                      placement='LEFT'
-                      content={
-                        <button
-                          className='text_btn click_effect p-[2px] hover:bg-sky-400'
-                          onClick={
-                            actionsHandler
-                              ? () => actionsHandler(action.key, row.original)
-                              : null
-                          }
-                        >
-                          <Settings />
-                        </button>
-                      }
+                      placement='top'
+                      content={<p className='text-sm text-nowrap'>Засах</p>}
                     >
-                      <p className='text-sm text-nowrap'>Засах</p>
-                    </Popover>
+                      <button
+                        className='text_btn click_effect p-[2px] hover:bg-sky-400'
+                        onClick={
+                          actionsHandler
+                            ? () => actionsHandler(action.key, row.original)
+                            : null
+                        }
+                      >
+                        <Settings />
+                      </button>
+                    </Tooltip>
                   );
                 case 'DELETE':
                   return (
-                    <Popover
+                    <Tooltip
                       key={action.key}
-                      placement='LEFT'
-                      content={
-                        <button
-                          className='text_btn click_effect p-[2px] hover:bg-red-500'
-                          onClick={
-                            actionsHandler
-                              ? () => actionsHandler(action.key, row.original)
-                              : null
-                          }
-                        >
-                          <Bin />
-                        </button>
-                      }
+                      placement='top'
+                      content={<p className='text-sm text-nowrap'>Устгах</p>}
                     >
-                      <p className='bg-red-500 text-white text-sm text-nowrap px-2 py-1 -mx-2 -my-1'>
-                        Устгах
-                      </p>
-                    </Popover>
+                      <button
+                        className='text_btn click_effect p-[2px] hover:bg-red-500'
+                        onClick={
+                          actionsHandler
+                            ? () => actionsHandler(action.key, row.original)
+                            : null
+                        }
+                      >
+                        <Bin />
+                      </button>
+                    </Tooltip>
                   );
 
                 default:
                   return (
-                    <Popover
+                    <Tooltip
                       key={action.key}
-                      placement='LEFT'
+                      placement='top'
                       content={
-                        <button
-                          className='text_btn click_effect'
-                          onClick={
-                            actionsHandler
-                              ? () => actionsHandler(action.key, row.original)
-                              : null
-                          }
-                        >
-                          {action.icon}
-                        </button>
+                        <p className='text-sm text-nowrap'>{action.label}</p>
                       }
                     >
-                      <p className='text-sm text-nowrap'>{action.label}</p>
-                    </Popover>
+                      <button
+                        className='text_btn click_effect'
+                        onClick={
+                          actionsHandler
+                            ? () => actionsHandler(action.key, row.original)
+                            : null
+                        }
+                      >
+                        {action.icon}
+                      </button>
+                    </Tooltip>
                   );
               }
             })}

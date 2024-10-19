@@ -4,10 +4,10 @@
 
 @import 'react-toastify/dist/ReactToastify.css';
 @import 'swiper/css';
-/* @import 'rc-pagination/assets/index.css'; */
+@import 'rc-tooltip/assets/bootstrap.css';
 @import 'react-responsive-pagination/themes/classic.css';
 
-@import './custom.css';
+@import './custom';
 @import './swiper.css';
 @import './button.css';
 @import './inputs.css';

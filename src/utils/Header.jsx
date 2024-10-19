@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { LuMenu, LuUser, LuPower } from 'react-icons/lu';
 import { useBaseContext } from '@/context/BaseContext';
-import Popover from '@/ui/Popover';
+import Popover from '@/ui/Tooltip';
 import { destroyTokens, getToken } from '@/lib/auth';
 
 const Header = () => {
