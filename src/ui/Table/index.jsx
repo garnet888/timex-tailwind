@@ -6,10 +6,10 @@ import {
   flexRender,
   getCoreRowModel,
 } from '@tanstack/react-table';
-// import Pagination from 'rc-pagination';
 import Pagination from 'react-responsive-pagination';
 import { callGetList } from '@/axios/api';
 import { getParamsTable } from '@/lib/helper';
+import { ChevronArrow } from '@/utils/icons';
 import { GetColumns } from './columns';
 import Filters from './Filters';
 
@@ -135,7 +135,7 @@ const Table = ({
                     key={cell.id}
                     className={[
                       cell.column.id === 'number' ? 'w-12 text-center' : '',
-                      'whitespace-nowrap border-r last-of-type:border-r-0 p-2',
+                      'text-nowrap border-r last-of-type:border-r-0 p-2',
                     ].join(' ')}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -149,15 +149,7 @@ const Table = ({
 
       {noPagination || (
         <div className='flex justify-between items-center gap-2 sm:gap-4 mt-3'>
-          <p className='text-sm whitespace-nowrap'>Нийт: {totalCount}</p>
-
-          {/* <Pagination
-            className='pagination'
-            current={currentPage}
-            pageSize={pageSize}
-            total={totalCount}
-            onChange={setCurrentPage}
-          /> */}
+          <p className='text-sm text-nowrap'>Нийт: {totalCount}</p>
 
           <div className='flex gap-4'>
             <div className='rct_paginate'>
@@ -165,8 +157,8 @@ const Table = ({
                 current={currentPage}
                 total={totalPages}
                 onPageChange={setCurrentPage}
-                previousLabel='<'
-                nextLabel='>'
+                previousLabel={<ChevronArrow rotate='left' />}
+                nextLabel={<ChevronArrow />}
               />
             </div>
 
@@ -176,7 +168,10 @@ const Table = ({
               onChange={pageSizeOnChange}
             >
               {[5, 10, 25, 50, 100, 500, 1000, 5000].map((item) => (
-                <option key={item} value={item}>
+                <option
+                  key={item}
+                  value={item}
+                >
                   {item}
                 </option>
               ))}

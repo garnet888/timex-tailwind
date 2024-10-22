@@ -1,4 +1,4 @@
-import { Popover } from '@/ui';
+import { Tooltip } from '@/ui';
 import { dataType } from '../constants';
 
 export const customers = [
@@ -44,14 +44,27 @@ export const customers = [
   {
     accessorKey: 'notes',
     header: 'Тэмдэглэл',
-    cell: ({ getValue }) =>
-      getValue() && (
-        <center>
-          <Popover placement='TOP' content='...'>
-            {getValue()}
-          </Popover>
-        </center>
-      ),
+    cell: ({ getValue }) => (
+      <center>
+        <Tooltip
+          content={
+            <p className='w-[200px] whitespace-normal break-words'>
+              Elit esse laboris id amet proident aliquip voluptate id cillum
+              occaecat deserunt deserunt commodo ex. Laboris Lorem cupidatat
+              enim sit non non cillum ea eiusmod. Cupidatat qui in ad aliquip
+              reprehenderit minim. Incididunt deserunt pariatur duis
+              reprehenderit consequat est fugiat eu consectetur cupidatat enim
+              ullamco quis. Consequat aute tempor esse culpa eu exercitation
+              aute. Culpa consectetur esse ullamco quis esse reprehenderit amet
+              labore ullamco non nulla eiusmod tempor pariatur. Laboris est
+              dolore velit excepteur id amet id irure ullamco.
+            </p>
+          }
+        >
+          ...
+        </Tooltip>
+      </center>
+    ),
   },
   {
     accessorKey: 'date',

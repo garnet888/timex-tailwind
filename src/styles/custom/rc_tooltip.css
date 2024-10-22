@@ -1,0 +1,58 @@
+.rc-tooltip {
+  opacity: 1 !important;
+}
+
+.rc-tooltip-inner {
+  background-color: white;
+  color: var(--dark-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rc-tooltip-placement-top .rc-tooltip-arrow {
+  bottom: -20px;
+  transform: translateX(-25%);
+
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+.rc-tooltip-placement-bottom .rc-tooltip-arrow {
+  top: -20px;
+  transform: translateX(-25%);
+
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.rc-tooltip-placement-left .rc-tooltip-arrow {
+  transform: translateY(-25%);
+
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid white;
+}
+
+.rc-tooltip-placement-right .rc-tooltip-arrow {
+  transform: translateY(-25%);
+
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid white;
+}
+
+.red_tooltip > .rc-tooltip-placement-top .rc-tooltip-arrow {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid red;
+}
+.red_tooltip > .rc-tooltip-placement-bottom .rc-tooltip-arrow {
+  border-bottom-color: red !important;
+}
+.red_tooltip > .rc-tooltip-placement-left .rc-tooltip-arrow {
+  border-left-color: red !important;
+}
+.red_tooltip > .rc-tooltip-placement-right .rc-tooltip-arrow {
+  border-right-color: red !important;
+}

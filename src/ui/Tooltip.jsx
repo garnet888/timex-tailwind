@@ -1,41 +1,18 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import Tooltip from 'rc-tooltip';
 
-const Tooltip = ({ topSpace = 6, content, children }) => {
-  const tooltipRef = useRef(null);
-
-  const [visibleMenu, setVisibleMenu] = useState(false);
-
-  const hangleClickOutside = useCallback((e) => {
-    if (tooltipRef.current && tooltipRef.current.contains(e.target)) {
-      setVisibleMenu((val) => !val);
-    } else {
-      setVisibleMenu(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    document.addEventListener('click', hangleClickOutside);
-  }, [hangleClickOutside]);
-
+const TimexTooltip = ({ children, content, placement }) => {
   return (
-    <div ref={tooltipRef} className='relative z-10'>
-      <div className='cursor-pointer flex active:scale-75 active:duration-500'>
-        {content}
-      </div>
-
-      <div
-        className={[
-          visibleMenu ? '' : 'hidden',
-          'block absolute right-0 overflow-auto bg-white rounded shadow-tooltip',
-        ].join(' ')}
-        style={{ marginTop: topSpace }}
+    <div className='red_tooltip'>
+      <Tooltip
+        placement={placement}
+        overlay={content}
       >
-        {children}
-      </div>
+        <div className='cursor-pointer w-fit'>{children}</div>
+      </Tooltip>
     </div>
   );
 };
 
-export default Tooltip;
+export default TimexTooltip;

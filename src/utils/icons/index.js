@@ -1,13 +1,14 @@
+export { default as GetIcon } from './menu/getIcon';
+
 export { default as DefaultAvatar } from './DefaultAvatar';
 export { default as Searching } from './Searching';
 export { default as Pencil } from './Pencil';
 export { default as Doll } from './Doll';
 export { default as DoubleLeft } from './DoubleLeft';
+export { default as ChevronArrow } from './ChevronArrow';
 export { default as Bin } from './Bin';
 export { default as Settings } from './Settings';
 export { default as Logout } from './Logout';
-
-export { default as GetMenuIcon } from './menu/getIcon';
 
 export { default as Picon1 } from './picons/Picon1';
 export { default as Picon2 } from './picons/Picon2';
