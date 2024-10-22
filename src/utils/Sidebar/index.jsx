@@ -145,7 +145,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
 
               <button
                 className={[
-                  smallMenu ? 'absolute -right-[18px]' : '',
+                  smallMenu ? 'absolute -right-4.5' : '',
                   'normal_btn p-0 m-0 w-[32px] h-[32px]',
                 ].join(' ')}
                 onClick={smallMenuHandler}

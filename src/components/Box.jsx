@@ -1,13 +1,24 @@
-const Box = ({ children, title = '', subtitle = '', widthFit = false }) => {
+const Box = ({
+  children,
+  title = '',
+  subtitle = '',
+  widthFit = false,
+  noDivider = false,
+}) => {
   return (
     <div
       className={[
         widthFit ? 'sm:w-fit' : '',
-        'flex flex-col gap-3 bg-white rounded-xl shadow p-[18px]',
+        'flex flex-col gap-4 bg-white rounded-4.5 shadow p-4.5',
       ].join(' ')}
     >
-      <div className='flex justify-between items-center border-b pb-2'>
-        <h3>{title}</h3>
+      <div
+        className={[
+          noDivider ? '' : 'border-b pb-3',
+          'flex justify-between items-center',
+        ].join(' ')}
+      >
+        <h3 className='text-xl font-semibold leading-none'>{title}</h3>
 
         {subtitle && <p>{subtitle}</p>}
       </div>

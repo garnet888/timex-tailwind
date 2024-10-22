@@ -1,11 +1,11 @@
 import { BackedIcon } from '@/ui';
 import {
-  ChartUp,
-  Company,
-  DocPlus,
-  Infinite,
-  Notif,
-  UserEdit,
+  Picon4,
+  Picon9,
+  Picon11,
+  Picon12,
+  Picon13,
+  Picon14,
 } from '@/utils/icons';
 
 const FeaturesOfferedBusiness = () => {
@@ -19,7 +19,7 @@ const FeaturesOfferedBusiness = () => {
       <ul className='grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-8'>
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <Infinite />
+            <Picon11 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>24/7 захиалга авах</b>
@@ -31,7 +31,7 @@ const FeaturesOfferedBusiness = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <UserEdit />
+            <Picon12 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>
@@ -48,7 +48,7 @@ const FeaturesOfferedBusiness = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <DocPlus />
+            <Picon13 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>
@@ -64,7 +64,7 @@ const FeaturesOfferedBusiness = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <Notif />
+            <Picon9 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>Захиалгын мэдэгдэл</b>
@@ -78,7 +78,7 @@ const FeaturesOfferedBusiness = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <Company />
+            <Picon4 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>
@@ -94,7 +94,7 @@ const FeaturesOfferedBusiness = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <ChartUp />
+            <Picon14 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>

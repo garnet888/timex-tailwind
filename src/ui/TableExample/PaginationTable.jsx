@@ -23,7 +23,7 @@ const PaginationTable = () => {
 
   return (
     <div>
-      <div className='overflow-auto rounded-t-[18px]'>
+      <div className='overflow-auto rounded-t-4.5'>
         <table className='w-full bg-white border-collapse'>
           <thead className='bg-dark'>
             {tableInstance.getHeaderGroups().map((headerEl) => (
@@ -127,10 +127,7 @@ const PaginationTable = () => {
         onChange={(e) => tableInstance.setPageSize(e.target.value)}
       >
         {[10, 25, 50].map((item) => (
-          <option
-            key={item}
-            value={item}
-          >
+          <option key={item} value={item}>
             {item}
           </option>
         ))}

@@ -11,6 +11,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        4.5: '1.125rem', // 18px = 1.125rem
+      },
+      borderRadius: {
+        4.5: '1.125rem', // 18px = 1.125rem
+      },
       zIndex: {
         load_box: 'var(--load_box-z-index)',
         notif: 'var(--notif-z-index)',

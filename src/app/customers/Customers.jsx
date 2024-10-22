@@ -3,6 +3,7 @@
 import AdminLayout from '@/layouts/AdminLayout';
 import { Table } from '@/ui';
 import { customers } from '@/lib/TableColumns/customers';
+import Box from '@/components/Box';
 
 const Customers = ({ title }) => {
   const actionsHandler = (key, data) => {
@@ -18,9 +19,7 @@ const Customers = ({ title }) => {
 
   return (
     <AdminLayout>
-      <div className='bg-white rounded-[18px] p-[18px]'>
-        <h3 className='text-xl font-semibold mb-4 leading-none'>{title}</h3>
-
+      <Box title={title} noDivider>
         <Table
           api='/customer'
           // customQuery='sort=-firstOrder'
@@ -29,7 +28,7 @@ const Customers = ({ title }) => {
           actions={[{ key: 'EDIT' }, { key: 'DELETE' }]}
           actionsHandler={actionsHandler}
         />
-      </div>
+      </Box>
     </AdminLayout>
   );
 };

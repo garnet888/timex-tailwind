@@ -1,12 +1,5 @@
 import { BackedIcon } from '@/ui';
-import {
-  Award,
-  Like,
-  Notif,
-  Search,
-  StarLine,
-  TimeRightArrow,
-} from '@/utils/icons';
+import { Picon5, Picon6, Picon7, Picon8, Picon9, Picon10 } from '@/utils/icons';
 
 const FeaturesOfferedUser = () => {
   return (
@@ -19,7 +12,7 @@ const FeaturesOfferedUser = () => {
       <ul className='grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-8'>
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <StarLine />
+            <Picon5 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>
@@ -34,7 +27,7 @@ const FeaturesOfferedUser = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <Search />
+            <Picon6 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>
@@ -50,7 +43,7 @@ const FeaturesOfferedUser = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <Like />
+            <Picon7 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>
@@ -65,7 +58,7 @@ const FeaturesOfferedUser = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <Award />
+            <Picon8 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>Ур чадварын мэдээллийг харах</b>
@@ -79,7 +72,7 @@ const FeaturesOfferedUser = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <Notif />
+            <Picon9 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>Захиалга сануулах мэдэгдэл</b>
@@ -94,7 +87,7 @@ const FeaturesOfferedUser = () => {
 
         <li>
           <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
-            <TimeRightArrow />
+            <Picon10 />
           </BackedIcon>
 
           <b className='block font-medium my-2'>Захиалгын түүхээ харах</b>

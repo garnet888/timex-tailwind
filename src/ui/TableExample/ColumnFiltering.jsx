@@ -35,7 +35,7 @@ const ColumnFiltering = () => {
   });
 
   return (
-    <div className='overflow-auto bg-white rounded-t-[18px]'>
+    <div className='overflow-auto bg-white rounded-t-4.5'>
       <table className='w-full border-collapse'>
         <thead className='bg-dark'>
           {tableInstance.getHeaderGroups().map((headerEl) => (

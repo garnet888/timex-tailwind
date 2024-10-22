@@ -27,7 +27,7 @@ const SelectingRow = () => {
   });
 
   return (
-    <div className='overflow-auto bg-white rounded-t-[18px]'>
+    <div className='overflow-auto bg-white rounded-t-4.5'>
       {console.log(
         'getSelectedRowModel--->',
         tableInstance.getSelectedRowModel()

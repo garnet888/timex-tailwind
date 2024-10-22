@@ -9,19 +9,19 @@ export { default as Logout } from './Logout';
 
 export { default as GetMenuIcon } from './menu/getIcon';
 
-export { default as User } from './picons/User';
-export { default as Employee } from './picons/Employee';
-export { default as Branch } from './picons/Branch';
-export { default as Company } from './picons/Company';
+export { default as Picon1 } from './picons/Picon1';
+export { default as Picon2 } from './picons/Picon2';
+export { default as Picon3 } from './picons/Picon3';
+export { default as Picon4 } from './picons/Picon4';
 
-export { default as StarLine } from './picons/StarLine';
-export { default as Search } from './picons/Search';
-export { default as Like } from './picons/Like';
-export { default as Award } from './picons/Award';
-export { default as Notif } from './picons/Notif';
-export { default as TimeRightArrow } from './picons/TimeRightArrow';
+export { default as Picon5 } from './picons/Picon5';
+export { default as Picon6 } from './picons/Picon6';
+export { default as Picon7 } from './picons/Picon7';
+export { default as Picon8 } from './picons/Picon8';
+export { default as Picon9 } from './picons/Picon9';
+export { default as Picon10 } from './picons/Picon10';
 
-export { default as Infinite } from './picons/Infinite';
-export { default as UserEdit } from './picons/UserEdit';
-export { default as DocPlus } from './picons/DocPlus';
-export { default as ChartUp } from './picons/ChartUp';
+export { default as Picon11 } from './picons/Picon11';
+export { default as Picon12 } from './picons/Picon12';
+export { default as Picon13 } from './picons/Picon13';
+export { default as Picon14 } from './picons/Picon14';

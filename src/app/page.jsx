@@ -4,12 +4,30 @@ import Link from 'next/link';
 import Image from 'next/image';
 import * as ReactSwiper from 'swiper/react';
 import * as SwiperModules from 'swiper/modules';
+import { v4 as uuid } from 'uuid';
 import { BackedIcon } from '@/ui';
 import { useBaseContext } from '@/context/BaseContext';
-import { Branch, Company, Employee, User } from '@/utils/icons';
+import { Picon1, Picon2, Picon3, Picon4 } from '@/utils/icons';
 import BaseLayout from '@/layouts/BaseLayout';
 import FeaturesOfferedUser from '@/components/Home/FeaturesOfferedUser';
 import FeaturesOfferedBusiness from '@/components/Home/FeaturesOfferedBusiness';
+
+const SLIDE_IMGs = [
+  'https://images.pexels.com/photos/28402807/pexels-photo-28402807/free-photo-of-surah-fateha-quran-first-page.jpeg',
+  'https://images.pexels.com/photos/15354555/pexels-photo-15354555/free-photo-of-top-view-of-colorful-flower-bouquets.jpeg',
+  'https://images.pexels.com/photos/28403277/pexels-photo-28403277/free-photo-of-almere-central-station.jpeg',
+  'https://images.pexels.com/photos/269077/pexels-photo-269077.jpeg',
+  'https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg',
+  'https://images.pexels.com/photos/28486840/pexels-photo-28486840/free-photo-of-turkish-coffee-and-tea-on-traditional-tray.jpeg',
+  'https://images.pexels.com/photos/20143999/pexels-photo-20143999/free-photo-of-glass-multi-colored-ornate-lamps.jpeg',
+  'https://images.pexels.com/photos/25070493/pexels-photo-25070493/free-photo-of-stained-glass-on-the-ceiling.jpeg',
+  'https://images.pexels.com/photos/17097308/pexels-photo-17097308/free-photo-of-a-vase-filled-with-red-and-yellow-flowers.jpeg',
+  'https://images.pexels.com/photos/28472063/pexels-photo-28472063/free-photo-of-royal-gorge-aerial-tramway-over-rocky-cliffs.jpeg',
+  'https://images.pexels.com/photos/18996311/pexels-photo-18996311/free-photo-of-close-up-of-a-multi-colored-bouquet.jpeg',
+  'https://images.pexels.com/photos/28381510/pexels-photo-28381510/free-photo-of-shells-and-pebbles-on-the-beach.jpeg',
+  'https://images.pexels.com/photos/19434321/pexels-photo-19434321/free-photo-of-aerial-view-of-a-shipwreck-near-the-shore.jpeg',
+  'https://images.pexels.com/photos/27562631/pexels-photo-27562631/free-photo-of-seagull-flying-in-cloudy-blue-sky.jpeg',
+];
 
 export default function Home() {
   const { isUser } = useBaseContext();
@@ -107,159 +125,18 @@ export default function Home() {
               1024: { slidesPerView: 10 },
             }}
           >
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/28402807/pexels-photo-28402807/free-photo-of-surah-fateha-quran-first-page.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/15354555/pexels-photo-15354555/free-photo-of-top-view-of-colorful-flower-bouquets.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/28403277/pexels-photo-28403277/free-photo-of-almere-central-station.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/269077/pexels-photo-269077.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/28486840/pexels-photo-28486840/free-photo-of-turkish-coffee-and-tea-on-traditional-tray.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/20143999/pexels-photo-20143999/free-photo-of-glass-multi-colored-ornate-lamps.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/25070493/pexels-photo-25070493/free-photo-of-stained-glass-on-the-ceiling.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/17097308/pexels-photo-17097308/free-photo-of-a-vase-filled-with-red-and-yellow-flowers.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/28472063/pexels-photo-28472063/free-photo-of-royal-gorge-aerial-tramway-over-rocky-cliffs.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/18996311/pexels-photo-18996311/free-photo-of-close-up-of-a-multi-colored-bouquet.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/28381510/pexels-photo-28381510/free-photo-of-shells-and-pebbles-on-the-beach.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/19434321/pexels-photo-19434321/free-photo-of-aerial-view-of-a-shipwreck-near-the-shore.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
-
-            <ReactSwiper.SwiperSlide>
-              <Image
-                className='w-[60px] h-[60px] object-cover rounded-md'
-                src='https://images.pexels.com/photos/27562631/pexels-photo-27562631/free-photo-of-seagull-flying-in-cloudy-blue-sky.jpeg'
-                alt='Logo'
-                width={200}
-                height={200}
-                priority
-              />
-            </ReactSwiper.SwiperSlide>
+            {SLIDE_IMGs.map((item) => (
+              <ReactSwiper.SwiperSlide key={uuid()}>
+                <Image
+                  className='w-[60px] h-[60px] object-cover rounded-md'
+                  src={item}
+                  alt='Logo'
+                  width={200}
+                  height={200}
+                  priority
+                />
+              </ReactSwiper.SwiperSlide>
+            ))}
           </ReactSwiper.Swiper>
         </div>
       </div>
@@ -278,11 +155,8 @@ export default function Home() {
 
           <ul className='grid md:grid-cols-2 xl:grid-cols-4 gap-[28px] mt-10'>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <User />
+              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+                <Picon1 />
               </BackedIcon>
 
               <b className='block font-medium my-2'>Хэрэглэгч</b>
@@ -296,11 +170,8 @@ export default function Home() {
             </li>
 
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <Employee />
+              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+                <Picon2 />
               </BackedIcon>
 
               <b className='block font-medium my-2'>Ажилтан</b>
@@ -313,11 +184,8 @@ export default function Home() {
               </p>
             </li>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <Branch />
+              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+                <Picon3 />
               </BackedIcon>
 
               <b className='block font-medium my-2'>Салбар</b>
@@ -329,11 +197,8 @@ export default function Home() {
               </p>
             </li>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon
-                outsideColor='#f7f4ff'
-                insideColor='#f1ecff'
-              >
-                <Company />
+              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+                <Picon4 />
               </BackedIcon>
 
               <b className='block font-medium my-2'>Байгууллага</b>

@@ -89,7 +89,7 @@ const Table = ({
   };
 
   return (
-    <>
+    <div>
       {noFilter || (
         <Filters
           TABLE={TABLE}
@@ -98,7 +98,7 @@ const Table = ({
         />
       )}
 
-      <div className='overflow-auto border rounded-[18px]'>
+      <div className='overflow-auto border rounded-4.5'>
         <table className='w-full border-collapse text-small'>
           <thead className='bg-dark'>
             {TABLE.getHeaderGroups().map((headerGroup) => (
@@ -184,7 +184,7 @@ const Table = ({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

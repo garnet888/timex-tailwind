@@ -23,7 +23,7 @@ const Income = ({ title }) => {
 
   return (
     <AdminLayout>
-      <div className='bg-white rounded-[18px] p-[18px]'>
+      <div className='bg-white rounded-4.5 p-4.5'>
         <h3 className='w-full h-[40px] text-xl font-semibold mb-1'>{title}</h3>
 
         <Table

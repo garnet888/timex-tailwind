@@ -51,10 +51,10 @@ const UserInfo = ({ changeStep }) => {
   return (
     <BaseLayout shownBackground>
       <div className='w-full h-full grid place-content-center'>
-        <div className='relative sm:w-[400px] bg-white rounded-3xl shadow p-[18px] mx-4'>
-          <h3 className='w-full flex justify-center items-center gap-4 mb-[18px]'>
+        <div className='relative sm:w-[400px] bg-white rounded-3xl shadow p-4.5 mx-4'>
+          <h3 className='w-full flex justify-center items-center gap-4 mb-4.5'>
             <button
-              className='normal_btn sm:absolute sm:left-[18px] grid place-content-center p-2'
+              className='normal_btn sm:absolute sm:left-4.5 grid place-content-center p-2'
               onClick={() => changeStep(1)}
             >
               <FiArrowLeft color='var(--primary-color)' />
