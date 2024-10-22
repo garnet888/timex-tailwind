@@ -146,3 +146,15 @@ export const getParamsTable = (
 
   return query + filters;
 };
+
+export const getValue = (value, enableNull = false) => {
+  if (value) {
+    return value;
+  } else {
+    return enableNull ? null : 'Хоосон';
+  }
+};
+
+export const formatNumberSpace = (number) => {
+  return number.replace(/(\d{2})(?=\d)/g, '$1 ');
+};

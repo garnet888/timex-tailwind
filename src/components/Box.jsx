@@ -1,6 +1,6 @@
 const Box = ({
   children,
-  title = '',
+  title,
   subtitle = '',
   widthFit = false,
   noDivider = false,
@@ -8,7 +8,7 @@ const Box = ({
   return (
     <div
       className={[
-        widthFit ? 'sm:w-fit' : '',
+        widthFit ? 'lg:w-fit' : '',
         'flex flex-col gap-4 bg-white rounded-4.5 shadow p-4.5',
       ].join(' ')}
     >

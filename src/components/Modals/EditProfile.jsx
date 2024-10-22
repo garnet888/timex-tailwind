@@ -10,13 +10,18 @@ const schema = {
   profile: Yup.object({
     profile: Yup.string().required('Профайл зурагаа оруулна уу'),
   }),
-  phone: Yup.object({
-    phone: Yup.string()
+  phoneNumber: Yup.object({
+    phoneNumber: Yup.string()
       .required('Утасны дугаараа оруулна уу')
       .matches(/^\d{8}$/, '8 ширхэг тоо байх ёстой'),
   }),
   email: Yup.object({
     email: Yup.string().required('И-Мэйлээ оруулна уу'),
+  }),
+  accountInfo: Yup.object({
+    bank_code: Yup.string().required('Банкны нэрээ оруулна уу'),
+    account_number: Yup.string().required('Дансны дугаараа оруулна уу'),
+    account_name: Yup.string().required('Данс эзэмшигчийн нэрээ оруулна уу'),
   }),
   password: Yup.object({
     password: Yup.string()
@@ -32,7 +37,7 @@ const schema = {
   }),
 };
 
-const EditProfile = ({ which, label, open, setOpen }) => {
+const EditProfile = ({ which, data, open, setOpen }) => {
   const { setReload, fecthUserInfo } = useMainContext();
 
   const {
@@ -46,6 +51,23 @@ const EditProfile = ({ which, label, open, setOpen }) => {
   } = useForm({
     resolver: yupResolver(schema[which]),
   });
+
+  const getTitle = () => {
+    switch (which) {
+      case 'profile':
+        return 'Профайл зураг';
+      case 'phoneNumber':
+        return 'Утасны дугаар';
+      case 'email':
+        return 'И-Мэйл';
+      case 'accountInfo':
+        return 'Дансны мэдээлэл';
+      case 'password':
+        return 'Нууц үг';
+      default:
+        return '';
+    }
+  };
 
   const closeHandler = () => {
     resetField();
@@ -107,15 +129,61 @@ const EditProfile = ({ which, label, open, setOpen }) => {
               errors[which]?.message ? 'alert_input' : '',
               'rounded_input w-full',
             ].join(' ')}
+            value={data ? data[which] : ''}
             {...register(which)}
           />
         );
     }
   };
 
+  const renderIfHasAccountInfo = () => {
+    return (
+      <>
+        <FormElement label='Банкны нэр' message={errors.bank_code?.message}>
+          <input
+            className={[
+              errors.bank_code?.message ? 'alert_input' : '',
+              'rounded_input w-full',
+            ].join(' ')}
+            value={data.bankCode}
+            {...register('bank_code')}
+          />
+        </FormElement>
+
+        <FormElement
+          label='Дансны дугаар'
+          message={errors.account_number?.message}
+        >
+          <input
+            className={[
+              errors.account_number?.message ? 'alert_input' : '',
+              'rounded_input w-full',
+            ].join(' ')}
+            value={data.accountNumber}
+            {...register('account_number')}
+          />
+        </FormElement>
+
+        <FormElement
+          label='Данс эзэмшигчийн нэр'
+          message={errors.account_name?.message}
+        >
+          <input
+            className={[
+              errors.account_name?.message ? 'alert_input' : '',
+              'rounded_input w-full',
+            ].join(' ')}
+            value={data.accountName}
+            {...register('account_name')}
+          />
+        </FormElement>
+      </>
+    );
+  };
+
   return (
     <Modal
-      title={label ? `${label} солих` : ''}
+      title={`${getTitle()} солих`}
       width={which === 'profile' ? 600 : 400}
       open={open}
       onClose={closeHandler}
@@ -124,14 +192,18 @@ const EditProfile = ({ which, label, open, setOpen }) => {
         className='flex flex-col gap-2'
         onSubmit={handleSubmit(submitHandler)}
       >
-        <FormElement
-          label={which === 'password' && 'Нууц үг'}
-          message={errors[which]?.message}
-          hideAsterisk={which !== 'password'}
-          shownInputAsterrisk={which !== 'password'}
-        >
-          {renderInput()}
-        </FormElement>
+        {which === 'accountInfo' ? (
+          renderIfHasAccountInfo()
+        ) : (
+          <FormElement
+            label={which === 'password' && 'Нууц үг'}
+            message={errors[which]?.message}
+            hideAsterisk={which !== 'password'}
+            shownInputAsterrisk={which !== 'password'}
+          >
+            {renderInput()}
+          </FormElement>
+        )}
 
         {which === 'password' && (
           <FormElement

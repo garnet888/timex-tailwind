@@ -8,6 +8,7 @@ import AdminLayout from '@/layouts/AdminLayout';
 // import PaginationTable from '@/utils/Table/PaginationTable';
 // import SelectingRow from '@/utils/Table/SelectingRow';
 import { Table } from '@/ui';
+import Box from '@/components/Box';
 
 const Income = ({ title }) => {
   const actionsHandler = (key, data) => {
@@ -23,15 +24,13 @@ const Income = ({ title }) => {
 
   return (
     <AdminLayout>
-      <div className='bg-white rounded-4.5 p-4.5'>
-        <h3 className='w-full h-[40px] text-xl font-semibold mb-1'>{title}</h3>
-
+      <Box title={title} noDivider>
         <Table
           actions={[{ key: 'EDIT' }, { key: 'DELETE' }]}
           actionsHandler={actionsHandler}
           // rowOnClick={(data) => alert(JSON.stringify(data, null, 2))}
         />
-      </div>
+      </Box>
     </AdminLayout>
   );
 };

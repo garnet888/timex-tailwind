@@ -1,9 +1,12 @@
 import AdminLayout from '@/layouts/AdminLayout';
+import Box from '@/components/Box';
 
 const Order = ({ title }) => {
   return (
     <AdminLayout>
-      <h3>{title}</h3>
+      <Box title={title} noDivider>
+        Hello World!
+      </Box>
     </AdminLayout>
   );
 };
