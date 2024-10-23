@@ -1,6 +1,10 @@
 export { default as GetMenuIcon } from './menu/getIcon';
 
 export { default as DefaultAvatar } from './DefaultAvatar';
+export { default as CheckedOutline } from './CheckedOutline';
+export { default as Employees } from './Employees';
+export { default as Calendar } from './Calendar';
+export { default as TimeSettings } from './TimeSettings';
 export { default as Searching } from './Searching';
 export { default as Pencil } from './Pencil';
 export { default as Doll } from './Doll';

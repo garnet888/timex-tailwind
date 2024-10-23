@@ -77,7 +77,7 @@
   button:disabled {
     cursor: not-allowed;
     text-shadow: unset;
-    box-shadow: unset;
+    box-shadow: unset !important;
     transform: unset;
 
     background: #f4f4f4;
