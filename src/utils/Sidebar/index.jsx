@@ -60,7 +60,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
   const renderBadgeNumber = () => {
     if (badge) {
       return (
-        <p className='absolute -top-[6px] -right-[10px] h-[14px] grid place-content-center bg-white border border-light_grey text-[10px] rounded-[100px] px-1 py-px'>
+        <p className='absolute -top-[6px] -right-[10px] h-[14px] grid place-content-center bg-red-500 text-white text-[10px] rounded-[100px] px-1 py-px'>
           9+
         </p>
       );

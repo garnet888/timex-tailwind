@@ -32,9 +32,12 @@ const Profile = ({ title }) => {
         setOpen={setOpenModal}
       />
 
-      <Box title={title} widthFit>
+      <Box
+        title={title}
+        widthFit
+      >
         <center>
-          <figure className='relative w-[52px] h-[52px]'>
+          <figure className='relative w-[68px] h-[68px]'>
             <Image
               className='w-full h-full object-cover rounded-full'
               src={IMG_URL + userInfo?.profileImage}
@@ -61,7 +64,7 @@ const Profile = ({ title }) => {
           <li className='flex items-center border-b pb-3'>
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>Нэр</p>
-              <b className='lg:w-96 font-semibold'>
+              <b className='lg:w-96 font-medium'>
                 {userInfo?.lastName} {userInfo?.firstName}
               </b>
             </div>
@@ -70,7 +73,7 @@ const Profile = ({ title }) => {
           <li className='relative flex justify-between md:justify-start items-center border-b pb-3'>
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>Утасны дугаар</p>
-              <b className='lg:w-96 font-semibold'>
+              <b className='lg:w-96 font-medium'>
                 {getValue(userInfo?.phoneNumber)}
               </b>
             </div>
@@ -86,9 +89,7 @@ const Profile = ({ title }) => {
           <li className='relative flex justify-between md:justify-start items-center border-b pb-3'>
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>И-Мэйл</p>
-              <b className='lg:w-96 font-semibold'>
-                {getValue(userInfo?.email)}
-              </b>
+              <b className='lg:w-96 font-medium'>{getValue(userInfo?.email)}</b>
             </div>
 
             <button
@@ -102,7 +103,7 @@ const Profile = ({ title }) => {
           <li className='relative flex justify-between md:justify-start items-center border-b pb-3'>
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>Дансны мэдээлэл</p>
-              <b className='lg:w-96 font-semibold'>
+              <b className='lg:w-96 font-medium'>
                 {formatNumberSpace(getValue(userInfo?.accountNumber))}
               </b>
             </div>
@@ -118,7 +119,7 @@ const Profile = ({ title }) => {
           <li className='relative flex justify-between sm:justify-start items-center'>
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>Нууц үг</p>
-              <b className='lg:w-96 font-semibold'>······</b>
+              <b className='lg:w-96 font-medium'>••••••</b>
             </div>
 
             <button
