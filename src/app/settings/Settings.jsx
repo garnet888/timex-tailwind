@@ -86,10 +86,7 @@ const Settings = ({ title }) => {
 
   return (
     <AdminLayout>
-      <Box
-        title={title}
-        noDivider
-      >
+      <Box title={title} noDivider>
         <Steps
           steps={steps}
           current={currentStep}

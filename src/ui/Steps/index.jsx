@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
-import { CheckedOutline, ChevronArrow } from '../utils/icons';
+import { CheckedOutline, ChevronArrow } from '@/utils/icons';
+import MobileHeader from './MobileHeader';
 
 const Steps = ({
   steps,
@@ -35,42 +36,48 @@ const Steps = ({
     setCurrent(index);
   };
 
+  const renderHeaders = (inMobile = false) =>
+    steps.map((item, idx) => [
+      <button
+        key={uuid()}
+        className={[
+          'normal_btn flex gap-1 text-gray-400 text-sm font-medium rounded-full hover:text-gray-400',
+          item.isDone ? '!text-dark' : '',
+          idx === current
+            ? `${
+                normal ? 'bg-primary/10' : 'bg-primary/5'
+              } !text-dark border-2 border-primary`
+            : '',
+        ].join(' ')}
+        disabled={enabledStepChecker(idx)}
+        onClick={() => onStepClick(idx)}
+      >
+        {getIcon(idx)}
+
+        {item.title}
+      </button>,
+      inMobile ||
+        (idx < LAST_IDX && <ChevronArrow key={uuid()} rotate='right' />),
+    ]);
+
   return (
     steps?.length > 0 && (
       <div className='flex flex-col gap-4.5'>
-        <div className='flex justify-center items-center gap-3'>
-          {steps.map((item, idx) => [
-            <button
-              key={uuid()}
-              className={[
-                'normal_btn flex gap-1 text-gray-400 text-sm font-medium rounded-full hover:text-gray-400',
-                item.isDone ? '!text-dark' : '',
-                idx === current
-                  ? `${
-                      normal ? 'bg-primary/10' : 'bg-primary/5'
-                    } !text-dark border-2 border-primary`
-                  : '',
-              ].join(' ')}
-              disabled={enabledStepChecker(idx)}
-              onClick={() => onStepClick(idx)}
-            >
-              {getIcon(idx)}
+        <MobileHeader
+          steps={steps}
+          current={current}
+          normal={normal}
+          renderHeaders={renderHeaders}
+        />
 
-              {item.title}
-            </button>,
-            idx < LAST_IDX && (
-              <ChevronArrow
-                key={uuid()}
-                rotate='right'
-              />
-            ),
-          ])}
+        <div className='hidden lg:flex justify-center items-center flex-wrap gap-3'>
+          {renderHeaders()}
         </div>
 
         <div className={normal ? '' : 'bg-white rounded-3xl shadow p-4.5'}>
           {steps[current].content}
 
-          <div className='flex justify-end gap-2'>
+          <div className='flex justify-center lg:justify-end gap-2 mt-4.5'>
             {current === 0 || (
               <button
                 className='normal_btn text-dark rounded-full'
@@ -80,10 +87,7 @@ const Steps = ({
               </button>
             )}
 
-            <button
-              className='first_btn rounded-full'
-              onClick={nextOnClick}
-            >
+            <button className='first_btn rounded-full' onClick={nextOnClick}>
               {current === LAST_IDX ? 'Болсон' : 'Дараах'}
             </button>
           </div>
