@@ -1,95 +1,87 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { BiGame, BiArch } from 'react-icons/bi';
-import { v4 as uuid } from 'uuid';
+import { useState } from 'react';
 import {
   Calendar,
-  CheckedOutline,
-  ChevronArrow,
-  Employees,
+  Doll,
+  Employees as EmployeesIcon,
+  Searching,
   TimeSettings,
 } from '@/utils/icons';
 import AdminLayout from '@/layouts/AdminLayout';
 import Box from '@/components/Box';
-import Step1 from './Step1';
-import Step2 from './Step2';
-import Step3 from './Step3';
-import Step4 from './Step4';
-import Step5 from './Step5';
+import { Steps } from '@/ui';
+import OrgaInfo from '@/components/Settings/OrgaInfo';
+import Services from '@/components/Settings/Services';
+import Employees from '@/components/Settings/Employees';
+import Timetable from '@/components/Settings/Timetable';
+import TimeOrder from '@/components/Settings/TimeOrder';
 
 const Settings = ({ title }) => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [openedStep, setOpenedStep] = useState(0);
-
-  const STEPS = [
+  const activeIconColor = 'var(--primary-color)';
+  const initialSteps = [
     {
-      num: 0,
-      icon: <BiGame />,
-      title: 'Хувийн мэдээлэл',
-      content: <Step1 setCurrentStep={setCurrentStep} />,
+      icon: <Doll />,
+      activeIcon: <Doll color={activeIconColor} />,
+      title: 'Ажлын газар',
+      content: <OrgaInfo />,
       isDone: false,
     },
     {
-      num: 1,
-      icon: <BiArch />,
+      icon: <Searching />,
+      activeIcon: <Searching color={activeIconColor} />,
       title: 'Үйлчилгээнүүд',
-      content: <Step2 setCurrentStep={setCurrentStep} />,
+      content: <Services />,
       isDone: false,
     },
     {
-      num: 2,
-      icon: <Employees />,
+      icon: <EmployeesIcon />,
+      activeIcon: <EmployeesIcon color={activeIconColor} />,
       title: 'Ажилтнууд',
-      content: <Step3 setCurrentStep={setCurrentStep} />,
+      content: <Employees />,
       isDone: false,
     },
     {
-      num: 3,
       icon: <Calendar />,
+      activeIcon: <Calendar color={activeIconColor} />,
       title: 'Цагийн хуваарь',
-      content: <Step4 setCurrentStep={setCurrentStep} />,
+      content: <Timetable />,
       isDone: false,
     },
     {
-      num: 4,
       icon: <TimeSettings />,
+      activeIcon: <TimeSettings color='var(--primary-color)' />,
       title: 'Цаг захиалга',
-      content: <Step5 setCurrentStep={setCurrentStep} />,
+      content: <TimeOrder />,
       isDone: false,
     },
   ];
 
-  const checkDone = (index) => {
-    if (index === openedStep || STEPS[openedStep].isDone) {
-      return true;
-    }
+  const [steps, setSteps] = useState(initialSteps);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [openedStep, setOpenedStep] = useState(0);
 
-    return STEPS[index].isDone;
-  };
+  const handleNextClick = () => {
+    const last_idx = steps.length - 1;
+    const nextStep = currentStep + 1;
 
-  const nextHandler = () => {
-    setCurrentStep((prev) => prev + 1);
+    // setSteps((prev) =>
+    //   prev.map((step, idx) => {
+    //     if (idx === currentStep || idx < currentStep) {
+    //       return { ...step, isDone: true };
+    //     } else {
+    //       return step;
+    //     }
+    //   })
+    // );
 
-    const done = { ...STEPS[currentStep], isDone: true };
-    STEPS.splice(currentStep, 1, done);
+    const done = { ...steps[currentStep], isDone: true };
+    steps.splice(currentStep, 1, done);
 
-    setSteps(STEPS);
+    setSteps(steps);
 
-    setOpenedStep(currentStep + 1);
-
-    console.log('NEXT on clicked--->', STEPS);
-  };
-
-  const doneOnClick = () => {
-    const done = { ...STEPS.pop(), isDone: true };
-    STEPS.push(done);
-
-    setSteps(STEPS);
-
-    setOpenedStep(STEPS.length - 1);
-
-    console.log('DONE on clicked--->', STEPS);
+    currentStep === last_idx || setCurrentStep(nextStep);
+    setOpenedStep(nextStep);
   };
 
   return (
@@ -98,70 +90,14 @@ const Settings = ({ title }) => {
         title={title}
         noDivider
       >
-        <div>
-          <div className='flex justify-center items-center gap-3'>
-            {STEPS.map((step, idx) => [
-              <button
-                key={step.num}
-                className={[
-                  'normal_btn flex gap-1 text-gray-400 text-sm font-medium rounded-full',
-                  step.isDone ? '!text-dark' : '',
-                  idx === currentStep
-                    ? 'bg-primary/10 !text-dark border-2 border-primary'
-                    : '',
-                ].join(' ')}
-                disabled={!checkDone(idx)}
-                onClick={() => setCurrentStep(idx)}
-              >
-                {step.isDone ? <CheckedOutline /> : step.icon}
-                {step.title}
-              </button>,
-              idx + 1 < STEPS.length && (
-                <ChevronArrow
-                  key={uuid()}
-                  rotate='right'
-                />
-              ),
-            ])}
-          </div>
-
-          <div>
-            {STEPS[currentStep]?.content}
-
-            <ul className='mt-6'>
-              <li>
-                Prev is title:{' '}
-                {currentStep > 0 && String(STEPS[currentStep - 1].title)}
-              </li>
-              <li>
-                Prev is done:{' '}
-                {currentStep > 0 && String(STEPS[currentStep - 1].isDone)}
-              </li>
-            </ul>
-
-            <div className='flex justify-end gap-2'>
-              {currentStep > 0 && (
-                <button
-                  className='normal_btn'
-                  onClick={() => setCurrentStep((prev) => prev - 1)}
-                >
-                  Өмнөх
-                </button>
-              )}
-
-              {currentStep + 1 === STEPS.length ? (
-                <button onClick={doneOnClick}>Болсон</button>
-              ) : (
-                <button
-                  className='normal_btn'
-                  onClick={nextHandler}
-                >
-                  Дараах
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
+        <Steps
+          steps={steps}
+          current={currentStep}
+          opened={openedStep}
+          normal
+          setCurrent={setCurrentStep}
+          nextOnClick={handleNextClick}
+        />
       </Box>
     </AdminLayout>
   );

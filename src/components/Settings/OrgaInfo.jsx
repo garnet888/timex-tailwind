@@ -1,6 +1,6 @@
 import { FormElement } from '@/ui';
 
-const Step1 = () => {
+const OrgaInfo = () => {
   return (
     <div className='flex flex-col gap-3'>
       <FormElement label='First name'>
@@ -10,15 +10,8 @@ const Step1 = () => {
       <FormElement label='Last name'>
         <input placeholder='Last name' />
       </FormElement>
-
-      <button
-        className='normal_btn'
-        // onClick={nextHandler}
-      >
-        Дараах
-      </button>
     </div>
   );
 };
 
-export default Step1;
+export default OrgaInfo;

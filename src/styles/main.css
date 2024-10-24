@@ -12,13 +12,6 @@
 @import './button.css';
 @import './inputs.css';
 
-.boom_red {
-  stroke: red;
-}
-.boom_red path {
-  stroke: red;
-}
-
 :root {
   --load_box-z-index: 99999;
   --notif-z-index: calc(var(--load_box-z-index) - 1);
