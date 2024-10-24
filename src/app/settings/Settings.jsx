@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import {
-  Calendar,
-  Doll,
-  Employees as EmployeesIcon,
-  Searching,
-  TimeSettings,
+  CalendarIcon,
+  DollIcon,
+  UsersIcon,
+  SearchingIcon,
+  TimeSettingsIcon,
 } from '@/utils/icons';
 import AdminLayout from '@/layouts/AdminLayout';
 import Box from '@/components/Box';
@@ -21,36 +21,36 @@ const Settings = ({ title }) => {
   const activeIconColor = 'var(--primary-color)';
   const initialSteps = [
     {
-      icon: <Doll />,
-      activeIcon: <Doll color={activeIconColor} />,
+      icon: <DollIcon />,
+      activeIcon: <DollIcon color={activeIconColor} />,
       title: 'Ажлын газар',
       content: <OrgaInfo />,
       isDone: false,
     },
     {
-      icon: <Searching />,
-      activeIcon: <Searching color={activeIconColor} />,
+      icon: <SearchingIcon />,
+      activeIcon: <SearchingIcon color={activeIconColor} />,
       title: 'Үйлчилгээнүүд',
       content: <Services />,
       isDone: false,
     },
     {
-      icon: <EmployeesIcon />,
-      activeIcon: <EmployeesIcon color={activeIconColor} />,
+      icon: <UsersIcon />,
+      activeIcon: <UsersIcon color={activeIconColor} />,
       title: 'Ажилтнууд',
       content: <Employees />,
       isDone: false,
     },
     {
-      icon: <Calendar />,
-      activeIcon: <Calendar color={activeIconColor} />,
+      icon: <CalendarIcon />,
+      activeIcon: <CalendarIcon color={activeIconColor} />,
       title: 'Цагийн хуваарь',
       content: <Timetable />,
       isDone: false,
     },
     {
-      icon: <TimeSettings />,
-      activeIcon: <TimeSettings color='var(--primary-color)' />,
+      icon: <TimeSettingsIcon />,
+      activeIcon: <TimeSettingsIcon color='var(--primary-color)' />,
       title: 'Цаг захиалга',
       content: <TimeOrder />,
       isDone: false,

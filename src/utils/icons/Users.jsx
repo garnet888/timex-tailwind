@@ -1,4 +1,4 @@
-const Employees = ({ color = '#1C1C1C' }) => {
+const Users = ({ color = '#1C1C1C' }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -15,4 +15,4 @@ const Employees = ({ color = '#1C1C1C' }) => {
   );
 };
 
-export default Employees;
+export default Users;

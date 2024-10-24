@@ -1,4 +1,4 @@
-const ChevronArrow = ({ rotate = 'right' }) => {
+const ChevronArrow = ({ color = '#1C1C1C', rotate = 'right' }) => {
   const getRotate = () => {
     switch (rotate) {
       case 'down':
@@ -25,7 +25,7 @@ const ChevronArrow = ({ rotate = 'right' }) => {
         <path
           id='Vector'
           d='M7.5 15L12.5 10L7.5 5'
-          stroke='#1C1C1C'
+          stroke={color}
           strokeWidth='1.5'
           strokeLinecap='round'
           strokeLinejoin='round'

@@ -5,7 +5,7 @@ import { useMainContext } from '@/context/MainContext';
 import { destroyTokens } from '@/lib/auth';
 import { fetchMenu } from '@/lib/helper';
 import { Warning } from '@/ui';
-import { DoubleLeft, Logout, Doll } from '../icons';
+import { ChevronDoubleArrow, LogoutIcon, DollIcon } from '../icons';
 import MobileSbar from './MobileSbar';
 import MenuItem from './MenuItem';
 
@@ -138,7 +138,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
             <div className='flex items-center gap-3'>
               {smallMenu || (
                 <button className='normal_btn p-0 relative w-8 h-w-8 rounded-xl'>
-                  <Doll />
+                  <DollIcon />
                   {renderBadgeNumber()}
                 </button>
               )}
@@ -150,11 +150,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
                 ].join(' ')}
                 onClick={smallMenuHandler}
               >
-                <DoubleLeft
-                  style={{
-                    transform: `scaleX(${smallMenu ? -1 : 1})`,
-                  }}
-                />
+                <ChevronDoubleArrow rotate={smallMenu ? 'right' : ''} />
 
                 {smallMenu && renderBadgeNumber()}
               </button>
@@ -185,7 +181,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
                     'flex justify-center text-red-500 group-hover:text-white',
                   ].join(' ')}
                 >
-                  <Logout />
+                  <LogoutIcon />
                 </span>
 
                 <span className='font-light group-hover:text-white'>Гарах</span>

@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LuMenu } from 'react-icons/lu';
-import { Doll, Logout } from '../icons';
+import { DollIcon, LogoutIcon } from '../icons';
 
 const MobileSbar = ({
   profile,
@@ -33,7 +33,7 @@ const MobileSbar = ({
         </button>
 
         <button className='normal_btn p-0 relative w-8 h-w-8 rounded-xl'>
-          <Doll />
+          <DollIcon />
           {badgeNumber}
         </button>
       </div>
@@ -72,7 +72,7 @@ const MobileSbar = ({
                 className='normal_btn px-[6px]'
                 onClick={shownAlert}
               >
-                <Logout />
+                <LogoutIcon />
               </button>
             </div>
 

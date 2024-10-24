@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import moment from 'moment';
 import { Tooltip } from '@/ui';
 import { dataType, dateFormats } from '@/lib/constants';
-import { Bin, Settings } from '@/utils/icons';
+import { BinIcon, SettingsIcon } from '@/utils/icons';
 
 export const GetColumns = ({
   columns,
@@ -57,7 +57,7 @@ export const GetColumns = ({
                             : null
                         }
                       >
-                        <Settings />
+                        <SettingsIcon />
                       </button>
                     </Tooltip>
                   );
@@ -76,7 +76,7 @@ export const GetColumns = ({
                             : null
                         }
                       >
-                        <Bin />
+                        <BinIcon />
                       </button>
                     </Tooltip>
                   );

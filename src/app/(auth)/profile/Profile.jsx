@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { ImCamera } from 'react-icons/im';
 import { useMainContext } from '@/context/MainContext';
 import { formatNumberSpace, getValue } from '@/lib/helper';
-import { Pencil } from '@/utils/icons';
+import { PencilIcon } from '@/utils/icons';
 import AdminLayout from '@/layouts/AdminLayout';
 import Box from '@/components/Box';
 import EditProfile from '@/components/Modals/EditProfile';
@@ -82,7 +82,7 @@ const Profile = ({ title }) => {
               className='normal_btn absolute right-0'
               onClick={() => openModalHandler('phoneNumber')}
             >
-              <Pencil />
+              <PencilIcon color='var(--primary-color)' />
             </button>
           </li>
 
@@ -96,7 +96,7 @@ const Profile = ({ title }) => {
               className='normal_btn absolute right-0'
               onClick={() => openModalHandler('email')}
             >
-              <Pencil />
+              <PencilIcon color='var(--primary-color)' />
             </button>
           </li>
 
@@ -112,7 +112,7 @@ const Profile = ({ title }) => {
               className='normal_btn absolute right-0'
               onClick={() => openModalHandler('accountInfo')}
             >
-              <Pencil />
+              <PencilIcon color='var(--primary-color)' />
             </button>
           </li>
 
@@ -126,7 +126,7 @@ const Profile = ({ title }) => {
               className='normal_btn absolute right-0'
               onClick={() => openModalHandler('password')}
             >
-              <Pencil />
+              <PencilIcon color='var(--primary-color)' />
             </button>
           </li>
         </ul>

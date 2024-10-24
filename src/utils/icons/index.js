@@ -1,18 +1,18 @@
 export { default as GetMenuIcon } from './menu/getIcon';
 
-export { default as DefaultAvatar } from './DefaultAvatar';
+export { default as DefaultAvatarIcon } from './DefaultAvatar';
 export { default as CheckedOutline } from './CheckedOutline';
-export { default as Employees } from './Employees';
-export { default as Calendar } from './Calendar';
-export { default as TimeSettings } from './TimeSettings';
-export { default as Searching } from './Searching';
-export { default as Pencil } from './Pencil';
-export { default as Doll } from './Doll';
-export { default as DoubleLeft } from './DoubleLeft';
+export { default as UsersIcon } from './Users';
+export { default as CalendarIcon } from './Calendar';
+export { default as TimeSettingsIcon } from './TimeSettings';
+export { default as SearchingIcon } from './Searching';
+export { default as PencilIcon } from './Pencil';
+export { default as DollIcon } from './Doll';
+export { default as ChevronDoubleArrow } from './ChevronDoubleArrow';
 export { default as ChevronArrow } from './ChevronArrow';
-export { default as Bin } from './Bin';
-export { default as Settings } from './Settings';
-export { default as Logout } from './Logout';
+export { default as BinIcon } from './Bin';
+export { default as SettingsIcon } from './Settings';
+export { default as LogoutIcon } from './Logout';
 
 export { default as Picon1 } from './picons/Picon1';
 export { default as Picon2 } from './picons/Picon2';

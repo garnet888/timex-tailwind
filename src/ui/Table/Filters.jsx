@@ -1,6 +1,6 @@
 import { GrRotateLeft } from 'react-icons/gr';
 import { Select } from '@/ui';
-import { Searching } from '@/utils/icons';
+import { SearchingIcon } from '@/utils/icons';
 import { dataType, filterActions } from '@/lib/constants';
 
 const Filters = ({
@@ -125,7 +125,10 @@ const Filters = ({
           headerGroup.headers.map((header) => {
             if (header.isPlaceholder || header.column.getCanFilter()) {
               return (
-                <span key={header.id} className='flex flex-col gap-1'>
+                <span
+                  key={header.id}
+                  className='flex flex-col gap-1'
+                >
                   <p className='text-gray-500 ml-1'>
                     {header.column.columnDef.header}
                   </p>
@@ -148,7 +151,7 @@ const Filters = ({
         </button>
 
         <button className='normal_btn w-[124px] flex gap-2 text-dark'>
-          <Searching /> Хайх
+          <SearchingIcon /> Хайх
         </button>
       </div> */}
     </div>
