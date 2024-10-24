@@ -84,7 +84,7 @@ const Steps = ({
               className='first_btn rounded-full'
               onClick={nextOnClick}
             >
-              Дараах
+              {current === LAST_IDX ? 'Болсон' : 'Дараах'}
             </button>
           </div>
         </div>
