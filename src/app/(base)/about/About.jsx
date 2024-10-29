@@ -12,6 +12,7 @@ import {
   Textarea,
 } from '@/ui';
 import BaseLayout from '@/layouts/BaseLayout';
+import TestDatePicker from './TestDatePicker';
 
 const About = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -413,6 +414,12 @@ const About = () => {
               multiple
               onChange={(opt) => selectOnChange('Rounded multiple', opt)}
             />
+          </div>
+
+          <div className='flex flex-col gap-2 border-b border-blue-400 pb-6 mb-8'>
+            <h3>Date Picker</h3>
+
+            <TestDatePicker />
           </div>
         </div>
 

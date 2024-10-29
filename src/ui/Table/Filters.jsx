@@ -1,5 +1,5 @@
 import { GrRotateLeft } from 'react-icons/gr';
-import { Select } from '@/ui';
+import { DatePicker, Select } from '@/ui';
 import { SearchingIcon } from '@/utils/icons';
 import { dataType, filterActions } from '@/lib/constants';
 
@@ -59,7 +59,7 @@ const Filters = ({
     }
 
     setFilterMap(new Map(addMap));
-    setFilterCols(addObject);
+    // setFilterCols(addObject);
   };
 
   const renderFilterInput = (header) => {
@@ -100,16 +100,24 @@ const Filters = ({
 
     if (String(columnDef?.filterType).includes('date')) {
       INPUT = (
-        <input
-          className='rounded_input '
-          type='date'
-          value={filterMap.get(columnDef.accessorKey)?.filtering ?? ''}
-          onChange={(e) =>
-            onChangeHandler(
-              columnDef.accessorKey,
-              e.target.value,
-              columnDef.filterType
-            )
+        // <input
+        //   className='rounded_input '
+        //   type='date'
+        //   value={filterMap.get(columnDef.accessorKey)?.filtering ?? ''}
+        // onChange={(e) =>
+        //   onChangeHandler(
+        //     columnDef.accessorKey,
+        //     e.target.value,
+        //     columnDef.filterType
+        //   )
+        // }
+        // />
+        <DatePicker
+          value={filterMap.get(columnDef.accessorKey)?.filtering ?? {}}
+          // withTime
+          rounded
+          onChange={(date) =>
+            onChangeHandler(columnDef.accessorKey, date, columnDef.filterType)
           }
         />
       );
@@ -141,7 +149,7 @@ const Filters = ({
         )}
       </div>
 
-      {/* <div className='flex justify-between lg:justify-end gap-3'>
+      <div className='flex justify-between lg:justify-end gap-3'>
         <button
           className='normal_btn w-[124px] flex gap-2 bg-orange-400 text-white'
           onClick={() => setFilterMap(new Map())}
@@ -153,7 +161,7 @@ const Filters = ({
         <button className='normal_btn w-[124px] flex gap-2 text-dark'>
           <SearchingIcon /> Хайх
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };

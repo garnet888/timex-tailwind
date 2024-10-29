@@ -21,7 +21,7 @@
   }
 
   .rounded_input {
-    border-radius: 58px;
+    border-radius: 58px !important;
   }
 
   .datePicker_input:hover,

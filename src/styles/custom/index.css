@@ -26,6 +26,6 @@
 
 .vi__container input:hover,
 .vi__container input:focus {
-  outline: unset;
-  border: unset;
+  outline: yellow !important;
+  border: yellow !important;
 }

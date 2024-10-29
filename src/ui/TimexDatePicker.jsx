@@ -31,10 +31,12 @@ const WEEK_DAYS = [
 ];
 
 const TimexDatePicker = ({
+  placeholder = '',
   value,
   range = false,
   withTime = false,
   alert = false,
+  rounded = false,
   onChange,
   cleaner,
 }) => {
@@ -52,6 +54,18 @@ const TimexDatePicker = ({
   useEffect(() => {
     document.addEventListener('click', hangleClickOutside);
   }, [hangleClickOutside]);
+
+  const getPlaceholder = () => {
+    if (placeholder) {
+      return placeholder;
+    }
+
+    if (getRange()) {
+      return 'Эхлэх ~ Дуусах';
+    } else {
+      return 'Огноо сонгох...';
+    }
+  };
 
   const getFormat = () => {
     if (withTime) {
@@ -89,23 +103,23 @@ const TimexDatePicker = ({
   };
 
   const onChangeHandler = (val) => {
-    // if (withTime || range) {
-    //   setTempValue(val);
-    // } else {
-    //   if (range && Array.isArray(val)) {
-    //     onChange(val.map((item) => new DateObject(item).format(getFormat())));
-    //   } else {
-    //     onChange(val);
-    //   }
-    // }
-
-    if (range && Array.isArray(val)) {
-      onChange(val.map((item) => new DateObject(item).format(getFormat())));
+    if (withTime || range) {
+      setTempValue(val);
     } else {
-      onChange(val);
+      if (range && Array.isArray(val)) {
+        onChange(val.map((item) => new DateObject(item).format(getFormat())));
+      } else {
+        onChange(val);
+      }
     }
 
-    setTempValue(val);
+    // if (range && Array.isArray(val)) {
+    //   onChange(val.map((item) => new DateObject(item).format(getFormat())));
+    // } else {
+    //   onChange(val);
+    // }
+
+    // setTempValue(val);
   };
 
   const doneHandler = () => {
@@ -130,8 +144,12 @@ const TimexDatePicker = ({
   return (
     <DatePicker
       ref={ref}
-      inputClass={[alert ? 'alert_input' : '', 'datePicker_input'].join(' ')}
-      placeholder={getRange() ? 'Эхлэх ~ Дуусах' : 'Огноо сонгох...'}
+      inputClass={[
+        alert ? 'alert_input' : '',
+        rounded ? 'rounded_input' : '',
+        'datePicker_input',
+      ].join(' ')}
+      placeholder={getPlaceholder()}
       headerOrder={['LEFT_BUTTON', 'YEAR_MONTH', 'RIGHT_BUTTON']}
       months={MONTHS}
       weekDays={WEEK_DAYS}
@@ -157,13 +175,15 @@ const TimexDatePicker = ({
       )}
     >
       <div className='flex justify-center gap-4 p-[0_16px_16px]'>
-        <button
-          className='normal_btn h-auto px-2 py-0'
-          type='button'
-          onClick={cleanerHandler}
-        >
-          Цэвэрлэх
-        </button>
+        {cleaner && (
+          <button
+            className='normal_btn h-auto px-2 py-0'
+            type='button'
+            onClick={cleanerHandler}
+          >
+            Цэвэрлэх
+          </button>
+        )}
 
         {(withTime || range) && (
           <button

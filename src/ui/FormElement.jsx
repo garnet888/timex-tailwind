@@ -16,7 +16,10 @@ const FormElement = ({
         </span>
 
         <span className='flex gap-1'>
-          {shownInputAsterrisk && <span className='text-red-500 mr-1'>*</span>}
+          {shownInputAsterrisk && (
+            <span className='text-red-500 mr-[2px]'>*</span>
+          )}
+
           {children}
         </span>
       </div>
