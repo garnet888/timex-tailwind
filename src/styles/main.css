@@ -178,8 +178,8 @@ body *:disabled::placeholder {
     font-size: 0.68em;
   }
 
-  button,
-  .like_btn {
+  .like_btn,
+  button {
     cursor: pointer;
 
     width: fit-content;
@@ -218,6 +218,7 @@ body *:disabled::placeholder {
     border: unset;
   }
 
+  .datePicker_input,
   input,
   textarea,
   select {

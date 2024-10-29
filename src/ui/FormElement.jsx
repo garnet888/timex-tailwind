@@ -9,7 +9,9 @@ const FormElement = ({
     <div>
       <div className='flex flex-col'>
         <span className='flex'>
-          {hideAsterisk || <span className='text-red-500 mr-1'>*</span>}
+          {hideAsterisk || (
+            <span className='text-red-500 leading-snug mr-[2px]'>*</span>
+          )}
           {label && <p className='text-sm'>{label}</p>}
         </span>
 

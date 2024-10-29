@@ -1,5 +1,6 @@
 @import './pagination.css';
 @import './rc_tooltip.css';
+@import './date_picker.css';
 
 .Toastify__close-button {
   height: auto;
