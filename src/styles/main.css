@@ -218,7 +218,6 @@ body *:disabled::placeholder {
     border: unset;
   }
 
-  .datePicker_input,
   input,
   textarea,
   select {

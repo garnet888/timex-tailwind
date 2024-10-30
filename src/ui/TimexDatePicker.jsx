@@ -1,10 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import DatePicker, { DateObject } from 'react-multi-date-picker';
+import DatePicker from 'react-multi-date-picker';
 import TimePicker from 'react-multi-date-picker/plugins/time_picker';
 import { dateFormats } from '@/lib/constants';
-import { ChevronArrow } from '@/utils/icons';
+import { CalendarIcon, ChevronArrow } from '@/utils/icons';
+import { InputDouble, InputPrefix } from '.';
 
 const MONTHS = [
   '1-р сар',
@@ -35,10 +36,10 @@ const TimexDatePicker = ({
   value,
   range = false,
   withTime = false,
+  shownCleaner = false,
   alert = false,
   rounded = false,
   onChange,
-  cleaner,
 }) => {
   const ref = useRef();
 
@@ -55,13 +56,29 @@ const TimexDatePicker = ({
     document.addEventListener('click', hangleClickOutside);
   }, [hangleClickOutside]);
 
+  useEffect(() => {
+    setTempValue(value && value);
+  }, [value]);
+
+  useEffect(() => {
+    let _value = value;
+
+    if (range) {
+      _value = value?.length ? value[0] : value;
+    }
+
+    if (shouldCloseCalendar && !_value?.calendar) {
+      setTempValue();
+    }
+  }, [range, shouldCloseCalendar, value]);
+
   const getPlaceholder = () => {
     if (placeholder) {
       return placeholder;
     }
 
     if (getRange()) {
-      return 'Эхлэх ~ Дуусах';
+      return ['Эхлэх огноо', 'Дуусах огноо'];
     } else {
       return 'Огноо сонгох...';
     }
@@ -106,96 +123,119 @@ const TimexDatePicker = ({
     if (withTime || range) {
       setTempValue(val);
     } else {
-      if (range && Array.isArray(val)) {
-        onChange(val.map((item) => new DateObject(item).format(getFormat())));
-      } else {
-        onChange(val);
-      }
+      onChange(val);
     }
-
-    // if (range && Array.isArray(val)) {
-    //   onChange(val.map((item) => new DateObject(item).format(getFormat())));
-    // } else {
-    //   onChange(val);
-    // }
-
-    // setTempValue(val);
   };
 
   const doneHandler = () => {
-    if (range && Array.isArray(tempValue)) {
-      onChange(
-        tempValue.map((item) => new DateObject(item).format(getFormat()))
-      );
-    } else {
-      onChange(tempValue);
-    }
-
+    onChange(tempValue);
     hideCalendar();
   };
 
   const cleanerHandler = () => {
-    cleaner();
+    onChange();
     setTempValue();
 
     hideCalendar();
   };
 
-  return (
-    <DatePicker
-      ref={ref}
-      inputClass={[
-        alert ? 'alert_input' : '',
-        rounded ? 'rounded_input' : '',
-        'datePicker_input',
-      ].join(' ')}
-      placeholder={getPlaceholder()}
-      headerOrder={['LEFT_BUTTON', 'YEAR_MONTH', 'RIGHT_BUTTON']}
-      months={MONTHS}
-      weekDays={WEEK_DAYS}
-      format={getFormat()}
-      value={value}
-      range={getRange()}
-      rangeHover={getRange()}
-      numberOfMonths={getRange() && 2}
-      plugins={getPlugins()}
-      onChange={onChangeHandler}
-      onOpen={() => setShouldCloseCalendar(false)}
-      onClose={() => (withTime ? shouldCloseCalendar : true)}
-      renderButton={(direction, handleClick) => (
-        <button
-          className='normal_btn h-auto p-1 mx-2'
-          onClick={handleClick}
-        >
-          <ChevronArrow
-            rotate={direction}
-            color='var(--primary-color)'
-          />
-        </button>
-      )}
-    >
-      <div className='flex justify-center gap-4 p-[0_16px_16px]'>
-        {cleaner && (
-          <button
-            className='normal_btn h-auto px-2 py-0'
-            type='button'
-            onClick={cleanerHandler}
-          >
-            Цэвэрлэх
-          </button>
-        )}
+  const renderInput = (inputVal, openCalendar) => {
+    let _value = inputVal;
 
-        {(withTime || range) && (
-          <button
-            className='first_btn h-auto px-2 py-0'
-            type='button'
-            onClick={doneHandler}
-          >
-            Болсон
-          </button>
+    if (range) {
+      _value = String(inputVal).split(' ~ ');
+    }
+
+    return (
+      <div onClick={openCalendar}>
+        {range ? (
+          <InputDouble
+            placeholder={getPlaceholder()}
+            after={
+              <CalendarIcon
+                color='gray'
+                size={20}
+              />
+            }
+            value={_value}
+            alert={alert}
+            rounded={rounded}
+            readOnly
+          />
+        ) : (
+          <InputPrefix
+            placeholder={getPlaceholder()}
+            after={
+              <CalendarIcon
+                color='gray'
+                size={20}
+              />
+            }
+            value={_value}
+            alert={alert}
+            rounded={rounded}
+            readOnly
+          />
         )}
       </div>
-    </DatePicker>
+    );
+  };
+
+  return (
+    <>
+      <DatePicker
+        ref={ref}
+        headerOrder={['LEFT_BUTTON', 'YEAR_MONTH', 'RIGHT_BUTTON']}
+        highlightToday={false}
+        onOpenPickNewDate={false}
+        months={MONTHS}
+        weekDays={WEEK_DAYS}
+        format={getFormat()}
+        value={tempValue}
+        range={getRange()}
+        rangeHover={getRange()}
+        fixRelativePosition={0}
+        numberOfMonths={getRange() && 2}
+        plugins={getPlugins()}
+        onChange={onChangeHandler}
+        onOpen={() => setShouldCloseCalendar(false)}
+        onClose={() => (withTime ? shouldCloseCalendar : true)}
+        render={(renValue, openCalendar) => renderInput(renValue, openCalendar)}
+        renderButton={(direction, handleClick) => (
+          <button
+            className='normal_btn h-auto p-1 mx-2'
+            onClick={handleClick}
+          >
+            <ChevronArrow
+              rotate={direction}
+              color='var(--primary-color)'
+            />
+          </button>
+        )}
+      >
+        <div className='flex justify-center gap-4 p-[0_16px_16px]'>
+          {shownCleaner && (
+            <button
+              className='normal_btn h-[28px] px-2'
+              type='button'
+              onClick={cleanerHandler}
+            >
+              Цэвэрлэх
+            </button>
+          )}
+
+          {(withTime || range) && (
+            <button
+              className='first_btn h-[28px] px-2'
+              type='button'
+              onClick={doneHandler}
+            >
+              Сонгох
+            </button>
+          )}
+        </div>
+      </DatePicker>
+    </>
   );
 };
 

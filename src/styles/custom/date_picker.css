@@ -1,9 +1,9 @@
 .rmdp-container {
   width: 100%;
-  display: flex !important;
 }
 
 .rmdp-container input {
+  cursor: pointer;
   width: 100%;
 }
 

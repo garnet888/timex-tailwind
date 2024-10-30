@@ -1,6 +1,4 @@
-const InputAddon = (props) => {
-  const { before, after, alert, disabled } = props;
-
+const InputAddon = ({ before, after, alert, disabled, ...props }) => {
   let addon_style = 'grid place-content-center bg-grey text-sm px-3';
 
   if (disabled) {
@@ -16,6 +14,7 @@ const InputAddon = (props) => {
       )}
 
       <input
+        {...props}
         className={[
           alert ? 'alert_input' : '',
           before ? 'rounded-[0_8px_8px_0]' : '',
@@ -23,7 +22,6 @@ const InputAddon = (props) => {
           before && after ? 'rounded-none' : '',
           'z-10 w-full',
         ].join(' ')}
-        {...props}
       />
 
       {after && (

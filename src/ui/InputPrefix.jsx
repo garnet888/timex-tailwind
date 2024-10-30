@@ -1,5 +1,6 @@
 const InputPrefix = ({
   id,
+  placeholder,
   before,
   after,
   type,
@@ -8,6 +9,7 @@ const InputPrefix = ({
   disabled = false,
   rounded = false,
   register,
+  ...props
 }) => {
   const HOVER_INPUT =
     'has-[input:hover]:border has-[input:hover]:border-[rgba(108,48,237,0.48)]';
@@ -32,13 +34,15 @@ const InputPrefix = ({
       {before && <span className='pl-[6px]'>{before}</span>}
 
       <input
+        {...props}
+        {...(register ? register(id) : {})}
         className={[
           rounded === true ? 'rounded_input' : '',
           'no_input w-full',
         ].join(' ')}
+        placeholder={placeholder}
         type={type}
         value={value}
-        {...(register ? register(id) : {})}
       />
 
       {after && <span className='pr-[6px]'>{after}</span>}

@@ -10,6 +10,7 @@ export { default as ImageUploader } from './ImageUploader';
 export { default as InputAddon } from './InputAddon';
 export { default as InputPrefix } from './InputPrefix';
 export { default as InputPassword } from './InputPassword';
+export { default as InputDouble } from './InputDouble';
 export { default as Textarea } from './Textarea';
 export { default as Checkbox } from './Checkbox';
 export { default as Select } from './Select';

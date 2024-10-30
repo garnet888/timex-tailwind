@@ -24,19 +24,16 @@
     border-radius: 58px !important;
   }
 
-  .datePicker_input:hover,
   input:hover,
   textarea:hover {
     border: 1px solid rgba(108, 48, 237, 0.48);
   }
 
-  .datePicker_input:focus,
   input:focus,
   textarea:focus {
     outline: 3.2px solid rgba(108, 48, 237, 0.32);
   }
 
-  .datePicker_input:disabled,
   input:disabled,
   textarea:disabled {
     cursor: not-allowed;

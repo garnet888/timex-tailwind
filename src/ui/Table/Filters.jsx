@@ -1,6 +1,5 @@
-import { GrRotateLeft } from 'react-icons/gr';
 import { DatePicker, Select } from '@/ui';
-import { SearchingIcon } from '@/utils/icons';
+import { CleanIcon, SearchingIcon } from '@/utils/icons';
 import { dataType, filterActions } from '@/lib/constants';
 
 const Filters = ({
@@ -113,8 +112,8 @@ const Filters = ({
         // }
         // />
         <DatePicker
-          value={filterMap.get(columnDef.accessorKey)?.filtering ?? {}}
-          // withTime
+          value={filterMap.get(columnDef.accessorKey)?.filtering}
+          range
           rounded
           onChange={(date) =>
             onChangeHandler(columnDef.accessorKey, date, columnDef.filterType)
@@ -137,7 +136,7 @@ const Filters = ({
                   key={header.id}
                   className='flex flex-col gap-1'
                 >
-                  <p className='text-gray-500 ml-1'>
+                  <p className='text-gray-500 leading-none ml-1'>
                     {header.column.columnDef.header}
                   </p>
 
@@ -151,14 +150,13 @@ const Filters = ({
 
       <div className='flex justify-between lg:justify-end gap-3'>
         <button
-          className='normal_btn w-[124px] flex gap-2 bg-orange-400 text-white'
+          className='normal_btn'
           onClick={() => setFilterMap(new Map())}
         >
-          <GrRotateLeft />
-          Цэвэрлэх
+          <CleanIcon />
         </button>
 
-        <button className='normal_btn w-[124px] flex gap-2 text-dark'>
+        <button className='normal_btn flex gap-2 text-dark'>
           <SearchingIcon /> Хайх
         </button>
       </div>

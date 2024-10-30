@@ -4,6 +4,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { FormElement, DatePicker } from '@/ui';
+import { useState } from 'react';
+import moment from 'moment';
 
 const schema = yup.object().shape({
   name: yup.string().required('Нэрээ оруулна уу'),
@@ -34,6 +36,8 @@ const schema = yup.object().shape({
 });
 
 const TestDatePicker = () => {
+  const [rawDate, setRawDate] = useState();
+
   const {
     formState: { errors },
     control,
@@ -82,10 +86,10 @@ const TestDatePicker = () => {
           render={({ field: { onChange, value } }) => (
             <DatePicker
               placeholder='Normal Date'
-              value={value ? value : {}}
+              value={value}
               alert={errors.date1}
               onChange={onChange}
-              cleaner={() => setValue('date1', null)}
+              shownCleaner
             />
           )}
         />
@@ -101,12 +105,13 @@ const TestDatePicker = () => {
           defaultValue={null}
           render={({ field: { onChange, value } }) => (
             <DatePicker
-              placeholder='Range Date'
-              value={value ? value : {}}
+              placeholder={['Range Date Start', 'Range Date End']}
+              value={value}
               alert={errors.date2}
               range
+              rounded
               onChange={onChange}
-              cleaner={() => setValue('date2', null)}
+              shownCleaner
             />
           )}
         />
@@ -123,12 +128,12 @@ const TestDatePicker = () => {
           render={({ field: { onChange, value } }) => (
             <DatePicker
               placeholder='Time with Date (rounded)'
-              value={value ? value : {}}
+              value={value}
               alert={errors.date3}
               withTime
               rounded
               onChange={onChange}
-              cleaner={() => setValue('date3', null)}
+              shownCleaner
             />
           )}
         />
@@ -136,6 +141,24 @@ const TestDatePicker = () => {
 
       <button type='submit'>Submit</button>
     </form>
+
+    // <>
+    //   <DatePicker
+    //     value={rawDate}
+    //     withTime
+    //     // range
+    //     rounded
+    //     onChange={setRawDate}
+    //     shownCleaner
+    //   />
+
+    //   <button
+    //     // onClick={() => alert(moment(new Date(rawDate)).format('YYYY/MM/DD'))}
+    //     onClick={() => console.log('BOOOM->', rawDate)}
+    //   >
+    //     Show Date
+    //   </button>
+    // </>
   );
 };
 
