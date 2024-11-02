@@ -35,7 +35,6 @@ const Table = ({
 
   useEffect(() => {
     const params = getParamsTable(
-      api,
       customQuery,
       filterMap,
       currentPage,

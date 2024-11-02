@@ -18,9 +18,12 @@ export const GetColumns = ({
       if (col?.filterType === dataType.DATETIME) {
         return {
           ...col,
-          cell: ({ getValue }) => (
-            <center>{moment(getValue()).format(dateFormats.WITH_TIME)}</center>
-          ),
+          cell: ({ getValue }) =>
+            getValue() && (
+              <center>
+                {moment(getValue()).format(dateFormats.WITH_TIME)}
+              </center>
+            ),
         };
       } else {
         return col;

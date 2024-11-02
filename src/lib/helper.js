@@ -1,4 +1,5 @@
 import { apiList, callGet } from '@/axios/api';
+import { filterActions } from './constants';
 
 const SMALL_MENU_KEY = 'SMALL_MENU';
 
@@ -49,7 +50,6 @@ export const fetchMenu = async (setMenu) => {
 };
 
 export const getParamsTable = (
-  api,
   customQuery,
   filterMap,
   currentPage,
@@ -65,84 +65,36 @@ export const getParamsTable = (
   // }
 
   let filters = '';
-  const fields = [];
+  const values = [];
 
   if (filterMap.size > 0) {
     filters += '&filters=[';
 
     Array.from(filterMap).forEach(([key, obj]) => {
-      fields.push(`["${key}", "${obj.action}", "${obj.filtering}"]`);
-    });
+      if (
+        obj.action === filterActions.CONTAINS ||
+        obj.action === filterActions.EQUALS
+      ) {
+        values.push(`["${key}", "${obj.action}", "${obj.filtering}"]`);
+      }
 
-    fields.forEach((item, idx) => {
-      filters += `${item},`;
+      if (obj.action === filterActions.THAN_EQUAL) {
+        values.push(
+          `["${key}", ">=", "${obj.filtering}"],["${key}", "<=", "${obj.filteringTo}"]`
+        );
+      }
 
-      if (fields.length - 1 === idx) {
-        filters += item;
+      if (obj.action === filterActions.IN_RANGE) {
+        values.push(
+          `["${key}", "${obj.action}", ["${obj.filtering}","${obj.filteringTo} 23:59:59%2B08:00"]]`
+        );
       }
     });
 
-    filters += ']';
+    filters += String(values) + ']';
   }
 
-  // if (!_.isEmpty(filter)) {
-  //   let sFields = [];
-
-  //   Object.entries(filter).forEach(([key, value]) => {
-  //     if (value.type === 'between') {
-  //       if (value.filterType === 'date' || value.filterType === 'datetime') {
-  //         sFields.push(
-  //           `["${key}", "${value.type}", ["${value.filter}","${value.filterTo} 23:59:59%2B08:00"]]`
-  //         );
-  //       } else {
-  //         sFields.push(
-  //           `["${key}", "${value.type}", ["${value.filter}","${value.filterTo}"]]`
-  //         );
-  //       }
-  //     }
-
-  //     if (value.type === 'like' || value.type === '=') {
-  //       sFields.push(`["${key}", "${value.type}", "${value.filter}"]`);
-  //     }
-
-  //     if (value.type === '>=') {
-  //       sFields.push(`["${key}", "${value.type}", "${value.filter}"]`);
-  //     }
-
-  //     if (value.type === '<=') {
-  //       sFields.push(`["${key}", "${value.type}", "${value.filterTo}"]`);
-  //     }
-  //   });
-
-  //   if (pageAndSizeParm) {
-  //     filters = `&`;
-  //   } else {
-  //     query = ``;
-  //     filters = `?`;
-  //   }
-  //   filters += 'filters=[';
-  //   sFields.forEach((el, index) => {
-  //     filters += `${el}`;
-  //     if (index !== sFields.length - 1) {
-  //       filters += `,`;
-  //     }
-  //   });
-  //   filters += `]`;
-  // } else if (initParams) {
-  //   setInitialParams();
-  // }
-
-  // if (code?.includes('?&filters')) {
-  //   const initFilter = code.split('?');
-  //   code = initFilter[0];
-  //   filters += initFilter[1];
-  // }
-
-  // if (code?.includes('ref?')) {
-  //   query = ``;
-  // }
-
-  query += customQuery;
+  query += `&${customQuery}`;
 
   return query + filters;
 };

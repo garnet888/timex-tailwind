@@ -2,14 +2,8 @@ import { DatePicker, Select } from '@/ui';
 import { CleanIcon, SearchingIcon } from '@/utils/icons';
 import { dataType, filterActions } from '@/lib/constants';
 
-const Filters = ({
-  TABLE,
-  filterMap,
-  filterCols,
-  setFilterMap,
-  setFilterCols,
-}) => {
-  const getAction = (value, type) => {
+const Filters = ({ TABLE, filterMap, setFilterMap }) => {
+  const getAction = (value, type, valueTo) => {
     switch (type) {
       case dataType.NUMBER:
       case dataType.SELECT:
@@ -26,10 +20,17 @@ const Filters = ({
         };
 
       case dataType.AMOUNT:
+        return {
+          filtering: value,
+          filteringTo: valueTo,
+          action: filterActions.THAN_EQUAL,
+        };
+
       case dataType.DATE:
       case dataType.DATETIME:
         return {
           filtering: value,
+          filteringTo: valueTo,
           action: filterActions.IN_RANGE,
         };
 
@@ -38,27 +39,10 @@ const Filters = ({
     }
   };
 
-  const onChangeHandler = (key, value, type) => {
-    const addMap = filterMap.set(key, getAction(value, type));
-    let addObject = [];
-
-    if (filterCols) {
-      addObject = [
-        ...filterCols,
-        {
-          [key]: getAction(value, type),
-        },
-      ];
-    } else {
-      addObject = [
-        {
-          [key]: getAction(value, type),
-        },
-      ];
-    }
+  const onChangeHandler = (key, value, type, valueTo) => {
+    const addMap = filterMap.set(key, getAction(value, type, valueTo));
 
     setFilterMap(new Map(addMap));
-    // setFilterCols(addObject);
   };
 
   const renderFilterInput = (header) => {
@@ -98,25 +82,23 @@ const Filters = ({
     }
 
     if (String(columnDef?.filterType).includes('date')) {
+      const _filtering = filterMap.get(columnDef.accessorKey)?.filtering;
+      const _filteringTo = filterMap.get(columnDef.accessorKey)?.filteringTo;
+
+      const _value = [_filtering, _filteringTo];
+
       INPUT = (
-        // <input
-        //   className='rounded_input '
-        //   type='date'
-        //   value={filterMap.get(columnDef.accessorKey)?.filtering ?? ''}
-        // onChange={(e) =>
-        //   onChangeHandler(
-        //     columnDef.accessorKey,
-        //     e.target.value,
-        //     columnDef.filterType
-        //   )
-        // }
-        // />
         <DatePicker
-          value={filterMap.get(columnDef.accessorKey)?.filtering}
+          value={_value}
           range
           rounded
           onChange={(date) =>
-            onChangeHandler(columnDef.accessorKey, date, columnDef.filterType)
+            onChangeHandler(
+              columnDef.accessorKey,
+              date[0],
+              columnDef.filterType,
+              date[1]
+            )
           }
         />
       );

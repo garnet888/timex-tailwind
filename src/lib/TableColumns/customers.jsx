@@ -67,7 +67,7 @@ export const customers = [
     ),
   },
   {
-    accessorKey: 'date',
+    accessorKey: 'firstOrder',
     header: 'Огноо',
     filterType: dataType.DATETIME,
   },

@@ -19,12 +19,14 @@ const Customers = ({ title }) => {
 
   return (
     <AdminLayout>
-      <Box title={title} noDivider>
+      <Box
+        title={title}
+        noDivider
+      >
         <Table
           api='/customer'
-          // customQuery='sort=-firstOrder'
+          customQuery='sort=-firstOrder'
           columns={customers}
-          rowCount={5}
           actions={[{ key: 'EDIT' }, { key: 'DELETE' }]}
           actionsHandler={actionsHandler}
         />

@@ -19,6 +19,7 @@ const dateFormats = {
 };
 
 const filterActions = {
+  THAN_EQUAL: '<=>',
   EQUALS: '=',
   CONTAINS: 'like',
   IN_RANGE: 'between',
