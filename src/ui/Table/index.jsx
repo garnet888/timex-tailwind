@@ -6,6 +6,7 @@ import {
   flexRender,
   getCoreRowModel,
 } from '@tanstack/react-table';
+import { FaCaretUp, FaCaretDown } from 'react-icons/fa6';
 import Pagination from 'react-responsive-pagination';
 import { callGetList } from '@/axios/api';
 import { getParamsTable } from '@/lib/helper';
@@ -28,19 +29,21 @@ const Table = ({
 }) => {
   const [fetchData, setFetchData] = useState([]);
   const [filterMap, setFilterMap] = useState(new Map());
+  const [sortingCol, setSortingCol] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(rowCount);
   const [totalCount, setTotalCount] = useState(null);
   const [totalPages, setTotalPages] = useState(null);
 
   useEffect(() => {
-    const params = getParamsTable(
+    const params = getParamsTable({
       customQuery,
       filterMap,
+      sortingCol,
       currentPage,
       pageSize,
-      noPagination
-    );
+      noPagination,
+    });
 
     const fetchList = async () => {
       const res = await callGetList(`${api}${params}`);
@@ -51,7 +54,15 @@ const Table = ({
     };
 
     fetchList();
-  }, [api, customQuery, filterMap, currentPage, pageSize, noPagination]);
+  }, [
+    api,
+    customQuery,
+    filterMap,
+    sortingCol,
+    currentPage,
+    pageSize,
+    noPagination,
+  ]);
 
   const DATA = useMemo(
     () =>
@@ -87,6 +98,24 @@ const Table = ({
     setPageSize(value);
   };
 
+  const sortClickHandler = (key) => {
+    let type;
+
+    if (!sortingCol[key]) {
+      type = 'asc';
+    }
+
+    if (sortingCol[key] === 'asc') {
+      type = 'desc';
+    }
+
+    if (sortingCol[key] === 'desc') {
+      type;
+    }
+
+    setSortingCol({ [key]: type });
+  };
+
   return (
     <div>
       {noFilter || (
@@ -105,14 +134,43 @@ const Table = ({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className='text-white text-center font-medium border-r last-of-type:border-r-0 p-2'
+                    className='text-white font-medium border-r last-of-type:border-r-0 p-2'
                     colSpan={header.colSpan}
                   >
-                    {header.isPlaceholder ||
-                      flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
+                    <div className='flex justify-center gap-1'>
+                      {header.isPlaceholder ||
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+
+                      {header.column.columnDef?.shownSort && (
+                        <button
+                          className='text_btn h-auto p-0'
+                          onClick={() => sortClickHandler(header.id)}
+                        >
+                          <div className='flex flex-col'>
+                            <FaCaretUp
+                              className={[
+                                '-my-[2.4px] text-sm',
+                                sortingCol[header.id] === 'asc'
+                                  ? 'text-white'
+                                  : 'text-gray-400',
+                              ].join(' ')}
+                            />
+
+                            <FaCaretDown
+                              className={[
+                                '-my-[2.4px] text-sm',
+                                sortingCol[header.id] === 'desc'
+                                  ? 'text-white'
+                                  : 'text-gray-400',
+                              ].join(' ')}
+                            />
+                          </div>
+                        </button>
                       )}
+                    </div>
                   </th>
                 ))}
               </tr>

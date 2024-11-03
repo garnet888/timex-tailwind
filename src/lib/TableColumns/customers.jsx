@@ -44,12 +44,15 @@ export const customers = [
   {
     accessorKey: 'notes',
     header: 'Тэмдэглэл',
-    cell: ({ getValue }) => (
-      <center>
-        <Tooltip
-          content={
-            <p className='w-[200px] whitespace-normal break-words'>
-              Elit esse laboris id amet proident aliquip voluptate id cillum
+    shownSort: false,
+    cell: ({ getValue }) =>
+      getValue() && (
+        <center>
+          <Tooltip
+            content={
+              <p className='w-[200px] whitespace-normal break-words'>
+                {getValue()}
+                {/* Elit esse laboris id amet proident aliquip voluptate id cillum
               occaecat deserunt deserunt commodo ex. Laboris Lorem cupidatat
               enim sit non non cillum ea eiusmod. Cupidatat qui in ad aliquip
               reprehenderit minim. Incididunt deserunt pariatur duis
@@ -57,14 +60,14 @@ export const customers = [
               ullamco quis. Consequat aute tempor esse culpa eu exercitation
               aute. Culpa consectetur esse ullamco quis esse reprehenderit amet
               labore ullamco non nulla eiusmod tempor pariatur. Laboris est
-              dolore velit excepteur id amet id irure ullamco.
-            </p>
-          }
-        >
-          ...
-        </Tooltip>
-      </center>
-    ),
+              dolore velit excepteur id amet id irure ullamco. */}
+              </p>
+            }
+          >
+            ...
+          </Tooltip>
+        </center>
+      ),
   },
   {
     accessorKey: 'firstOrder',

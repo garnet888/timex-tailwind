@@ -108,15 +108,21 @@ const Filters = ({ TABLE, filterMap, setFilterMap }) => {
   };
 
   return (
-    <div className='flex flex-col gap-3 mb-4'>
-      <div className='grid grid-cols-2 lg:flex gap-x-4 gap-y-3 flex-wrap text-sm'>
+    <div className='flex flex-col xl:flex-row items-end xl:items-start gap-4 xl:gap-6 mb-4'>
+      {/* <div className='grid grid-cols-2 lg:flex gap-x-4 gap-y-3 flex-wrap text-sm'> */}
+      <div className='grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-3 text-sm'>
         {TABLE.getHeaderGroups().map((headerGroup) =>
           headerGroup.headers.map((header) => {
             if (header.isPlaceholder || header.column.getCanFilter()) {
               return (
                 <span
                   key={header.id}
-                  className='flex flex-col gap-1'
+                  className={[
+                    'flex flex-col gap-1',
+                    String(header.column.columnDef?.filterType).includes('date')
+                      ? 'col-span-2'
+                      : '',
+                  ].join(' ')}
                 >
                   <p className='text-gray-500 leading-none ml-1'>
                     {header.column.columnDef.header}
@@ -130,18 +136,12 @@ const Filters = ({ TABLE, filterMap, setFilterMap }) => {
         )}
       </div>
 
-      <div className='flex justify-between lg:justify-end gap-3'>
-        <button
-          className='normal_btn'
-          onClick={() => setFilterMap(new Map())}
-        >
-          <CleanIcon />
-        </button>
-
-        <button className='normal_btn flex gap-2 text-dark'>
-          <SearchingIcon /> Хайх
-        </button>
-      </div>
+      <button
+        className='normal_btn p-2'
+        onClick={() => setFilterMap(new Map())}
+      >
+        <CleanIcon />
+      </button>
     </div>
   );
 };

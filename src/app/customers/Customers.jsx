@@ -29,6 +29,7 @@ const Customers = ({ title }) => {
           columns={customers}
           actions={[{ key: 'EDIT' }, { key: 'DELETE' }]}
           actionsHandler={actionsHandler}
+          // rowOnClick={() => alert('This is row on clicked')}
         />
       </Box>
     </AdminLayout>

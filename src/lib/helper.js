@@ -49,23 +49,20 @@ export const fetchMenu = async (setMenu) => {
   }
 };
 
-export const getParamsTable = (
+export const getParamsTable = ({
   customQuery,
   filterMap,
+  sortingCol,
   currentPage,
   pageSize,
-  noPagination = false
-) => {
+  noPagination = false,
+}) => {
   let query = noPagination
     ? '?no_paginate=1&is_excel=1'
     : `?page=${Number(currentPage) - 1}&size=${pageSize}`;
 
-  // if (sort) {
-  //   query += `&sort=${sort.sort}${sort.colId}`;
-  // }
-
   let filters = '';
-  const values = [];
+  const filterItems = [];
 
   if (filterMap.size > 0) {
     filters += '&filters=[';
@@ -75,23 +72,38 @@ export const getParamsTable = (
         obj.action === filterActions.CONTAINS ||
         obj.action === filterActions.EQUALS
       ) {
-        values.push(`["${key}", "${obj.action}", "${obj.filtering}"]`);
+        filterItems.push(`["${key}", "${obj.action}", "${obj.filtering}"]`);
       }
 
       if (obj.action === filterActions.THAN_EQUAL) {
-        values.push(
+        filterItems.push(
           `["${key}", ">=", "${obj.filtering}"],["${key}", "<=", "${obj.filteringTo}"]`
         );
       }
 
       if (obj.action === filterActions.IN_RANGE) {
-        values.push(
+        filterItems.push(
           `["${key}", "${obj.action}", ["${obj.filtering}","${obj.filteringTo} 23:59:59%2B08:00"]]`
         );
       }
     });
 
-    filters += String(values) + ']';
+    filters += String(filterItems) + ']';
+  }
+
+  const sortKey = Object.keys(sortingCol)[0];
+  const sortType = sortingCol[sortKey];
+
+  switch (sortType) {
+    case 'asc':
+      query += `&sort=${sortKey}`;
+      break;
+    case 'desc':
+      query += `&sort=-${sortKey}`;
+      break;
+
+    default:
+      break;
   }
 
   query += `&${customQuery}`;

@@ -18,6 +18,7 @@ export const GetColumns = ({
       if (col?.filterType === dataType.DATETIME) {
         return {
           ...col,
+          shownSort: true,
           cell: ({ getValue }) =>
             getValue() && (
               <center>
@@ -26,7 +27,10 @@ export const GetColumns = ({
             ),
         };
       } else {
-        return col;
+        return {
+          shownSort: true,
+          ...col,
+        };
       }
     });
 
