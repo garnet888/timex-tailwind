@@ -126,8 +126,8 @@ const EditProfile = ({ which, data, open, setOpen }) => {
         return (
           <input
             className={[
-              errors[which]?.message ? 'alert_input' : '',
               'rounded_input w-full',
+              errors[which]?.message ? 'alert_input' : '',
             ].join(' ')}
             value={data ? data[which] : ''}
             {...register(which)}
@@ -139,11 +139,14 @@ const EditProfile = ({ which, data, open, setOpen }) => {
   const renderIfHasAccountInfo = () => {
     return (
       <>
-        <FormElement label='Банкны нэр' message={errors.bank_code?.message}>
+        <FormElement
+          label='Банкны нэр'
+          message={errors.bank_code?.message}
+        >
           <input
             className={[
-              errors.bank_code?.message ? 'alert_input' : '',
               'rounded_input w-full',
+              errors.bank_code?.message ? 'alert_input' : '',
             ].join(' ')}
             value={data.bankCode}
             {...register('bank_code')}
@@ -156,8 +159,8 @@ const EditProfile = ({ which, data, open, setOpen }) => {
         >
           <input
             className={[
-              errors.account_number?.message ? 'alert_input' : '',
               'rounded_input w-full',
+              errors.account_number?.message ? 'alert_input' : '',
             ].join(' ')}
             value={data.accountNumber}
             {...register('account_number')}
@@ -170,8 +173,8 @@ const EditProfile = ({ which, data, open, setOpen }) => {
         >
           <input
             className={[
-              errors.account_name?.message ? 'alert_input' : '',
               'rounded_input w-full',
+              errors.account_name?.message ? 'alert_input' : '',
             ].join(' ')}
             value={data.accountName}
             {...register('account_name')}
@@ -220,7 +223,11 @@ const EditProfile = ({ which, data, open, setOpen }) => {
         )}
 
         <div className='flex justify-end gap-3 mt-1'>
-          <button className='normal_btn' type='button' onClick={closeHandler}>
+          <button
+            className='normal_btn'
+            type='button'
+            onClick={closeHandler}
+          >
             Болих
           </button>
 

@@ -27,8 +27,8 @@ const FormElement = ({
       {message && (
         <p
           className={[
-            shownInputAsterrisk ? 'ml-4' : '',
             'text-red-500 text-sm',
+            shownInputAsterrisk ? 'ml-4' : '',
           ].join(' ')}
         >
           {message}

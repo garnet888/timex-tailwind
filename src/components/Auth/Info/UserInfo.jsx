@@ -66,21 +66,27 @@ const UserInfo = ({ changeStep }) => {
             className='flex flex-col gap-2'
             onSubmit={handleSubmit(continueOnClick)}
           >
-            <FormElement label='Овог' message={errors.lastName?.message}>
+            <FormElement
+              label='Овог'
+              message={errors.lastName?.message}
+            >
               <input
                 className={[
-                  errors.lastName ? 'alert_input' : '',
                   'rounded_input w-full',
+                  errors.lastName ? 'alert_input' : '',
                 ].join(' ')}
                 {...register('lastName')}
               />
             </FormElement>
 
-            <FormElement label='Нэр' message={errors.firstName?.message}>
+            <FormElement
+              label='Нэр'
+              message={errors.firstName?.message}
+            >
               <input
                 className={[
-                  errors.firstName ? 'alert_input' : '',
                   'rounded_input w-full',
+                  errors.firstName ? 'alert_input' : '',
                 ].join(' ')}
                 {...register('firstName')}
               />
@@ -92,18 +98,21 @@ const UserInfo = ({ changeStep }) => {
             >
               <input
                 className={[
-                  errors.registerNo ? 'alert_input' : '',
                   'rounded_input w-full',
+                  errors.registerNo ? 'alert_input' : '',
                 ].join(' ')}
                 {...register('registerNo')}
               />
             </FormElement>
 
-            <FormElement label='И-Мэйл' message={errors.email?.message}>
+            <FormElement
+              label='И-Мэйл'
+              message={errors.email?.message}
+            >
               <input
                 className={[
-                  errors.email ? 'alert_input' : '',
                   'rounded_input w-full',
+                  errors.email ? 'alert_input' : '',
                 ].join(' ')}
                 {...register('email')}
               />

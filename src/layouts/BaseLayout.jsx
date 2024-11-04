@@ -8,8 +8,8 @@ const BaseLayout = ({ children, shownBackground = false }) => {
 
       <div
         className={[
-          shownBackground ? 'background_img_2' : '',
           'min-h-content',
+          shownBackground ? 'background_img_2' : '',
         ].join(' ')}
         style={{ gridArea: 'content' }}
       >

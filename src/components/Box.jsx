@@ -8,14 +8,14 @@ const Box = ({
   return (
     <div
       className={[
-        widthFit ? 'lg:w-fit' : '',
         'flex flex-col gap-4 bg-white rounded-4.5 shadow p-4.5',
+        widthFit ? 'lg:w-fit' : '',
       ].join(' ')}
     >
       <div
         className={[
-          noDivider ? '' : 'border-b pb-3',
           'flex justify-between items-center',
+          noDivider ? '' : 'border-b pb-3',
         ].join(' ')}
       >
         <h3 className='text-xl font-semibold leading-none'>{title}</h3>

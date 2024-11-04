@@ -433,7 +433,6 @@ const About = () => {
             <li>Upload image</li>
             <li>Preview image</li>
             <li>Tabs /npm/</li>
-            <li>Table</li>
             <li>Chart js</li>
           </ul>
         </div>

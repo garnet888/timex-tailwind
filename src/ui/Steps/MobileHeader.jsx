@@ -21,8 +21,8 @@ const MobileHeader = ({ steps, current, normal, renderHeaders }) => {
   return (
     <div
       className={[
-        normal ? '' : 'rounded-3xl shadow-sm px-3 py-2',
         'block lg:hidden bg-white',
+        normal ? '' : 'rounded-3xl shadow-sm px-3 py-2',
       ].join(' ')}
     >
       <div className='lg:hidden flex justify-center items-center gap-3'>

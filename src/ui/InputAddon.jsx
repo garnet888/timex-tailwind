@@ -8,7 +8,7 @@ const InputAddon = ({ before, after, alert, disabled, ...props }) => {
   return (
     <div className='w-full flex'>
       {before && (
-        <div className={[addon_style, 'rounded-[8px_0_0_8px]'].join(' ')}>
+        <div className={['rounded-[8px_0_0_8px]', addon_style].join(' ')}>
           {before}
         </div>
       )}
@@ -16,16 +16,16 @@ const InputAddon = ({ before, after, alert, disabled, ...props }) => {
       <input
         {...props}
         className={[
+          'z-10 w-full',
           alert ? 'alert_input' : '',
           before ? 'rounded-[0_8px_8px_0]' : '',
           after ? 'rounded-[8px_0_0_8px]' : '',
           before && after ? 'rounded-none' : '',
-          'z-10 w-full',
         ].join(' ')}
       />
 
       {after && (
-        <div className={[addon_style, 'rounded-[0_8px_8px_0]'].join(' ')}>
+        <div className={['rounded-[0_8px_8px_0]', addon_style].join(' ')}>
           {after}
         </div>
       )}

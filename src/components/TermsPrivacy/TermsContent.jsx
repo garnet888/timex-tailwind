@@ -78,7 +78,7 @@ const TermsContent = ({ setTermsPer }) => {
               дурдсан утгаар ойлгоно. Үүнд:
               <ol className={css.list}>
                 <li className={css.list_item}>
-                  <b>“Платформ”</b> гэж Timex.mn цаг захиалгын Платформын
+                  <b>“Платформ”</b> гэж timex.mn цаг захиалгын Платформын
                   вэбсайт, аппликейшныг хамтад нь,
                 </li>
                 <li className={css.list_item}>

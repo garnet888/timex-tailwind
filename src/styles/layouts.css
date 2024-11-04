@@ -1,0 +1,13 @@
+.base_layout {
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows:
+    var(--header-height)
+    repeat(2, auto);
+
+  grid-template-areas:
+    'header'
+    'content'
+    'footer';
+}

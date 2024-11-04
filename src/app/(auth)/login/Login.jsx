@@ -101,8 +101,8 @@ const Login = ({ title }) => {
           >
             {/* <input
               className={[
-                errors.phone_number ? 'alert_input' : '',
                 'rounded_input',
+                errors.phone_number ? 'alert_input' : '',
               ].join(' ')}
               {...register('phone_number')}
             /> */}
@@ -116,7 +116,10 @@ const Login = ({ title }) => {
             />
           </FormElement>
 
-          <FormElement label='Нууц үг' message={errors.password?.message}>
+          <FormElement
+            label='Нууц үг'
+            message={errors.password?.message}
+          >
             <InputPassword
               id='password'
               before={<RiLockPasswordLine color='gray' />}

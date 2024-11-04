@@ -60,7 +60,10 @@ const Footer = () => {
           <ul className='flex flex-col gap-2 mt-2'>
             <li className='flex items-start gap-2'>
               <span className='mt-1'>
-                <HiOutlineLocationMarker color='#6c30ed' size={20} />
+                <HiOutlineLocationMarker
+                  color='var(--primary-color)'
+                  size={20}
+                />
               </span>
               <p>
                 Улаанбаатар хот, Сүхбаатар дүүрэг, 1-р хороо, Реженси резиденс,
@@ -70,14 +73,20 @@ const Footer = () => {
 
             <li className='flex items-center gap-2'>
               <span>
-                <TbPhone color='#6c30ed' size={20} />
+                <TbPhone
+                  color='var(--primary-color)'
+                  size={20}
+                />
               </span>
               <p>{CONTACT_PHONE}</p>
             </li>
 
             <li className='flex items-center gap-2'>
               <span>
-                <TbMail color='#6c30ed' size={20} />
+                <TbMail
+                  color='var(--primary-color)'
+                  size={20}
+                />
               </span>
               <p>info@timex.mn</p>
             </li>
@@ -143,7 +152,7 @@ const Footer = () => {
           <div className='flex flex-col md:flex-row gap-4 md:gap-2'>
             <Link
               className='flex gap-[6px] items-center bg-[#1877F2] text-white rounded-full px-[12px] py-2 hover:text-white hover:bg-primary'
-              href='https://www.facebook.com/Timex.mn'
+              href='https://www.facebook.com/timex.mn'
               target='_blank'
             >
               <SiFacebook size={20} /> fb.com/timexmn
@@ -154,7 +163,11 @@ const Footer = () => {
               href='https://www.instagram.com/timex.mn'
               target='_blank'
             >
-              <SiInstagram className='mt-[2px]' size={20} /> @timex.mn
+              <SiInstagram
+                className='mt-[2px]'
+                size={20}
+              />{' '}
+              @timex.mn
             </Link>
           </div>
         </div>

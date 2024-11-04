@@ -147,7 +147,7 @@ export default function Home() {
           <h2 className='font-medium my-2'>TIMEX хэрхэн ажилладаг вэ?</h2>
 
           <p className='text-gray-500'>
-            TimeX нь цаг захиалах үйлчилгээ үзүүлэхээс гадна ажилтны цагийн
+            Timex нь цаг захиалах үйлчилгээ үзүүлэхээс гадна ажилтны цагийн
             хуваарь, үйлчилгээнүүдийн мэдээлэл болон салбарын үйл ажиллагааг
             нэгдсэн дэлгэцээр харж удирдах хянахтай холбоотой бүхий л төрлийн
             мэдээллийг хялбаршуулан автоматжуулсан цогц систем юм.
@@ -155,7 +155,10 @@ export default function Home() {
 
           <ul className='grid md:grid-cols-2 xl:grid-cols-4 gap-[28px] mt-10'>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
                 <Picon1 />
               </BackedIcon>
 
@@ -170,7 +173,10 @@ export default function Home() {
             </li>
 
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
                 <Picon2 />
               </BackedIcon>
 
@@ -184,7 +190,10 @@ export default function Home() {
               </p>
             </li>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
                 <Picon3 />
               </BackedIcon>
 
@@ -197,7 +206,10 @@ export default function Home() {
               </p>
             </li>
             <li className='bg-white border shadow rounded-2xl p-6'>
-              <BackedIcon outsideColor='#f7f4ff' insideColor='#f1ecff'>
+              <BackedIcon
+                outsideColor='#f7f4ff'
+                insideColor='#f1ecff'
+              >
                 <Picon4 />
               </BackedIcon>
 

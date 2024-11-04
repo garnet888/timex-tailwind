@@ -6,16 +6,14 @@ import { GoChevronDown, GoDotFill } from 'react-icons/go';
 import { GetMenuIcon } from '../icons';
 
 const MenuItem = ({
-  inMobile = false,
   smallMenu,
   icon,
   name,
   link,
   subMenu = [],
   fromSub = false,
-  MENU_WIDTH,
-  SMALL_MENU_WIDTH,
-  SMALL_MIN_MENU_WIDTH,
+  MIN_ICON_WIDTH,
+  SMALL_MIN_ICON_WIDTH,
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -41,25 +39,13 @@ const MenuItem = ({
   };
 
   return (
-    <div
-      className={[
-        smallMenu ? `${SMALL_MENU_WIDTH} hover:pr-0` : MENU_WIDTH,
-        `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:${MENU_WIDTH}`,
-      ].join(' ')}
-      style={
-        inMobile
-          ? {
-              width: 'auto',
-              paddingInline: 0,
-            }
-          : {}
-      }
-    >
+    <div className='overflow-hidden px-2'>
       <button
         className={[
+          'text_btn w-full hover:bg-[#F6F0FF]',
           menuIsActive() ? 'text-primary' : '',
           fromSub ? 'py-[6px]' : 'py-2',
-          'text_btn w-full text-nowrap rounded pr-2 hover:bg-[#F6F0FF]',
+          subMenu.length > 0 ? 'pr-1' : '',
         ].join(' ')}
         onClick={onClickHandler}
       >
@@ -71,10 +57,9 @@ const MenuItem = ({
           ) : (
             <span
               className={[
-                smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
-                'width_effect flex justify-center',
+                'my_effect flex justify-center',
+                smallMenu ? `${SMALL_MIN_ICON_WIDTH} pr-4` : MIN_ICON_WIDTH,
               ].join(' ')}
-              style={inMobile ? { minWidth: 'auto', paddingInline: 8 } : {}}
             >
               <GetMenuIcon
                 name={icon}
@@ -90,7 +75,7 @@ const MenuItem = ({
           <GoChevronDown
             size={20}
             style={{
-              transition: 'transform ease 0.3s',
+              transition: 'transform ease-out 0.5s',
               transform: `rotate(${isOpenMenu ? '-180' : '0'}deg)`,
             }}
           />
@@ -100,9 +85,9 @@ const MenuItem = ({
       {subMenu.length > 0 && (
         <div
           className={[
+            'w-full flex-col gap-1',
             isOpenMenu ? 'flex' : 'hidden',
             smallMenu ? 'pl-8 sm:pl-[58px] pb-2' : 'pl-8',
-            'w-full flex-col gap-1',
           ].join(' ')}
         >
           {subMenu.map((item) => (

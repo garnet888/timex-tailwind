@@ -182,8 +182,8 @@ const Table = ({
               <tr
                 key={row.id}
                 className={[
-                  rowOnClick ? 'cursor-pointer hover:bg-gray-100' : '',
                   'border-b last-of-type:border-b-0',
+                  rowOnClick ? 'cursor-pointer hover:bg-gray-100' : '',
                 ].join(' ')}
                 onClick={rowOnClick ? () => rowOnClick(row.original) : null}
               >
@@ -191,8 +191,8 @@ const Table = ({
                   <td
                     key={cell.id}
                     className={[
-                      cell.column.id === 'number' ? 'w-12 text-center' : '',
                       'text-nowrap border-r last-of-type:border-r-0 p-2',
+                      cell.column.id === 'number' ? 'w-12 text-center' : '',
                     ].join(' ')}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

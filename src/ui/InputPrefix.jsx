@@ -23,12 +23,12 @@ const InputPrefix = ({
   return (
     <div
       className={[
+        'w-full flex justify-between items-center border border-grey rounded-lg',
         rounded === true ? '!rounded_input' : '',
         alert && !disabled ? 'alert_input' : '',
         HOVER_INPUT,
         FOCUS_INPUT,
         disabled ? DISABLED_INPUT : '',
-        'w-full flex justify-between items-center border border-grey rounded-lg',
       ].join(' ')}
     >
       {before && <span className='pl-[6px]'>{before}</span>}
@@ -37,8 +37,8 @@ const InputPrefix = ({
         {...props}
         {...(register ? register(id) : {})}
         className={[
-          rounded === true ? 'rounded_input' : '',
           'no_input w-full',
+          rounded === true ? 'rounded_input' : '',
         ].join(' ')}
         placeholder={placeholder}
         type={type}

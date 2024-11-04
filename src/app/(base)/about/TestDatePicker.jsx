@@ -67,7 +67,7 @@ const TestDatePicker = () => {
           defaultValue=''
           render={({ field }) => (
             <input
-              className={[errors.name ? 'alert_input' : '', 'w-full'].join(' ')}
+              className={['w-full', errors.name ? 'alert_input' : ''].join(' ')}
               placeholder='Нэр'
               {...field}
             />

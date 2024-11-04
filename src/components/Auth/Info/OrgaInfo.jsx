@@ -78,8 +78,8 @@ const OrgaInfo = ({ data, changeStep }) => {
             >
               <input
                 className={[
-                  errors.registerNo ? 'alert_input' : '',
                   'no_arrow rounded_input w-full',
+                  errors.registerNo ? 'alert_input' : '',
                 ].join(' ')}
                 type='number'
                 maxLength={7}
@@ -93,18 +93,21 @@ const OrgaInfo = ({ data, changeStep }) => {
             >
               <input
                 className={[
-                  errors.firstName ? 'alert_input' : '',
                   'rounded_input w-full',
+                  errors.firstName ? 'alert_input' : '',
                 ].join(' ')}
                 {...register('firstName')}
               />
             </FormElement>
 
-            <FormElement label='И-Мэйл' message={errors.email?.message}>
+            <FormElement
+              label='И-Мэйл'
+              message={errors.email?.message}
+            >
               <input
                 className={[
-                  errors.email ? 'alert_input' : '',
                   'rounded_input w-full',
+                  errors.email ? 'alert_input' : '',
                 ].join(' ')}
                 {...register('email')}
               />

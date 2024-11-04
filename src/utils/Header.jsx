@@ -85,15 +85,15 @@ const Header = () => {
           >
             <div
               className={[
-                'sm:flex-row sm:gap-1 sm:rounded-full sm:mb-0',
                 'flex flex-col gap-2 border border-dark_grey rounded-lg p-1 mb-3',
+                'sm:flex-row sm:gap-1 sm:rounded-full sm:mb-0',
               ].join(' ')}
             >
               <button
                 className={[
-                  isUser ? 'third_btn' : 'text_btn text-gray-500',
-                  'sm:w-fit px-2',
                   'w-[100px] h-auto rounded-full',
+                  'sm:w-fit px-2',
+                  isUser ? 'third_btn' : 'text_btn text-gray-500',
                 ].join(' ')}
                 onClick={() => modeHandler('user')}
               >
@@ -102,9 +102,9 @@ const Header = () => {
 
               <button
                 className={[
-                  isUser ? 'text_btn text-gray-500' : 'third_btn',
-                  'sm:w-fit px-2',
                   'w-[100px] h-auto rounded-full',
+                  'sm:w-fit px-2',
+                  isUser ? 'text_btn text-gray-500' : 'third_btn',
                 ].join(' ')}
                 onClick={() => modeHandler('business')}
               >
@@ -121,7 +121,7 @@ const Header = () => {
                 Апп татах
               </Link>
             ) : (
-              <div className={['sm:flex-row', 'flex flex-col gap-3'].join(' ')}>
+              <div className='flex flex-col sm:flex-row gap-3'>
                 <button
                   className='text_btn click_effect !w-full text-primary hover:opacity-60'
                   onClick={() => router.push('/login')}

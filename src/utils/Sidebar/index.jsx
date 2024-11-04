@@ -15,7 +15,8 @@ const IMG_URL = process.env.NEXT_PUBLIC_IMG_URL;
 
 const MENU_WIDTH = 'w-[260px]';
 const SMALL_MENU_WIDTH = 'w-[80px]';
-const SMALL_MIN_MENU_WIDTH = 'min-w-[80px]';
+const MIN_ICON_WIDTH = 'min-w-[42px]';
+const SMALL_MIN_ICON_WIDTH = 'min-w-[80px]';
 
 const Sidebar = ({ smallMenu, smallMenuHandler }) => {
   const { userInfo, fecthUserInfo } = useMainContext();
@@ -28,30 +29,26 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
     fetchMenu(setMenu);
   }, [fecthUserInfo]);
 
-  const getItem = (_item, _inMobile) => {
+  const getItem = (_item) => {
     return (
       <MenuItem
         key={_item.id}
-        inMobile={_inMobile}
         smallMenu={smallMenu}
-        MENU_WIDTH={MENU_WIDTH}
-        SMALL_MENU_WIDTH={SMALL_MENU_WIDTH}
-        SMALL_MIN_MENU_WIDTH={SMALL_MIN_MENU_WIDTH}
+        MIN_ICON_WIDTH={MIN_ICON_WIDTH}
+        SMALL_MIN_ICON_WIDTH={SMALL_MIN_ICON_WIDTH}
         {..._item}
       />
     );
   };
 
-  const getSubMenu = (_item, subMenu, _inMobile) => {
+  const getSubMenu = (_item, subMenu) => {
     return (
       <MenuItem
         key={_item.id}
-        inMobile={_inMobile}
         smallMenu={smallMenu}
         subMenu={subMenu}
-        MENU_WIDTH={MENU_WIDTH}
-        SMALL_MENU_WIDTH={SMALL_MENU_WIDTH}
-        SMALL_MIN_MENU_WIDTH={SMALL_MIN_MENU_WIDTH}
+        MIN_ICON_WIDTH={MIN_ICON_WIDTH}
+        SMALL_MIN_ICON_WIDTH={SMALL_MIN_ICON_WIDTH}
         {..._item}
       />
     );
@@ -67,22 +64,22 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
     }
   };
 
-  const renderMenu = (inMobile) => {
+  const renderMenu = () => {
     if (menu?.length > 0) {
       return menu.map((item) => {
         if (item?.children) {
           const { children } = item;
 
-          return getSubMenu(item, children, inMobile);
+          return getSubMenu(item, children);
         } else {
-          return getItem(item, inMobile);
+          return getItem(item);
         }
       });
     }
   };
 
   return (
-    <div style={{ gridArea: 'sidebar' }}>
+    <>
       <Warning
         text='Та гарахдаа итгэлтэй байна уу?'
         visible={shownAlert}
@@ -94,32 +91,32 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
         profile={IMG_URL + userInfo?.profileImage}
         firstName={userInfo?.firstName}
         lastName={userInfo?.lastName}
-        menu={renderMenu(true)}
+        menu={renderMenu()}
         badgeNumber={renderBadgeNumber()}
         shownAlert={() => setShownAlert(true)}
       />
 
       <aside
         className={[
+          'my_effect hidden sm:block fixed top-0 z-20 h-screen p-5',
           smallMenu ? 'w-small_menu' : 'w-menu',
-          'hidden sm:block width_effect sticky top-0 h-screen p-5',
         ].join(' ')}
       >
         <nav className='relative h-full bg-white rounded-2xl'>
           <div
             className={[
+              'my_effect h-[50px] flex justify-between px-2 pt-3',
               smallMenu ? SMALL_MENU_WIDTH : MENU_WIDTH,
-              'width_effect fixed top-[20px] h-[60px] flex justify-between items-center px-2',
             ].join(' ')}
           >
             <Link
-              className='flex items-center text-nowrap overflow-x-hidden hover:text-dark'
+              className='flex text-nowrap overflow-hidden hover:text-dark'
               href='/'
             >
               <span
                 className={[
-                  smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[52px]',
-                  'flex justify-center',
+                  'my_effect flex justify-center',
+                  smallMenu ? `${SMALL_MIN_ICON_WIDTH} pr-4` : MIN_ICON_WIDTH,
                 ].join(' ')}
               >
                 <Image
@@ -135,9 +132,9 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
               <b className='text-2xl'>timex</b>
             </Link>
 
-            <div className='flex items-center gap-3'>
+            <div className='flex gap-3'>
               {smallMenu || (
-                <button className='normal_btn p-0 relative w-8 h-w-8 rounded-xl'>
+                <button className='normal_btn p-0 relative w-8 h-8 rounded-xl'>
                   <DollIcon />
                   {renderBadgeNumber()}
                 </button>
@@ -145,8 +142,8 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
 
               <button
                 className={[
+                  'normal_btn p-0 w-[32px] h-[32px]',
                   smallMenu ? 'absolute -right-4.5' : '',
-                  'normal_btn p-0 m-0 w-[32px] h-[32px]',
                 ].join(' ')}
                 onClick={smallMenuHandler}
               >
@@ -158,78 +155,77 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
           </div>
 
           <div
-            className='absolute top-[60px] overflow-y-auto'
-            style={{ height: 'calc(100vh - 200px)' }}
+            className={[
+              'my_effect absolute top-[50px] overflow-auto py-[10px] mt-1',
+              smallMenu
+                ? `${SMALL_MENU_WIDTH} hover:w-[260px] bg-white rounded-lg`
+                : MENU_WIDTH,
+            ].join(' ')}
+            /* calc(VH - [sidebar's Y padding] - [header's height] - [footer's height]) */
+            style={{ height: 'calc(100vh - 44px - 50px - 120px)' }}
           >
             <div className='flex flex-col gap-1'>{renderMenu()}</div>
           </div>
 
-          <div className='absolute bottom-0 w-full h-[120px] flex flex-col justify-center gap-y-2 rounded-b-2xl border-t border-gray-100'>
-            <div
-              className={[
-                smallMenu ? `${SMALL_MENU_WIDTH} hover:pr-0` : MENU_WIDTH,
-                `width_effect bg-white rounded-lg overflow-x-hidden px-2 hover:w-[260px]`,
-              ].join(' ')}
+          <div
+            className={[
+              'my_effect absolute bottom-0 h-[120px] flex flex-col justify-center bg-white rounded-b-2xl border-t border-gray-100 px-2',
+              smallMenu
+                ? `${SMALL_MENU_WIDTH} hover:w-[260px] hover:rounded-2xl`
+                : MENU_WIDTH,
+            ].join(' ')}
+          >
+            <button
+              className='text_btn group w-full justify-start overflow-hidden text-sm py-2 hover:bg-orange-400'
+              onClick={() => setShownAlert(true)}
             >
-              <button
-                className='text_btn group w-full justify-start text-nowrap overflow-x-hidden text-sm py-2 hover:bg-orange-400'
-                onClick={() => setShownAlert(true)}
+              <span
+                className={[
+                  'my_effect flex justify-center',
+                  smallMenu ? `${SMALL_MIN_ICON_WIDTH} pr-4` : MIN_ICON_WIDTH,
+                ].join(' ')}
               >
-                <span
-                  className={[
-                    smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
-                    'flex justify-center text-red-500 group-hover:text-white',
-                  ].join(' ')}
-                >
-                  <LogoutIcon />
-                </span>
+                <LogoutIcon />
+              </span>
 
-                <span className='font-light group-hover:text-white'>Гарах</span>
-              </button>
-            </div>
+              <span className='font-light group-hover:text-white'>Гарах</span>
+            </button>
 
-            <hr className='mx-4' />
+            <hr className='mx-2 my-2' />
 
-            <div
-              className={[
-                smallMenu ? `${SMALL_MENU_WIDTH} hover:pr-0` : MENU_WIDTH,
-                `width_effect bg-white font-light rounded-lg overflow-x-hidden px-2 hover:${MENU_WIDTH}`,
-              ].join(' ')}
+            <Link
+              className='flex items-center text-nowrap overflow-hidden text-sm rounded-lg mt-1 hover:bg-white'
+              href='/profile'
             >
-              <Link
-                className='flex items-center text-nowrap overflow-x-hidden text-sm'
-                href='/profile'
+              <span
+                className={[
+                  'my_effect flex justify-center hover:opacity-65',
+                  smallMenu ? `${SMALL_MIN_ICON_WIDTH} pr-4` : MIN_ICON_WIDTH,
+                ].join(' ')}
               >
-                <span
-                  className={[
-                    smallMenu ? `${SMALL_MIN_MENU_WIDTH} pr-4` : 'min-w-[48px]',
-                    'flex justify-center hover:opacity-65',
-                  ].join(' ')}
-                >
-                  <Image
-                    className='w-[34px] h-[34px] object-cover rounded-full'
-                    src={IMG_URL + userInfo?.profileImage}
-                    alt='Avatar'
-                    width={100}
-                    height={100}
-                    priority
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/default_avatar.svg';
-                    }}
-                  />
-                </span>
+                <Image
+                  className='w-[34px] h-[34px] object-cover rounded-full'
+                  src={IMG_URL + userInfo?.profileImage}
+                  alt='Avatar'
+                  width={100}
+                  height={100}
+                  priority
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/default_avatar.svg';
+                  }}
+                />
+              </span>
 
-                <span className='flex flex-col'>
-                  {userInfo?.lastName}
-                  <b className='font-semibold'>{userInfo?.firstName}</b>
-                </span>
-              </Link>
-            </div>
+              <span className='flex flex-col ml-[6px]'>
+                {userInfo?.lastName}
+                <b className='font-semibold'>{userInfo?.firstName}</b>
+              </span>
+            </Link>
           </div>
         </nav>
       </aside>
-    </div>
+    </>
   );
 };
 

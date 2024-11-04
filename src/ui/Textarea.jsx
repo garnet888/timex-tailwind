@@ -22,15 +22,15 @@ const Textarea = ({
   return (
     <div
       className={[
-        containerClassName,
         'w-full flex flex-col items-end gap-[2px]',
+        containerClassName,
       ].join(' ')}
     >
       <textarea
         className={[
+          'w-full',
           className,
           type === 'alert' ? 'alert_input' : '',
-          'w-full',
         ].join(' ')}
         maxLength={maxLength}
         placeholder={placeholder}

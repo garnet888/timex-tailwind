@@ -61,11 +61,11 @@ const SelectingRow = () => {
                 <td
                   key={cellEl.id}
                   className={[
+                    'border p-2',
                     cellEl.column.columnDef.header === 'ID' ||
                     cellEl.column.columnDef.id === 'checkbox'
                       ? 'text-center'
                       : '',
-                    'border p-2',
                   ].join(' ')}
                 >
                   {flexRender(

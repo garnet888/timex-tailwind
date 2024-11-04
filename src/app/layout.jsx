@@ -6,10 +6,10 @@ import { MainProvider } from '@/context/MainContext';
 import '../styles/main.css';
 
 export const metadata = {
-  description: 'TimeX | Цаг захиалгын платформ',
+  description: 'Timex | Цаг захиалгын платформ',
   title: {
-    default: 'TimeX',
-    template: 'TimeX | %s',
+    default: 'Timex',
+    template: 'Timex | %s',
   },
   icons: {
     icon: '/favicon.ico',

@@ -8,6 +8,7 @@
 @import 'react-responsive-pagination/themes/classic.css';
 
 @import './custom';
+@import './layouts.css';
 @import './swiper.css';
 @import './button.css';
 @import './inputs.css';
@@ -67,6 +68,10 @@ body *:disabled::placeholder {
 }
 
 @layer utilities {
+  .my_effect {
+    @apply transition-all duration-500 ease-linear;
+  }
+
   .text_balance {
     text-wrap: balance;
   }
@@ -76,39 +81,6 @@ body *:disabled::placeholder {
   .no_arrow::-webkit-inner-spin-button {
     -webkit-appearance: unset;
     margin: 0;
-  }
-
-  .base_layout {
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows:
-      var(--header-height)
-      repeat(2, auto);
-
-    grid-template-areas:
-      'header'
-      'content'
-      'footer';
-  }
-
-  .admin_layout {
-    display: grid;
-
-    grid-template-columns: auto 1fr;
-    grid-template-rows: minmax(100vh, 1fr);
-    grid-template-areas: 'sidebar  adn_content';
-  }
-  @media (max-width: 426px) {
-    .admin_layout {
-      grid-template-columns: 1fr;
-      grid-template-rows:
-        var(--header-height)
-        minmax(calc(100vh - var(--header-height)), 1fr);
-      grid-template-areas:
-        'sidebar'
-        'adn_content';
-    }
   }
 
   .insta_gradient_bg {
@@ -124,10 +96,6 @@ body *:disabled::placeholder {
   .insta_gradient_bg:hover {
     background: var(--primary-color);
     color: white;
-  }
-
-  .width_effect {
-    transition: width 0.4s linear;
   }
 
   .background_img_1 {

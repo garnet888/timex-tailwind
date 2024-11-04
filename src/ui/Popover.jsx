@@ -30,8 +30,8 @@ const Popover = ({ topSpace = 6, content, children }) => {
 
       <div
         className={[
-          visibleMenu ? '' : 'hidden',
           'block absolute right-0 overflow-auto bg-white rounded',
+          visibleMenu ? '' : 'hidden',
         ].join(' ')}
         style={{ marginTop: topSpace }}
       >

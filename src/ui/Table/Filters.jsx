@@ -1,6 +1,6 @@
 import { DatePicker, Select } from '@/ui';
-import { CleanIcon, SearchingIcon } from '@/utils/icons';
 import { dataType, filterActions } from '@/lib/constants';
+import { CleanIcon } from '@/utils/icons';
 
 const Filters = ({ TABLE, filterMap, setFilterMap }) => {
   const getAction = (value, type, valueTo) => {
@@ -110,7 +110,7 @@ const Filters = ({ TABLE, filterMap, setFilterMap }) => {
   return (
     <div className='flex flex-col xl:flex-row items-end xl:items-start gap-4 xl:gap-6 mb-4'>
       {/* <div className='grid grid-cols-2 lg:flex gap-x-4 gap-y-3 flex-wrap text-sm'> */}
-      <div className='grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-3 text-sm'>
+      <div className='w-full grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-3 text-sm'>
         {TABLE.getHeaderGroups().map((headerGroup) =>
           headerGroup.headers.map((header) => {
             if (header.isPlaceholder || header.column.getCanFilter()) {

@@ -22,20 +22,20 @@ const InputDouble = ({
   return (
     <div
       className={[
+        'w-full flex justify-between items-center border border-grey rounded-lg',
         rounded === true ? '!rounded_input' : '',
         alert && !disabled ? 'alert_input' : '',
         HOVER_INPUT,
         FOCUS_INPUT,
         disabled ? DISABLED_INPUT : '',
-        'w-full flex justify-between items-center border border-grey rounded-lg',
       ].join(' ')}
     >
       <div className='w-full flex items-center'>
         <div className='group relative w-full'>
           <input
             className={[
-              rounded === true ? 'rounded-s-full' : '',
               'no_input w-full',
+              rounded === true ? 'rounded-s-full' : '',
             ].join(' ')}
             placeholder={placeholder[0]}
             type={type}
@@ -54,8 +54,8 @@ const InputDouble = ({
         <div className='group relative w-full'>
           <input
             className={[
-              rounded === true ? 'rounded-e-full' : '',
               'no_input w-full',
+              rounded === true ? 'rounded-e-full' : '',
             ].join(' ')}
             placeholder={placeholder[1]}
             type={type}

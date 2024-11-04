@@ -26,17 +26,19 @@ const AdminLayout = ({ children }) => {
 
   if (isMounted) {
     return (
-      <main className='admin_layout background_img_2 bg-[#f0f2f5]'>
-        <Sidebar smallMenu={smallMenu} smallMenuHandler={smallMenuHandler} />
+      <main className='w-full h-screen overflow-auto background_img_2 bg-[#f0f2f5]'>
+        <Sidebar
+          smallMenu={smallMenu}
+          smallMenuHandler={smallMenuHandler}
+        />
 
         <div
-          style={{ gridArea: 'adn_content' }}
           className={[
+            'my_effect sm:absolute z-10 sm:min-h-screen sm:overflow-auto p-5',
             smallMenu
-              ? 'sm:w-adn_small_content'
-              : 'sm:pl-0 sm:pr-5 sm:w-adn_content',
-            'width_effect sm:min-h-screen overflow-auto p-5',
-          ]}
+              ? 'left-small_menu sm:w-adn_small_content'
+              : 'left-menu sm:pl-0 sm:pr-5 sm:w-adn_content',
+          ].join(' ')}
         >
           {children}
         </div>
@@ -44,7 +46,7 @@ const AdminLayout = ({ children }) => {
     );
   }
 
-  return <main className='admin_layout background_img_2 bg-[#f0f2f5]' />;
+  return <main className='w-full h-screen background_img_2 bg-[#f0f2f5]' />;
 };
 
 export default AdminLayout;

@@ -36,8 +36,8 @@ const ChooseType = ({ userType, setUserType, changeStep }) => {
         <div className='flex justify-between gap-4'>
           <button
             className={[
-              userType === 'orga' ? 'border-2 border-primary' : '',
               'normal_btn h-auto flex flex-col shadow px-3 pt-2 pb-3',
+              userType === 'orga' ? 'border-2 border-primary' : '',
             ].join(' ')}
             onClick={() => setUserType('orga')}
           >
@@ -52,8 +52,8 @@ const ChooseType = ({ userType, setUserType, changeStep }) => {
 
             <p
               className={[
-                userType === 'orga' ? 'text-primary' : '',
                 'text-dark text-sm font-medium',
+                userType === 'orga' ? 'text-primary' : '',
               ].join(' ')}
             >
               Байгууллага
@@ -62,8 +62,8 @@ const ChooseType = ({ userType, setUserType, changeStep }) => {
 
           <button
             className={[
-              userType === 'user' ? 'border-2 border-primary' : '',
               'normal_btn h-auto flex flex-col shadow px-3 pt-2 pb-3',
+              userType === 'user' ? 'border-2 border-primary' : '',
             ].join(' ')}
             onClick={() => setUserType('user')}
           >
@@ -78,8 +78,8 @@ const ChooseType = ({ userType, setUserType, changeStep }) => {
 
             <p
               className={[
-                userType === 'user' ? 'text-primary' : '',
                 'text-dark text-sm font-medium',
+                userType === 'user' ? 'text-primary' : '',
               ].join(' ')}
             >
               Хувь хүн
@@ -93,7 +93,10 @@ const ChooseType = ({ userType, setUserType, changeStep }) => {
       </div>
 
       <div className='flex flex-col items-center gap-4'>
-        <button className='w-full rounded-full' onClick={continueOnClick}>
+        <button
+          className='w-full rounded-full'
+          onClick={continueOnClick}
+        >
           Үргэлжлүүлэх
         </button>
 

@@ -18,6 +18,11 @@ module.exports = {
       borderRadius: {
         4.5: '1.125rem', // 18px = 1.125rem
       },
+      /* left, top, right, bottom */
+      inset: {
+        menu: 'var(--menu-width)',
+        small_menu: 'var(--small_menu-width)',
+      },
       zIndex: {
         load_box: 'var(--load_box-z-index)',
         notif: 'var(--notif-z-index)',

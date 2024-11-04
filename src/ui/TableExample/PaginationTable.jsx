@@ -52,10 +52,10 @@ const PaginationTable = () => {
                   <td
                     key={cellEl.id}
                     className={[
+                      'border p-2',
                       cellEl.column.columnDef.header === 'ID'
                         ? 'text-center'
                         : '',
-                      'border p-2',
                     ].join(' ')}
                   >
                     {flexRender(
@@ -127,7 +127,10 @@ const PaginationTable = () => {
         onChange={(e) => tableInstance.setPageSize(e.target.value)}
       >
         {[10, 25, 50].map((item) => (
-          <option key={item} value={item}>
+          <option
+            key={item}
+            value={item}
+          >
             {item}
           </option>
         ))}
