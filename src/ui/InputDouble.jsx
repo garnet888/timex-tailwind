@@ -1,4 +1,4 @@
-import { TbArrowRight } from 'react-icons/tb';
+import { RangeIcon } from '@/utils/icons';
 
 const InputDouble = ({
   placeholder = [],
@@ -46,10 +46,7 @@ const InputDouble = ({
           {/* <div className='absolute bottom-0 right-0 hidden w-[96.8%] h-[2px] bg-primary group-focus-within:block' /> */}
         </div>
 
-        <TbArrowRight
-          color='gray'
-          size={32}
-        />
+        <RangeIcon color='gray' />
 
         <div className='group relative w-full'>
           <input
