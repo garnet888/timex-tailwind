@@ -26,7 +26,7 @@ const AdminLayout = ({ children }) => {
 
   if (isMounted) {
     return (
-      <main className='w-full h-screen overflow-auto background_img_2 bg-[#f0f2f5]'>
+      <main className='w-full h-full min-h-screen sm:h-screen background_img_2 bg-[#f0f2f5]'>
         <Sidebar
           smallMenu={smallMenu}
           smallMenuHandler={smallMenuHandler}
@@ -34,7 +34,7 @@ const AdminLayout = ({ children }) => {
 
         <div
           className={[
-            'my_effect sm:absolute z-10 sm:min-h-screen sm:overflow-auto p-5',
+            'my_effect sm:absolute z-10 sm:h-screen overflow-auto p-5',
             smallMenu
               ? 'left-small_menu sm:w-adn_small_content'
               : 'left-menu sm:pl-0 sm:pr-5 sm:w-adn_content',

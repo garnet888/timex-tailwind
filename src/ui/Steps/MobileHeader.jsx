@@ -21,11 +21,11 @@ const MobileHeader = ({ steps, current, normal, renderHeaders }) => {
   return (
     <div
       className={[
-        'block lg:hidden bg-white',
+        'block md:hidden bg-white',
         normal ? '' : 'rounded-3xl shadow-sm px-3 py-2',
       ].join(' ')}
     >
-      <div className='lg:hidden flex justify-center items-center gap-3'>
+      <div className='md:hidden flex justify-center items-center gap-3'>
         {current === 0 || (
           <button
             className='normal_btn h-auto p-[2px]'

@@ -57,7 +57,12 @@ const Steps = ({
         {item.title}
       </button>,
       inMobile ||
-        (idx < LAST_IDX && <ChevronArrow key={uuid()} rotate='right' />),
+        (idx < LAST_IDX && (
+          <ChevronArrow
+            key={uuid()}
+            rotate='right'
+          />
+        )),
     ]);
 
   return (
@@ -70,14 +75,14 @@ const Steps = ({
           renderHeaders={renderHeaders}
         />
 
-        <div className='hidden lg:flex justify-center items-center flex-wrap gap-3'>
+        <div className='hidden md:flex justify-center items-center flex-wrap gap-3'>
           {renderHeaders()}
         </div>
 
         <div className={normal ? '' : 'bg-white rounded-3xl shadow p-4.5'}>
           {steps[current].content}
 
-          <div className='flex justify-center lg:justify-end gap-2 mt-4.5'>
+          <div className='flex justify-center md:justify-end gap-2 mt-4.5'>
             {current === 0 || (
               <button
                 className='normal_btn text-dark rounded-full'
@@ -87,7 +92,10 @@ const Steps = ({
               </button>
             )}
 
-            <button className='first_btn rounded-full' onClick={nextOnClick}>
+            <button
+              className='first_btn rounded-full'
+              onClick={nextOnClick}
+            >
               {current === LAST_IDX ? 'Болсон' : 'Дараах'}
             </button>
           </div>
