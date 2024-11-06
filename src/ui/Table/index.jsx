@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   useReactTable,
   flexRender,
@@ -8,9 +8,10 @@ import {
 } from '@tanstack/react-table';
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa6';
 import Pagination from 'react-responsive-pagination';
-import { callGetList } from '@/axios/api';
+import { useMainContext } from '@/context/MainContext';
 import { getParamsTable } from '@/lib/helper';
 import { ChevronArrow } from '@/utils/icons';
+import { callGetList } from '@/axios/api';
 import { GetColumns } from './columns';
 import Filters from './Filters';
 
@@ -19,7 +20,13 @@ const Table = ({
   customQuery = '',
   columns = [],
   actionHeader = 'Үйлдэл',
-  actions = [],
+  actions = [
+    {
+      key: '',
+      icon: '',
+      label: '',
+    },
+  ],
   rowCount = 50,
   noFilter = false,
   noPagination = false,
@@ -27,6 +34,8 @@ const Table = ({
   actionsHandler,
   rowOnClick,
 }) => {
+  const { reload } = useMainContext();
+
   const [fetchData, setFetchData] = useState([]);
   const [filterMap, setFilterMap] = useState(new Map());
   const [sortingCol, setSortingCol] = useState({});
@@ -35,7 +44,7 @@ const Table = ({
   const [totalCount, setTotalCount] = useState(null);
   const [totalPages, setTotalPages] = useState(null);
 
-  useEffect(() => {
+  const fetchList = useCallback(async () => {
     const params = getParamsTable({
       customQuery,
       filterMap,
@@ -45,15 +54,11 @@ const Table = ({
       noPagination,
     });
 
-    const fetchList = async () => {
-      const res = await callGetList(`${api}${params}`);
+    const res = await callGetList(`${api}${params}`);
 
-      setFetchData(res?.items || []);
-      setTotalCount(res?.total);
-      setTotalPages(res?.total_pages);
-    };
-
-    fetchList();
+    setFetchData(res?.items || []);
+    setTotalCount(res?.total);
+    setTotalPages(res?.total_pages);
   }, [
     api,
     customQuery,
@@ -63,6 +68,10 @@ const Table = ({
     pageSize,
     noPagination,
   ]);
+
+  useEffect(() => {
+    fetchList();
+  }, [reload, fetchList]);
 
   const DATA = useMemo(
     () =>

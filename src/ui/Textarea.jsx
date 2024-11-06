@@ -6,17 +6,20 @@ const Textarea = ({
   containerClassName = '',
   className = '',
   placeholder = '',
+  value,
+  rows = 3,
   type,
   shownCount = false,
   maxLength,
   disabled = false,
-  getValue,
+  onChange,
 }) => {
   const [text, setText] = useState('');
 
-  const onChange = (e) => {
+  const onChangeHandler = (e) => {
     setText(e.target.value);
-    getValue && getValue(e.target.value);
+
+    onChange && onChange(e.target.value);
   };
 
   return (
@@ -32,10 +35,12 @@ const Textarea = ({
           className,
           type === 'alert' ? 'alert_input' : '',
         ].join(' ')}
-        maxLength={maxLength}
         placeholder={placeholder}
+        value={value}
+        rows={rows}
+        maxLength={maxLength}
         disabled={disabled}
-        onChange={onChange}
+        onChange={onChangeHandler}
       />
 
       {shownCount && (
