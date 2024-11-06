@@ -119,7 +119,7 @@ const Filters = ({ TABLE, filterMap, setFilterMap }) => {
       const _filtering = filterMap.get(KEY)?.filtering;
       const _filteringTo = filterMap.get(KEY)?.filteringTo;
 
-      const _value = [_filtering, _filteringTo];
+      const _value = [_filtering ?? '', _filteringTo ?? ''];
 
       INPUT = (
         <InputDouble

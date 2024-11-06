@@ -65,7 +65,7 @@ const Header = () => {
 
         <Link
           className='first_btn click_effect h-auto rounded-full p-2 hover:bg-primary hover:text-gray-300'
-          href={`${role === 'SUPER_ADMIN' && '/admin'}/dashboard`}
+          href={`${role === 'SUPER_ADMIN' ? '/admin' : ''}/dashboard`}
         >
           <LuUser size={18} />
         </Link>

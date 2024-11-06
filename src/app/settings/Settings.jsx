@@ -9,7 +9,7 @@ import {
   TimeSettingsIcon,
 } from '@/utils/icons';
 import AdminLayout from '@/layouts/AdminLayout';
-import Box from '@/components/Box';
+import Box from '@/utils/Box';
 import { Steps } from '@/ui';
 import OrgaInfo from '@/components/Settings/OrgaInfo';
 import Services from '@/components/Settings/Services';
@@ -86,7 +86,10 @@ const Settings = ({ title }) => {
 
   return (
     <AdminLayout>
-      <Box title={title} noDivider>
+      <Box
+        title={title}
+        noDivider
+      >
         <Steps
           steps={steps}
           current={currentStep}

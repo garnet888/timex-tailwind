@@ -8,7 +8,7 @@ import { formatNumberSpace, getIfEmpty } from '@/lib/helper';
 import { getRole } from '@/lib/auth';
 import { PencilIcon } from '@/utils/icons';
 import AdminLayout from '@/layouts/AdminLayout';
-import Box from '@/components/Box';
+import Box from '@/utils/Box';
 import EditProfile from '@/components/Modals/EditProfile';
 
 const IMG_URL = process.env.NEXT_PUBLIC_IMG_URL;

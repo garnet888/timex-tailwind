@@ -8,7 +8,7 @@ import AdminLayout from '@/layouts/AdminLayout';
 // import PaginationTable from '@/utils/Table/PaginationTable';
 // import SelectingRow from '@/utils/Table/SelectingRow';
 import { Table } from '@/ui';
-import Box from '@/components/Box';
+import Box from '@/utils/Box';
 
 const Income = ({ title }) => {
   const actionsHandler = (key, data) => {
@@ -24,7 +24,10 @@ const Income = ({ title }) => {
 
   return (
     <AdminLayout>
-      <Box title={title} noDivider>
+      <Box
+        title={title}
+        noDivider
+      >
         <Table
           actions={[{ key: 'EDIT' }, { key: 'DELETE' }]}
           actionsHandler={actionsHandler}
