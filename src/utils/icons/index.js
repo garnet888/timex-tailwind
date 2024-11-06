@@ -4,6 +4,7 @@ export { default as DefaultAvatarIcon } from './DefaultAvatar';
 export { default as ChevronDoubleArrow } from './ChevronDoubleArrow';
 export { default as ChevronArrow } from './ChevronArrow';
 export { default as CheckedOutline } from './CheckedOutline';
+export { default as StarOutline } from './StarOutline';
 export { default as UsersIcon } from './Users';
 export { default as LogoutIcon } from './Logout';
 export { default as SettingsIcon } from './Settings';

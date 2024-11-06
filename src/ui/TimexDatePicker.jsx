@@ -116,7 +116,7 @@ const TimexDatePicker = ({
 
   const hideCalendar = () => {
     setShouldCloseCalendar(true);
-    setTimeout(() => ref.current.closeCalendar(), 20);
+    setTimeout(() => ref.current?.closeCalendar(), 20);
   };
 
   const onChangeHandler = (val) => {

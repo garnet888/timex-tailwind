@@ -158,6 +158,7 @@ const apiList = {
   user: '/user',
   branch: '/branch',
   customer: '/customer',
+  employee: '/employee',
   notification: '/notification',
 };
 

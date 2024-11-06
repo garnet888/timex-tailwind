@@ -1,6 +1,6 @@
 import Order from './Order';
 
-const title = 'Захиалгууд';
+const title = 'Захиалга';
 export const metadata = { title };
 
 const CustomersPage = () => {

@@ -132,6 +132,8 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
     control: (base, state) => ({
       ...base,
       cursor: getCursor(state.isDisabled, state.menuIsOpen, searchable),
+      minHeight: '34px',
+      height: '34px',
       boxShadow: 'none',
       color: 'var(--dark-color)',
       borderRadius: round,
@@ -144,7 +146,7 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
     }),
     valueContainer: (base) => ({
       ...base,
-      // minHeight: '34px',
+      minHeight: '34px',
       height: '34px',
       display: 'flex',
       alignItems: 'center',
@@ -152,12 +154,12 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
     }),
     menu: (base) => ({
       ...base,
+      zIndex: 20,
       marginTop: 4,
       padding: 0,
     }),
     option: (base, state) => ({
       ...base,
-      zIndex: 99999,
       cursor: 'pointer',
       height: '28px !important',
       lineHeight: '30px',
