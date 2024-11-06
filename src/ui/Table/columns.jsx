@@ -6,6 +6,42 @@ import { Tooltip } from '@/ui';
 import { dataType, dateFormats } from '@/lib/constants';
 import { BinIcon, SettingsIcon } from '@/utils/icons';
 
+const getStatus = (value) => {
+  let color = '';
+
+  switch (value) {
+    case 'Ирсэн':
+      color = '#87d068';
+      break;
+
+    case 'Идэвхтэй':
+      color = '#1e90ff';
+      break;
+
+    case 'Хугацаа дууссан':
+    case 'Цуцлагдсан':
+    case 'Ирээгүй':
+      color = '#ff5252';
+      break;
+
+    case 'Төлбөр хүлээгдэж буй':
+      color = '#ffa500';
+      break;
+
+    default:
+      break;
+  }
+
+  return (
+    <p
+      className='w-fit text-white text-sm rounded-full px-2'
+      style={{ backgroundColor: color }}
+    >
+      {value}
+    </p>
+  );
+};
+
 export const GetColumns = ({
   columns,
   actionHeader,
@@ -25,6 +61,12 @@ export const GetColumns = ({
                 {moment(getValue()).format(dateFormats.WITH_TIME)}
               </center>
             ),
+        };
+      } else if (String(col.accessorKey).includes('status')) {
+        return {
+          shownSort: true,
+          ...col,
+          cell: ({ getValue }) => <center>{getStatus(getValue())}</center>,
         };
       } else {
         return {
@@ -116,6 +158,7 @@ export const GetColumns = ({
       },
     ];
 
+    actions?.length > 0 || edited.pop();
     rowOnClick && edited.pop();
 
     return edited;

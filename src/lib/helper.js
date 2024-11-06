@@ -76,9 +76,10 @@ export const getParamsTable = ({
       }
 
       if (obj.action === filterActions.THAN_EQUAL) {
-        filterItems.push(
-          `["${key}", ">=", "${obj.filtering}"],["${key}", "<=", "${obj.filteringTo}"]`
-        );
+        const min = obj.filtering && `["${key}", ">=", "${obj.filtering}"]`;
+        const max = obj.filteringTo && `["${key}", "<=", "${obj.filteringTo}"]`;
+
+        filterItems.push(min + (min && max && ',') + max);
       }
 
       if (obj.action === filterActions.IN_RANGE) {
@@ -106,18 +107,29 @@ export const getParamsTable = ({
       break;
   }
 
-  query += `&${customQuery}`;
+  query += customQuery && `&${customQuery}`;
 
   return query + filters;
 };
 
-export const getValue = (value, enableNull = false) => {
+export const getIfEmpty = (value, enableNull = false) => {
   if (value) {
     return value;
   } else {
     return enableNull ? null : 'Хоосон';
   }
 };
+
+export function numberWithCommas(number) {
+  try {
+    let parts = number?.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '’');
+
+    return parts.join('.');
+  } catch (e) {
+    return number;
+  }
+}
 
 export const formatNumberSpace = (number) => {
   return number.replace(/(\d{2})(?=\d)/g, '$1 ');

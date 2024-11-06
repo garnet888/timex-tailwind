@@ -32,8 +32,10 @@ const Select = ({
   }
 
   const getInitialValue = () => {
-    if (Object.keys(options).length > 0 && value) {
-      return options.find((item) => item.value === value);
+    if (options?.length > 0) {
+      const find = options.find((item) => item.value === value);
+
+      return find ?? null;
     }
   };
 
@@ -61,7 +63,10 @@ const Select = ({
             ),
             ClearIndicator: (props) => (
               <components.ClearIndicator {...props}>
-                <IoClose className='text-gray-400' size={18} />
+                <IoClose
+                  className='text-gray-400'
+                  size={18}
+                />
               </components.ClearIndicator>
             ),
           }}
@@ -139,7 +144,8 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
     }),
     valueContainer: (base) => ({
       ...base,
-      minHeight: '34px',
+      // minHeight: '34px',
+      height: '34px',
       display: 'flex',
       alignItems: 'center',
       padding: '0 8px',
@@ -156,10 +162,10 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
       height: '28px !important',
       lineHeight: '30px',
       backgroundColor: 'white',
-      color: state.isSelected ? '#6c30ed' : 'black',
+      color: state.isSelected ? 'var(--primary-color)' : 'black',
       padding: '0 8px',
       '&:hover': {
-        backgroundColor: '#6c30ed',
+        backgroundColor: 'var(--primary-color)',
         color: 'white',
       },
     }),
@@ -175,7 +181,7 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
     }),
     multiValue: (base) => ({
       ...base,
-      backgroundColor: '#6c30ed',
+      backgroundColor: 'var(--primary-color)',
       borderRadius: round,
     }),
     multiValueLabel: (base) => ({

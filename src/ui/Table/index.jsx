@@ -214,6 +214,7 @@ const Table = ({
                 current={currentPage}
                 total={totalPages}
                 onPageChange={setCurrentPage}
+                maxWidth={100}
                 previousLabel={<ChevronArrow rotate='left' />}
                 nextLabel={<ChevronArrow />}
               />

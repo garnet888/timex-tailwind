@@ -5,6 +5,7 @@ import { LuMenu } from 'react-icons/lu';
 import { DollIcon, LogoutIcon } from '../icons';
 
 const MobileSbar = ({
+  role,
   profile,
   lastName,
   firstName,
@@ -33,10 +34,12 @@ const MobileSbar = ({
             <LuMenu size={20} />
           </button>
 
-          <button className='normal_btn p-0 relative w-8 rounded-xl'>
-            <DollIcon />
-            {badgeNumber}
-          </button>
+          {role === 'SUPER_ADMIN' || (
+            <button className='normal_btn p-0 relative w-8 rounded-xl'>
+              <DollIcon />
+              {badgeNumber}
+            </button>
+          )}
         </div>
 
         {shownDrawer && (

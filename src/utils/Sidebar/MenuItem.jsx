@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { GoChevronDown, GoDotFill } from 'react-icons/go';
+import { getRole } from '@/lib/auth';
 import { GetMenuIcon } from '../icons';
 
 const MenuItem = ({
@@ -18,13 +19,20 @@ const MenuItem = ({
   const router = useRouter();
   const pathname = usePathname();
 
+  const [role, setRole] = useState('');
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  useEffect(() => {
+    setRole(getRole());
+  }, []);
 
   const menuIsActive = () => {
     let LINK = link;
 
     if (subMenu?.length > 0) {
-      LINK = String(subMenu[0].link).split('/')[1];
+      LINK = String(subMenu[0].link).split(
+        `/${role === 'SUPER_ADMIN' ? 'admin' : ''}`
+      )[1];
     }
 
     return String(pathname).includes(LINK);

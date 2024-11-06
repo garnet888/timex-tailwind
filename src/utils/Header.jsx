@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { LuMenu, LuUser, LuPower } from 'react-icons/lu';
 import { useBaseContext } from '@/context/BaseContext';
 import Popover from '@/ui/Tooltip';
-import { destroyTokens, getToken } from '@/lib/auth';
+import { destroyTokens, getRole, getToken } from '@/lib/auth';
 
 const Header = () => {
   const { isUser, setIsUser } = useBaseContext();
@@ -16,10 +16,12 @@ const Header = () => {
   const pathname = usePathname();
 
   const [token, setToken] = useState();
+  const [role, setRole] = useState();
   const [shownToggle, setShownToggle] = useState(false);
 
   useEffect(() => {
     setToken(getToken());
+    setRole(getRole());
   }, []);
 
   const modeHandler = (mode) => {
@@ -63,7 +65,7 @@ const Header = () => {
 
         <Link
           className='first_btn click_effect h-auto rounded-full p-2 hover:bg-primary hover:text-gray-300'
-          href='/dashboard'
+          href={`${role === 'SUPER_ADMIN' && '/admin'}/dashboard`}
         >
           <LuUser size={18} />
         </Link>

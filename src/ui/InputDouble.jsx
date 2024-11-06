@@ -1,14 +1,18 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { RangeIcon } from '@/utils/icons';
 
 const InputDouble = ({
-  placeholder = [],
+  placeholder = ['', ''],
   after,
   type,
-  value = [],
+  value = ['', ''],
   alert = false,
   disabled = false,
   rounded = false,
   readOnly = false,
+  onChange,
 }) => {
   const HOVER_INPUT =
     'has-[input:hover]:border has-[input:hover]:border-[rgba(108,48,237,0.48)]';
@@ -18,6 +22,21 @@ const InputDouble = ({
 
   const DISABLED_INPUT =
     'has-[input:disabled]:cursor-not-allowed has-[input:disabled]:bg-grey has-[input:disabled]:border-grey';
+
+  const [values, setValues] = useState(value);
+
+  useEffect(() => {
+    setValues(value);
+  }, [value]);
+
+  const onChangeHandler = (e, index) => {
+    const updatedValues = [values[0] || '', values[1] || ''];
+
+    updatedValues[index] = e.target.value ?? '';
+
+    setValues(updatedValues);
+    onChange && onChange(updatedValues);
+  };
 
   return (
     <div
@@ -39,8 +58,9 @@ const InputDouble = ({
             ].join(' ')}
             placeholder={placeholder[0]}
             type={type}
-            value={value[0]}
+            value={values[0]}
             readOnly={readOnly}
+            onChange={(e) => onChangeHandler(e, 0)}
           />
 
           {/* <div className='absolute bottom-0 right-0 hidden w-[96.8%] h-[2px] bg-primary group-focus-within:block' /> */}
@@ -56,8 +76,9 @@ const InputDouble = ({
             ].join(' ')}
             placeholder={placeholder[1]}
             type={type}
-            value={value[1] || ''}
+            value={values[1]}
             readOnly={readOnly}
+            onChange={(e) => onChangeHandler(e, 1)}
           />
 
           {/* <div className='absolute bottom-0 left-2 hidden w-[96.8%] h-[2px] bg-primary group-focus-within:block' /> */}

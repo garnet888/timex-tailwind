@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMainContext } from '@/context/MainContext';
-import { destroyTokens } from '@/lib/auth';
+import { destroyTokens, getRole } from '@/lib/auth';
 import { fetchMenu } from '@/lib/helper';
 import { Warning } from '@/ui';
 import { ChevronDoubleArrow, LogoutIcon, DollIcon } from '../icons';
@@ -21,10 +21,13 @@ const SMALL_MIN_ICON_WIDTH = 'min-w-[80px]';
 const Sidebar = ({ smallMenu, smallMenuHandler }) => {
   const { userInfo, fecthUserInfo } = useMainContext();
 
+  const [role, setRole] = useState('');
   const [menu, setMenu] = useState([]);
   const [shownAlert, setShownAlert] = useState(false);
 
   useEffect(() => {
+    setRole(getRole());
+
     fecthUserInfo();
     fetchMenu(setMenu);
   }, [fecthUserInfo]);
@@ -88,6 +91,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
       />
 
       <MobileSbar
+        role={role}
         profile={IMG_URL + userInfo?.profileImage}
         firstName={userInfo?.firstName}
         lastName={userInfo?.lastName}
@@ -133,7 +137,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
             </Link>
 
             <div className='flex gap-3'>
-              {smallMenu || (
+              {role === 'SUPER_ADMIN' || smallMenu || (
                 <button className='normal_btn p-0 relative w-8 h-8 rounded-xl'>
                   <DollIcon />
                   {renderBadgeNumber()}
@@ -149,7 +153,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
               >
                 <ChevronDoubleArrow rotate={smallMenu ? 'right' : ''} />
 
-                {smallMenu && renderBadgeNumber()}
+                {smallMenu && role !== 'SUPER_ADMIN' && renderBadgeNumber()}
               </button>
             </div>
           </div>
@@ -218,7 +222,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
               </span>
 
               <span className='flex flex-col ml-[6px]'>
-                {userInfo?.lastName}
+                {role === 'SUPER_ADMIN' ? 'SUPER ADMIN' : userInfo?.lastName}
                 <b className='font-semibold'>{userInfo?.firstName}</b>
               </span>
             </Link>

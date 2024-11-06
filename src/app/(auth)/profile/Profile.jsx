@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ImCamera } from 'react-icons/im';
 import { useMainContext } from '@/context/MainContext';
-import { formatNumberSpace, getValue } from '@/lib/helper';
+import { formatNumberSpace, getIfEmpty } from '@/lib/helper';
+import { getRole } from '@/lib/auth';
 import { PencilIcon } from '@/utils/icons';
 import AdminLayout from '@/layouts/AdminLayout';
 import Box from '@/components/Box';
@@ -15,8 +16,13 @@ const IMG_URL = process.env.NEXT_PUBLIC_IMG_URL;
 const Profile = ({ title }) => {
   const { userInfo } = useMainContext();
 
+  const [role, setRole] = useState('');
   const [which, setWhich] = useState('');
   const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    setRole(getRole());
+  }, []);
 
   const openModalHandler = (_which) => {
     setWhich(_which);
@@ -65,7 +71,9 @@ const Profile = ({ title }) => {
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>Нэр</p>
               <b className='lg:w-96 font-medium'>
-                {userInfo?.lastName} {userInfo?.firstName}
+                {role === 'SUPER_ADMIN'
+                  ? 'SUPER ADMIN'
+                  : `${userInfo?.lastName} ${userInfo?.firstName}`}
               </b>
             </div>
           </li>
@@ -74,7 +82,7 @@ const Profile = ({ title }) => {
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>Утасны дугаар</p>
               <b className='lg:w-96 font-medium'>
-                {getValue(userInfo?.phoneNumber)}
+                {getIfEmpty(userInfo?.phoneNumber)}
               </b>
             </div>
 
@@ -89,7 +97,9 @@ const Profile = ({ title }) => {
           <li className='relative flex justify-between md:justify-start items-center border-b pb-3'>
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>И-Мэйл</p>
-              <b className='lg:w-96 font-medium'>{getValue(userInfo?.email)}</b>
+              <b className='lg:w-96 font-medium'>
+                {getIfEmpty(userInfo?.email)}
+              </b>
             </div>
 
             <button
@@ -104,7 +114,7 @@ const Profile = ({ title }) => {
             <div className='flex flex-col lg:flex-row'>
               <p className='w-40 text-gray-500'>Дансны мэдээлэл</p>
               <b className='lg:w-96 font-medium'>
-                {formatNumberSpace(getValue(userInfo?.accountNumber))}
+                {formatNumberSpace(getIfEmpty(userInfo?.accountNumber))}
               </b>
             </div>
 
