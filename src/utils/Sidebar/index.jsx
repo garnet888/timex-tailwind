@@ -138,10 +138,13 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
 
             <div className='flex gap-3'>
               {role === 'SUPER_ADMIN' || smallMenu || (
-                <button className='normal_btn p-0 relative w-8 h-8 rounded-xl'>
+                <Link
+                  className='normal_btn click_effect relative w-8 h-8 grid place-content-center rounded-xl'
+                  href='/notification'
+                >
                   <DollIcon />
                   {renderBadgeNumber()}
-                </button>
+                </Link>
               )}
 
               <button

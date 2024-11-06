@@ -35,10 +35,13 @@ const MobileSbar = ({
           </button>
 
           {role === 'SUPER_ADMIN' || (
-            <button className='normal_btn p-0 relative w-8 rounded-xl'>
+            <Link
+              className='normal_btn click_effect relative w-8 h-8 grid place-content-center rounded-xl'
+              href='/notification'
+            >
               <DollIcon />
               {badgeNumber}
-            </button>
+            </Link>
           )}
         </div>
 

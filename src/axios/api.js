@@ -156,6 +156,8 @@ const apiList = {
   auth: '/auth',
   login: '/auth/login',
   user: '/user',
+  branch: '/branch',
+  notification: '/notification',
 };
 
 export {

@@ -4,17 +4,18 @@ const Box = ({
   subtitle = '',
   widthFit = false,
   noDivider = false,
+  noBodyPadding = false,
 }) => {
   return (
     <div
       className={[
-        'flex flex-col gap-4 bg-white rounded-4.5 shadow p-4.5',
+        'flex flex-col bg-white rounded-4.5 shadow',
         widthFit ? 'lg:w-fit' : '',
       ].join(' ')}
     >
       <div
         className={[
-          'flex justify-between items-center',
+          'flex justify-between items-center flex-wrap gap-2 p-4.5',
           noDivider ? '' : 'border-b pb-3',
         ].join(' ')}
       >
@@ -23,7 +24,7 @@ const Box = ({
         {subtitle && <p>{subtitle}</p>}
       </div>
 
-      {children}
+      <div className={noBodyPadding ? '' : 'px-4.5 pb-4.5'}>{children}</div>
     </div>
   );
 };
