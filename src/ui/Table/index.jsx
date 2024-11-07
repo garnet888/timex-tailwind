@@ -192,7 +192,9 @@ const Table = ({
                 key={row.id}
                 className={[
                   'border-b last-of-type:border-b-0',
-                  rowOnClick ? 'cursor-pointer hover:bg-gray-100' : '',
+                  rowOnClick
+                    ? 'cursor-pointer active:text-white hover:bg-primary/10'
+                    : 'cursor-default hover:bg-gray-100/65',
                 ].join(' ')}
                 onClick={rowOnClick ? () => rowOnClick(row.original) : null}
               >
