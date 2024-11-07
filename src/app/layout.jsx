@@ -2,6 +2,7 @@ import { Slide, ToastContainer } from 'react-toastify';
 import { LoadBox } from '@/ui';
 import { BaseProvider } from '@/context/BaseContext';
 import { MainProvider } from '@/context/MainContext';
+import MiddlewareStatus from '@/lib/MiddlewareStatus';
 
 import '../styles/main.css';
 
@@ -31,7 +32,7 @@ export default function RootLayout({ children }) {
               hideProgressBar
             />
 
-            {children}
+            <MiddlewareStatus>{children}</MiddlewareStatus>
           </MainProvider>
         </BaseProvider>
       </body>

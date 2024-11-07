@@ -1,7 +1,29 @@
 import { apiList, callGet } from '@/axios/api';
 import { filterActions } from './constants';
+import { getToken } from './auth';
 
 const SMALL_MENU_KEY = 'SMALL_MENU';
+
+export const checkAuthPage = () => {
+  const UNAUTH_PAGES = [
+    '/',
+    '/login',
+    '/register',
+    '/reset_password',
+    '/reset_password/new_password',
+    '/TATAX',
+    '/terms',
+    '/privacy',
+  ];
+
+  const pathname = window.location.pathname;
+
+  if (getToken() || UNAUTH_PAGES.includes(pathname)) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 export const getSmallMenu = () => {
   return localStorage.getItem(SMALL_MENU_KEY);

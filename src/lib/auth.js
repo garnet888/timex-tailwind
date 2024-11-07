@@ -9,13 +9,13 @@ export const getToken = () => {
   return localStorage.getItem('authToken');
 };
 
-export const destroyTokens = () => {
+export const destroyTokens = (gotoLogin = false) => {
   localStorage.removeItem('authToken');
   localStorage.removeItem('tokenExp');
   localStorage.removeItem('_au');
   localStorage.removeItem('_role');
 
-  window.location.replace('/');
+  window.location.replace(gotoLogin ? '/login' : '/');
 };
 
 export const getAuth = () => {

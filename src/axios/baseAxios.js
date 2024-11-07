@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Notification } from '@/ui';
-import { getToken } from '@/lib/auth';
+import { destroyTokens, getToken } from '@/lib/auth';
+import { checkAuthPage } from '@/lib/helper';
 
 const baseAxios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -31,16 +32,17 @@ baseAxios.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (error.response?.status === 401 || error.response?.status === 403) {
-      if (count === 0) {
-        count++;
-        return redirectToLogin();
-      }
-    } else {
-      return;
-    }
+    if (checkAuthPage()) {
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        if (count === 0) {
+          count++;
 
-    return Promise.reject(error);
+          return redirectToLogin();
+        }
+      }
+
+      return Promise.reject(error);
+    }
   }
 );
 
@@ -49,8 +51,9 @@ const redirectToLogin = () => {
 
   setTimeout(() => {
     count = 0;
-    location.replace('/logout');
-  }, 100);
+
+    destroyTokens(true);
+  }, 1000);
 };
 
 export default baseAxios;
