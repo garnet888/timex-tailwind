@@ -13,16 +13,16 @@ const Box = ({
         widthFit ? 'lg:w-fit' : '',
       ].join(' ')}
     >
-      <div
+      <p
         className={[
           'flex justify-between items-center flex-wrap gap-2 p-4.5',
-          noDivider ? '' : 'border-b pb-3',
+          noDivider ? '' : 'border-b mb-4.5',
         ].join(' ')}
       >
         <h3 className='text-xl font-semibold leading-none'>{title}</h3>
 
         {subtitle && <p>{subtitle}</p>}
-      </div>
+      </p>
 
       <div className={noBodyPadding ? '' : 'px-4.5 pb-4.5'}>{children}</div>
     </div>

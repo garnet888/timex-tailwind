@@ -83,10 +83,14 @@ const EmployeeRate = ({ title }) => {
           label: (
             <div className='flex justify-between items-center gap-6'>
               <span className='flex items-center gap-2'>
-                <figure className='relative w-[24px] h-[24px]'>
+                <figure className='w-[24px] h-[24px]'>
                   <Image
                     className='w-full h-full object-cover rounded-full'
-                    src={IMG_URL + item.profileImg}
+                    src={
+                      item.profileImg
+                        ? IMG_URL + item.profileImg
+                        : '/default_avatar.svg'
+                    }
                     alt='Avatar'
                     width={100}
                     height={100}
@@ -140,7 +144,7 @@ const EmployeeRate = ({ title }) => {
       >
         <div className='flex flex-col lg:flex-row gap-x-8 gap-y-3'>
           <div className='flex flex-col lg:flex-row gap-x-2 gap-y-3'>
-            <span className='min-w-[200px] w-full lg:w-auto'>
+            <span className='min-w-[260px] w-full lg:w-auto'>
               <Select
                 options={getEmployeeOptions()}
                 placeholder='Ажилтан'
@@ -150,13 +154,15 @@ const EmployeeRate = ({ title }) => {
               />
             </span>
 
-            <Select
-              options={getRateOptions()}
-              placeholder='Үнэлгээ'
-              value={rate}
-              hiddenClear
-              onChange={(opt) => setRate(opt?.value ?? '')}
-            />
+            <span className='min-w-[120px] w-full lg:w-auto'>
+              <Select
+                options={getRateOptions()}
+                placeholder='Үнэлгээ'
+                value={rate}
+                hiddenClear
+                onChange={(opt) => setRate(opt?.value ?? '')}
+              />
+            </span>
           </div>
 
           <div className='flex flex-col lg:flex-row gap-x-2 gap-y-5'>
@@ -178,7 +184,7 @@ const EmployeeRate = ({ title }) => {
           </div>
         </div>
 
-        <ul className='mt-8 lg:mt-12'>
+        <ul className='mt-8'>
           {data?.length > 0 ? (
             data.map((item) => (
               <li
@@ -200,7 +206,11 @@ const EmployeeRate = ({ title }) => {
                   <figure className='relative w-[32px] h-[32px]'>
                     <Image
                       className='w-full h-full object-cover rounded-full'
-                      src={IMG_URL + item.profileImg}
+                      src={
+                        item.profileImg
+                          ? IMG_URL + item.profileImg
+                          : '/default_avatar.svg'
+                      }
                       alt='Avatar'
                       width={100}
                       height={100}
