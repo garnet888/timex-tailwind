@@ -19,6 +19,7 @@ const FisrtLoginAlert = ({ visible, onClose }) => {
         <div className='flex flex-col items-end'>
           <div className='w-full mb-4'>
             <b className='font-semibold'>Timex.mn-д тавтай морилно уу</b>
+
             <p className='mt-1'>
               Салбартай байгууллагын эрхээр нэгдсэн мэдээлэл хүлээн авахын тулд
               бүртгэсэн салбар тус бүр Timex Business багц идэвхжүүлэх

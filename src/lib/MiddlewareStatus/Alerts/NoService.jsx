@@ -12,6 +12,8 @@ const NoServiceAlert = ({ visible, onClose }) => {
     <Modal
       hideIcon
       open={visible}
+      animation='slide'
+      width={564}
     >
       <div className='flex gap-4'>
         <BackedIcon>
@@ -30,7 +32,7 @@ const NoServiceAlert = ({ visible, onClose }) => {
                 холбогдохыг хүсвэл доорх дугаараар холбогдоно уу.
               </p>
 
-              <p className='font-medium mt-2'>{CONTACT_PHONE}</p>
+              <p className='font-medium sm:text-end mt-2'>{CONTACT_PHONE}</p>
             </span>
           </div>
 

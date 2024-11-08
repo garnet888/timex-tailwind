@@ -54,18 +54,20 @@ const MiddlewareStatus = ({ children }) => {
       router.push('/register/verification');
     }
 
-    if (getUserStatus() === 'STATUS_FIRST_LOGIN') {
-      setFirstLoginAlert(true);
-    }
-
-    if (getUserStatus() === 'STATUS_UNPAID') {
-      if (!unauthPages.includes(pathname) && pathname !== '/payment') {
-        setUnpaidAlert(true);
+    if (!unauthPages.includes(pathname)) {
+      if (getUserStatus() === 'STATUS_FIRST_LOGIN') {
+        setFirstLoginAlert(true);
       }
-    }
 
-    if (getUserStatus() === 'STATUS_CONTRACT') {
-      setNoServiceAlert(true);
+      if (getUserStatus() === 'STATUS_UNPAID') {
+        if (pathname !== '/payment') {
+          setUnpaidAlert(true);
+        }
+      }
+
+      if (getUserStatus() === 'STATUS_CONTRACT') {
+        setNoServiceAlert(true);
+      }
     }
   }, [router, pathname]);
 

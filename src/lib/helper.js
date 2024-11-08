@@ -10,9 +10,10 @@ export const unauthPages = [
   '/register',
   '/reset_password',
   '/reset_password/new_password',
-  '/TATAX',
+  '/about',
   '/terms',
   '/privacy',
+  '/TATAX',
 ];
 
 export const checkAuthPage = () => {
