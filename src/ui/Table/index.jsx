@@ -20,13 +20,13 @@ const Table = ({
   customQuery = '',
   columns = [],
   actionHeader = 'Үйлдэл',
-  actions = [
-    {
-      key: '',
-      icon: '',
-      label: '',
-    },
-  ],
+  actions = [],
+  /* ====================
+    actions
+      - key
+      - icon
+      - label 
+  ==================== */
   rowCount = 50,
   noFilter = false,
   noPagination = false,

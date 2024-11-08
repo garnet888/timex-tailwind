@@ -1,3 +1,5 @@
+'use client';
+
 import AdminLayout from '@/layouts/AdminLayout';
 import { Table } from '@/ui';
 import { order } from '@/lib/TableColumns/Admin/order';

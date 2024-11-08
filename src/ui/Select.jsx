@@ -134,6 +134,7 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
       cursor: getCursor(state.isDisabled, state.menuIsOpen, searchable),
       minHeight: '34px',
       height: '34px',
+      flexWrap: 'nowrap',
       boxShadow: 'none',
       color: 'var(--dark-color)',
       borderRadius: round,
@@ -155,6 +156,7 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
     menu: (base) => ({
       ...base,
       zIndex: 20,
+      width: 'max-content',
       marginTop: 4,
       padding: 0,
     }),
@@ -165,6 +167,9 @@ const CUSTOM_STYLES = (round, searchable, isError) => {
       lineHeight: '30px',
       backgroundColor: 'white',
       color: state.isSelected ? 'var(--primary-color)' : 'black',
+      // whiteSpace: 'nowrap',
+      // overflow: 'hidden',
+      // textOverflow: 'ellipsis',
       padding: '0 8px',
       '&:hover': {
         backgroundColor: 'var(--primary-color)',

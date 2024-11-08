@@ -7,25 +7,25 @@ import { dataType, dateFormats } from '@/lib/constants';
 import { BinIcon, SettingsIcon } from '@/utils/icons';
 
 const getStatus = (value) => {
-  let color = '';
+  let bgColor = '';
 
   switch (value) {
     case 'Ирсэн':
-      color = '#87d068';
+      bgColor = '#87d068'; // green
       break;
 
     case 'Идэвхтэй':
-      color = '#1e90ff';
+      bgColor = '#1e90ff'; // blue
       break;
 
     case 'Хугацаа дууссан':
     case 'Цуцлагдсан':
     case 'Ирээгүй':
-      color = '#ff5252';
+      bgColor = '#ff5252'; // red
       break;
 
     case 'Төлбөр хүлээгдэж буй':
-      color = '#ffa500';
+      bgColor = '#ffa500'; // orange
       break;
 
     default:
@@ -33,12 +33,17 @@ const getStatus = (value) => {
   }
 
   return (
-    <p
-      className='w-fit text-white text-sm rounded-full px-2'
-      style={{ backgroundColor: color }}
-    >
-      {value}
-    </p>
+    <span className={bgColor ? 'flex justify-center' : ''}>
+      <p
+        className='w-fit text-sm rounded-full px-2'
+        style={{
+          backgroundColor: bgColor,
+          color: bgColor ? 'white' : 'black',
+        }}
+      >
+        {value}
+      </p>
+    </span>
   );
 };
 
@@ -66,7 +71,7 @@ export const GetColumns = ({
         return {
           shownSort: true,
           ...col,
-          cell: ({ getValue }) => <center>{getStatus(getValue())}</center>,
+          cell: ({ getValue }) => getStatus(getValue()),
         };
       } else {
         return {
@@ -76,7 +81,7 @@ export const GetColumns = ({
       }
     });
 
-    const edited = [
+    let edited = [
       {
         accessorKey: 'number',
         header: '№',
@@ -88,7 +93,7 @@ export const GetColumns = ({
         header: actionHeader,
         enableColumnFilter: false,
         cell: ({ row }) => (
-          <div className='flex justify-center gap-1 text-[20px]'>
+          <div className='flex justify-center items-center gap-1 text-[20px]'>
             {actions.map((action) => {
               switch (action.key) {
                 case 'EDIT':
@@ -140,14 +145,14 @@ export const GetColumns = ({
                       }
                     >
                       <button
-                        className='text_btn click_effect'
+                        className='text_btn click_effect p-[3px] hover:bg-gray-200 hover:text-dark'
                         onClick={
                           actionsHandler
                             ? () => actionsHandler(action.key, row.original)
                             : null
                         }
                       >
-                        {action.icon}
+                        <span className='p-[3px]'>{action.icon}</span>
                       </button>
                     </Tooltip>
                   );
@@ -158,8 +163,9 @@ export const GetColumns = ({
       },
     ];
 
-    actions?.length > 0 || edited.pop();
-    rowOnClick && edited.pop();
+    if (!actions.length > 0 || rowOnClick) {
+      edited = edited.filter((item) => item.accessorKey !== 'action');
+    }
 
     return edited;
   }, [columns, actionHeader, actions, actionsHandler, rowOnClick]);

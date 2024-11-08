@@ -3,8 +3,8 @@ import Order from './Order';
 const title = 'Захиалга';
 export const metadata = { title };
 
-const CustomersPage = () => {
+const OrderPage = () => {
   return <Order title={title} />;
 };
 
-export default CustomersPage;
+export default OrderPage;

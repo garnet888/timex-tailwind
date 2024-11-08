@@ -1,5 +1,3 @@
-'use client';
-
 import { dataType } from '@/lib/constants';
 import { getIfEmpty, numberWithCommas } from '@/lib/helper';
 
