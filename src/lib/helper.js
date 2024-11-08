@@ -39,26 +39,26 @@ export const disableSmallMenu = () => {
 };
 
 export const fetchMenu = async (setMenu) => {
-  const result = await callGet(apiList.permissionMenu);
+  const res = await callGet(apiList.permissionMenu);
 
-  if (result) {
+  if (res && res?.items?.length > 0) {
+    const isMenu = res.items.filter((item) => item.is_menu);
+
     let MENU = [];
-    const resMenu = result.items?.filter((item) => item.is_menu);
-
     let _menu = {};
 
-    resMenu.map((item) => {
-      const parentId = item.parent_id;
+    isMenu.map((item) => {
+      const parentID = item.parent_id;
 
-      if (parentId) {
-        if (_menu[parentId]) {
-          if (_menu[parentId]['children']) {
-            _menu[parentId]['children'].push(item);
-          } else {
-            _menu[parentId]['children'] = [];
+      if (parentID) {
+        if (_menu[parentID]) {
+          if (!_menu[parentID].children) {
+            _menu[parentID].children = [];
 
-            delete _menu[parentId]['link'];
+            delete _menu[parentID].link;
           }
+
+          _menu[parentID].children.push(item);
         }
       } else {
         _menu[item.id] = item;
