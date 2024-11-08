@@ -55,7 +55,7 @@ const MenuItem = ({
         className={[
           'text_btn w-full hover:bg-[#F6F0FF] disabled:bg-transparent',
           menuIsActive() ? 'text-primary' : '',
-          subMenu.length > 0 ? 'pr-1' : '',
+          subMenu.length > 0 ? 'pr-2' : '',
           fromSub ? 'py-[6px]' : 'py-2',
         ].join(' ')}
         disabled={!enabledLink}
@@ -106,6 +106,7 @@ const MenuItem = ({
             <MenuItem
               key={item.id}
               fromSub
+              enabledLink={enabledLink}
               {...item}
             />
           ))}
