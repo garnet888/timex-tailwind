@@ -13,6 +13,7 @@ const MenuItem = ({
   link,
   subMenu = [],
   fromSub = false,
+  enabledLink,
   MIN_ICON_WIDTH,
   SMALL_MIN_ICON_WIDTH,
 }) => {
@@ -27,15 +28,17 @@ const MenuItem = ({
   }, []);
 
   const menuIsActive = () => {
-    let LINK = link;
+    if (enabledLink) {
+      let LINK = link;
 
-    if (subMenu?.length > 0) {
-      LINK = String(subMenu[0].link).split(
-        `/${role === 'SUPER_ADMIN' ? 'admin' : ''}`
-      )[1];
+      if (subMenu?.length > 0) {
+        LINK = String(subMenu[0].link).split(
+          role === 'SUPER_ADMIN' ? '/admin' : '/'
+        )[1];
+      }
+
+      return String(pathname).includes(LINK);
     }
-
-    return String(pathname).includes(LINK);
   };
 
   const onClickHandler = () => {
@@ -50,11 +53,12 @@ const MenuItem = ({
     <div className='overflow-hidden px-2'>
       <button
         className={[
-          'text_btn w-full hover:bg-[#F6F0FF]',
+          'text_btn w-full hover:bg-[#F6F0FF] disabled:bg-transparent',
           menuIsActive() ? 'text-primary' : '',
-          fromSub ? 'py-[6px]' : 'py-2',
           subMenu.length > 0 ? 'pr-1' : '',
+          fromSub ? 'py-[6px]' : 'py-2',
         ].join(' ')}
+        disabled={!enabledLink}
         onClick={onClickHandler}
       >
         <div className='w-full flex items-center text-sm font-light'>

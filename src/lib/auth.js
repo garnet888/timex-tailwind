@@ -1,42 +1,35 @@
 export const setToken = (token, expires_in) => {
   const expiryDate = new Date(expires_in * 1000);
 
-  localStorage.setItem('authToken', token);
-  localStorage.setItem('tokenExp', expiryDate);
+  localStorage.setItem('AUTH_TOKEN', token);
+  localStorage.setItem('TOKEN_EXP', expiryDate);
 };
 
 export const getToken = () => {
-  return localStorage.getItem('authToken');
+  return localStorage.getItem('AUTH_TOKEN');
 };
 
 export const destroyTokens = (gotoLogin = false) => {
-  localStorage.removeItem('authToken');
-  localStorage.removeItem('tokenExp');
-  localStorage.removeItem('_au');
-  localStorage.removeItem('_role');
+  localStorage.removeItem('AUTH_TOKEN');
+  localStorage.removeItem('TOKEN_EXP');
+  localStorage.removeItem('ROLE');
+  localStorage.removeItem('USER_STATUS');
 
   window.location.replace(gotoLogin ? '/login' : '/');
 };
 
-export const getAuth = () => {
-  let result = localStorage.getItem('_au');
-
-  if (!result) return;
-
-  return JSON.parse(result);
-};
-
-export const setAuth = (data) =>
-  localStorage.setItem('_au', JSON.stringify(data));
-
 export const setRole = (role) => {
-  localStorage.setItem('_role', role);
+  localStorage.setItem('ROLE', role);
 };
 
 export const getRole = () => {
-  return localStorage.getItem('_role');
+  return localStorage.getItem('ROLE');
 };
 
-export const loggedIn = () => {
-  return this.getToken() != null;
+export const setUserStatus = (status) => {
+  localStorage.setItem('USER_STATUS', status);
+};
+
+export const getUserStatus = () => {
+  return localStorage.getItem('USER_STATUS');
 };

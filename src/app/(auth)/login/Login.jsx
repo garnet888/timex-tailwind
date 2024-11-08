@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { FormElement, InputPassword, InputPrefix } from '@/ui';
 import { apiList, callPost } from '@/axios/api';
-import { setAuth, setRole, setToken } from '@/lib/auth';
+import { setRole, setToken, setUserStatus } from '@/lib/auth';
 import AuthLoyout from '@/layouts/AuthLoyout';
 
 const schema = Yup.object({
@@ -56,19 +56,9 @@ const Login = ({ title }) => {
             'STATUS_UNPAID',
           ];
 
-          // dispatch({
-          //   type: 'AUTH',
-          //   payload: {
-          //     user: res.data.id,
-          //   },
-          // });
-
           setToken(res.data.token, res.data.exp);
           setRole(res.data.roleCode);
-
-          setAuth(res.data.id);
-          // setMenuAndPermissions();
-          // setUserStatus(res.data.status);
+          setUserStatus(res.data.status);
 
           if (AUTH_STATUS.includes(res.data.status)) {
             if (res.data.roleCode === 'SUPER_ADMIN') {

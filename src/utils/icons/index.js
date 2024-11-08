@@ -17,6 +17,7 @@ export { default as BinIcon } from './Bin';
 export { default as CleanIcon } from './Clean';
 export { default as RangeIcon } from './Range';
 export { default as DoubleMailIcon } from './DoubleMail';
+export { default as LockIcon } from './Lock';
 
 export { default as Picon1 } from './picons/Picon1';
 export { default as Picon2 } from './picons/Picon2';

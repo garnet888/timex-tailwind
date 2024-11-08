@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMainContext } from '@/context/MainContext';
-import { destroyTokens, getRole } from '@/lib/auth';
+import { destroyTokens, getRole, getUserStatus } from '@/lib/auth';
 import { fetchMenu } from '@/lib/helper';
 import { Warning } from '@/ui';
 import { ChevronDoubleArrow, LogoutIcon, DollIcon } from '../icons';
@@ -32,11 +32,36 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
     fetchMenu(setMenu);
   }, [fecthUserInfo]);
 
+  const checkEnabledLink = (_link) => {
+    if (
+      _link &&
+      ((_link === '/settings' && getUserStatus() !== 'STATUS_UNPAID') ||
+        (_link === '/package-info' && getUserStatus() !== 'STATUS_UNPAID') ||
+        _link === '/logout')
+    ) {
+      return true;
+    }
+
+    if (
+      getUserStatus() === 'STATUS_INFO' ||
+      getUserStatus() === 'STATUS_SERVICE' ||
+      getUserStatus() === 'STATUS_EMPLOYEE' ||
+      getUserStatus() === 'STATUS_TIMETABLE' ||
+      getUserStatus() === 'STATUS_ORDER' ||
+      getUserStatus() === 'STATUS_UNPAID'
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const getItem = (_item) => {
     return (
       <MenuItem
         key={_item.id}
         smallMenu={smallMenu}
+        enabledLink={checkEnabledLink()}
         MIN_ICON_WIDTH={MIN_ICON_WIDTH}
         SMALL_MIN_ICON_WIDTH={SMALL_MIN_ICON_WIDTH}
         {..._item}
@@ -50,6 +75,7 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
         key={_item.id}
         smallMenu={smallMenu}
         subMenu={subMenu}
+        enabledLink={checkEnabledLink()}
         MIN_ICON_WIDTH={MIN_ICON_WIDTH}
         SMALL_MIN_ICON_WIDTH={SMALL_MIN_ICON_WIDTH}
         {..._item}

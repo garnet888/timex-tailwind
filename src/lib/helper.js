@@ -4,21 +4,21 @@ import { getToken } from './auth';
 
 const SMALL_MENU_KEY = 'SMALL_MENU';
 
-export const checkAuthPage = () => {
-  const UNAUTH_PAGES = [
-    '/',
-    '/login',
-    '/register',
-    '/reset_password',
-    '/reset_password/new_password',
-    '/TATAX',
-    '/terms',
-    '/privacy',
-  ];
+export const unauthPages = [
+  '/',
+  '/login',
+  '/register',
+  '/reset_password',
+  '/reset_password/new_password',
+  '/TATAX',
+  '/terms',
+  '/privacy',
+];
 
+export const checkAuthPage = () => {
   const pathname = window.location.pathname;
 
-  if (getToken() || UNAUTH_PAGES.includes(pathname)) {
+  if (getToken() || unauthPages.includes(pathname)) {
     return true;
   } else {
     return false;
