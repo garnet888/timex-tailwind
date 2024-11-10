@@ -29,6 +29,7 @@ const Table = ({
   ==================== */
   rowCount = 50,
   noFilter = false,
+  noActions = false,
   noPagination = false,
   /* Functions */
   actionsHandler,
@@ -86,6 +87,7 @@ const Table = ({
     columns,
     actionHeader,
     actions,
+    noActions,
     actionsHandler,
     rowOnClick,
   });
@@ -95,17 +97,6 @@ const Table = ({
     data: DATA,
     getCoreRowModel: getCoreRowModel(),
   });
-
-  const pageSizeOnChange = (e) => {
-    const { value } = e.target;
-    const _totalPages = Math.ceil(totalCount / value);
-
-    if (currentPage > _totalPages) {
-      setCurrentPage(_totalPages);
-    }
-
-    setPageSize(value);
-  };
 
   const sortClickHandler = (key) => {
     let type;
@@ -123,6 +114,23 @@ const Table = ({
     }
 
     setSortingCol({ [key]: type });
+  };
+
+  const rowOnClickHandler = (data, key) => {
+    if (rowOnClick && key !== 'action') {
+      rowOnClick(data);
+    }
+  };
+
+  const pageSizeOnChange = (e) => {
+    const { value } = e.target;
+    const _totalPages = Math.ceil(totalCount / value);
+
+    if (currentPage > _totalPages) {
+      setCurrentPage(_totalPages);
+    }
+
+    setPageSize(value);
   };
 
   return (
@@ -191,12 +199,11 @@ const Table = ({
               <tr
                 key={row.id}
                 className={[
-                  'border-b last-of-type:border-b-0',
+                  'group border-b last-of-type:border-b-0',
                   rowOnClick
                     ? 'cursor-pointer active:text-white hover:bg-primary/10'
                     : 'cursor-default hover:bg-gray-100/65',
                 ].join(' ')}
-                onClick={rowOnClick ? () => rowOnClick(row.original) : null}
               >
                 {row.getVisibleCells().map((cell) => (
                   <td
@@ -204,7 +211,13 @@ const Table = ({
                     className={[
                       'text-nowrap border-r last-of-type:border-r-0 p-2',
                       cell.column.id === 'number' ? 'w-12 text-center' : '',
+                      cell.column.id === 'action'
+                        ? 'group-hover:bg-gray-100/65'
+                        : '',
                     ].join(' ')}
+                    onClick={() =>
+                      rowOnClickHandler(row.original, cell.column.id)
+                    }
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
@@ -237,10 +250,7 @@ const Table = ({
               onChange={pageSizeOnChange}
             >
               {[5, 10, 25, 50, 100, 500, 1000, 5000].map((item) => (
-                <option
-                  key={item}
-                  value={item}
-                >
+                <option key={item} value={item}>
                   {item}
                 </option>
               ))}

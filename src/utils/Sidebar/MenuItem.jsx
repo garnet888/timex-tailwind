@@ -73,10 +73,7 @@ const MenuItem = ({
                 smallMenu ? `${SMALL_MIN_ICON_WIDTH} pr-4` : MIN_ICON_WIDTH,
               ].join(' ')}
             >
-              <GetMenuIcon
-                name={icon}
-                active={menuIsActive()}
-              />
+              <GetMenuIcon name={icon} active={menuIsActive()} />
             </span>
           )}
 

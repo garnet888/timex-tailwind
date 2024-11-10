@@ -1,6 +1,6 @@
 import { dataType } from '@/lib/constants';
 
-export const user = [
+export const userC = [
   {
     accessorKey: 'username',
     header: 'Утасны дугаар',

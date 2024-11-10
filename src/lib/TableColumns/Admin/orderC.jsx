@@ -1,7 +1,7 @@
 import { dataType } from '@/lib/constants';
 import { getIfEmpty, numberWithCommas } from '@/lib/helper';
 
-export const order = [
+export const orderC = [
   {
     accessorKey: 'customerName',
     header: 'Захиалагчийн нэр',

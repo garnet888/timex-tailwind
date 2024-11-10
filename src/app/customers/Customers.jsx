@@ -5,7 +5,7 @@ import { LiaNotesMedicalSolid } from 'react-icons/lia';
 import Modal from 'react-minimal-modal';
 import { useMainContext } from '@/context/MainContext';
 import { Table, Textarea } from '@/ui';
-import { customers } from '@/lib/TableColumns/customers';
+import { customersC } from '@/lib/TableColumns/customersC';
 import Box from '@/utils/Box';
 import { apiList, callPost } from '@/axios/api';
 import AdminLayout from '@/layouts/AdminLayout';
@@ -45,34 +45,19 @@ const Customers = ({ title }) => {
 
   return (
     <AdminLayout>
-      <Modal
-        title='Тэмдэглэл нэмэх'
-        open={shownNote}
-        onClose={modalOnClose}
-      >
-        <Textarea
-          value={note}
-          shownCount
-          maxLength={200}
-          onChange={setNote}
-        />
+      <Modal title='Тэмдэглэл нэмэх' open={shownNote} onClose={modalOnClose}>
+        <Textarea value={note} shownCount maxLength={200} onChange={setNote} />
 
-        <button
-          className='w-full mt-4.5'
-          onClick={saveNoteOnClick}
-        >
+        <button className='w-full mt-4.5' onClick={saveNoteOnClick}>
           Хадгалах
         </button>
       </Modal>
 
-      <Box
-        title={title}
-        noDivider
-      >
+      <Box title={title} noDivider>
         <Table
           api='/customer'
           customQuery='sort=-firstOrder'
-          columns={customers}
+          columns={customersC}
           actionHeader='Тэмдэглэл'
           actions={[
             {

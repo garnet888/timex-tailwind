@@ -1,6 +1,6 @@
 import Verify from './Verify';
 
-const title = 'Харилцагч баталгаажуулах';
+const title = 'Харилцагч баталгаажуулалт';
 export const metadata = { title };
 
 const VerifyPage = () => {

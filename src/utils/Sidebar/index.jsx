@@ -238,7 +238,11 @@ const Sidebar = ({ smallMenu, smallMenuHandler }) => {
               >
                 <Image
                   className='w-[34px] h-[34px] object-cover rounded-full'
-                  src={IMG_URL + userInfo?.profileImage}
+                  src={
+                    userInfo?.profileImage
+                      ? IMG_URL + userInfo.profileImage
+                      : '/default_avatar.svg'
+                  }
                   alt='Avatar'
                   width={100}
                   height={100}

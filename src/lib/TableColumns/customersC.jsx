@@ -1,7 +1,7 @@
 import { Tooltip } from '@/ui';
 import { dataType } from '../constants';
 
-export const customers = [
+export const customersC = [
   {
     accessorKey: 'name',
     header: 'Нэр',

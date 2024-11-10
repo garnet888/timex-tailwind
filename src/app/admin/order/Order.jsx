@@ -2,20 +2,14 @@
 
 import AdminLayout from '@/layouts/AdminLayout';
 import { Table } from '@/ui';
-import { order } from '@/lib/TableColumns/Admin/order';
+import { orderC } from '@/lib/TableColumns/Admin/orderC';
 import Box from '@/utils/Box';
 
 const Order = ({ title }) => {
   return (
     <AdminLayout>
-      <Box
-        title={title}
-        noDivider
-      >
-        <Table
-          api='/admin/order'
-          columns={order}
-        />
+      <Box title={title} noDivider>
+        <Table api='/admin/order' columns={orderC} />
       </Box>
     </AdminLayout>
   );

@@ -51,6 +51,7 @@ export const GetColumns = ({
   columns,
   actionHeader,
   actions,
+  noActions,
   actionsHandler,
   rowOnClick,
 }) =>
@@ -163,7 +164,7 @@ export const GetColumns = ({
       },
     ];
 
-    if (!actions.length > 0 || rowOnClick) {
+    if (!actions.length > 0 || noActions) {
       edited = edited.filter((item) => item.accessorKey !== 'action');
     }
 

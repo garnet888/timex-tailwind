@@ -5,9 +5,10 @@ import Image from 'next/image';
 import { SlDocs } from 'react-icons/sl';
 import Modal from 'react-minimal-modal';
 import { Table, Warning } from '@/ui';
-import { apiList, callDelete } from '@/axios/api';
-import { user } from '@/lib/TableColumns/Admin/User/user';
+import { userC } from '@/lib/TableColumns/Admin/User/userC';
+import { getIfEmpty } from '@/lib/helper';
 import { useMainContext } from '@/context/MainContext';
+import { apiList, callDelete } from '@/axios/api';
 import Box from '@/utils/Box';
 import AdminLayout from '@/layouts/AdminLayout';
 
@@ -65,29 +66,28 @@ const User = ({ title }) => {
         className='overflow-auto'
         onClose={() => setShownDoc(false)}
       >
-        <div className='grid grid-cols-2 gap-4 pb-6'>
-          {docs?.map((doc) => (
-            <figure key={doc.id}>
-              <Image
-                className='w-full h-full object-cover'
-                src={IMG_URL + doc}
-                alt='image'
-                width={100}
-                height={100}
-                priority
-              />
-            </figure>
-          ))}
-        </div>
+        {docs?.length > 0
+          ? docs?.map((doc) => (
+              <div className='grid grid-cols-2 gap-4 pb-6'>
+                <figure key={doc.id}>
+                  <Image
+                    className='w-full h-full object-cover'
+                    src={IMG_URL + doc}
+                    alt='image'
+                    width={100}
+                    height={100}
+                    priority
+                  />
+                </figure>
+              </div>
+            ))
+          : getIfEmpty()}
       </Modal>
 
-      <Box
-        title={title}
-        noDivider
-      >
+      <Box title={title} noDivider>
         <Table
           api='/admin/user'
-          columns={user}
+          columns={userC}
           actions={[
             {
               key: 'DOC',
@@ -97,6 +97,7 @@ const User = ({ title }) => {
             { key: 'DELETE' },
           ]}
           actionsHandler={actionsHandler}
+          rowOnClick={(data) => alert(data.id)}
         />
       </Box>
     </AdminLayout>

@@ -38,15 +38,16 @@ const Profile = ({ title }) => {
         setOpen={setOpenModal}
       />
 
-      <Box
-        title={title}
-        widthFit
-      >
+      <Box title={title} widthFit>
         <center>
           <figure className='relative w-[68px] h-[68px]'>
             <Image
               className='w-full h-full object-cover rounded-full'
-              src={IMG_URL + userInfo?.profileImage}
+              src={
+                userInfo?.profileImage
+                  ? IMG_URL + userInfo.profileImage
+                  : '/default_avatar.svg'
+              }
               alt='Avatar'
               width={100}
               height={100}
