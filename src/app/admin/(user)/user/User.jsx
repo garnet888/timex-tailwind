@@ -68,8 +68,8 @@ const User = ({ title }) => {
       >
         {docs?.length > 0
           ? docs?.map((doc) => (
-              <div className='grid grid-cols-2 gap-4 pb-6'>
-                <figure key={doc.id}>
+              <div key={doc.id} className='grid grid-cols-2 gap-4 pb-6'>
+                <figure>
                   <Image
                     className='w-full h-full object-cover'
                     src={IMG_URL + doc}
