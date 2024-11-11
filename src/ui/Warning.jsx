@@ -4,14 +4,26 @@ import { useState } from 'react';
 import Modal from 'react-minimal-modal';
 import { BiSolidError } from 'react-icons/bi';
 
-const Warning = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
+const Warning = ({
+  width,
+  icon = (
+    <BiSolidError
+      className='mt-1'
+      size={26}
+      color='orange'
+    />
+  ),
+  title = '',
+  text = '',
+  yesText = 'Тийм',
+  noText = 'Үгүй',
+  borderColor = 'orange',
+  visible = false,
+  hiddenNoButton = false,
+  yesOnClick,
+  noOnClick,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
-
-  const onClose = () => {
-    if (!isLoading) {
-      noOnClick();
-    }
-  };
 
   const yesHandler = () => {
     setIsLoading(true);
@@ -20,33 +32,40 @@ const Warning = ({ text = '', visible = false, noOnClick, yesOnClick }) => {
 
   return (
     <Modal
-      className='border-2 border-orange-400 rounded-xl p-6'
-      width={400}
+      className='border-2 rounded-xl p-6'
+      style={{ borderColor: borderColor }}
+      width={width}
       open={visible}
       hideIcon
-      onClose={onClose}
     >
-      <span className='flex gap-2'>
-        <BiSolidError className='mt-1' size={26} color='orange' />
+      <div className='flex gap-2'>
+        {icon}
 
-        {text}
-      </span>
+        <div className='flex flex-col gap-1'>
+          {title && <b className='font-semibold'>{title}</b>}
+
+          <div>{text}</div>
+        </div>
+      </div>
 
       <div className='flex justify-end gap-4 mt-4'>
-        <button
-          className='normal_btn text-dark'
-          disabled={isLoading}
-          onClick={noOnClick}
-        >
-          Үгүй
-        </button>
+        {hiddenNoButton || (
+          <button
+            className='normal_btn text-dark'
+            disabled={isLoading}
+            onClick={noOnClick}
+          >
+            {noText}
+          </button>
+        )}
 
         <button
-          className='normal_btn bg-orange-400 text-white hover:text-orange-400 hover:border-orange-400'
+          className='normal_btn text-white hover:text-white hover:border-transparent'
+          style={{ backgroundColor: borderColor }}
           disabled={isLoading}
           onClick={yesHandler}
         >
-          {isLoading ? <span className='load_spinner w-4' /> : 'Тийм'}
+          {isLoading ? <span className='load_spinner w-4' /> : yesText}
         </button>
       </div>
     </Modal>

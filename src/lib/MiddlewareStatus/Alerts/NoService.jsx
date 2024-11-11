@@ -1,6 +1,5 @@
 import { useRouter } from 'next/navigation';
-import Modal from 'react-minimal-modal';
-import { BackedIcon } from '@/ui';
+import { BackedIcon, Warning } from '@/ui';
 import { LockIcon } from '@/utils/icons';
 
 const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE;
@@ -9,46 +8,31 @@ const NoServiceAlert = ({ visible, onClose }) => {
   const router = useRouter();
 
   return (
-    <Modal
-      hideIcon
-      open={visible}
-      animation='slide'
+    <Warning
       width={564}
-    >
-      <div className='flex gap-4'>
+      icon={
         <BackedIcon>
           <LockIcon />
         </BackedIcon>
+      }
+      title='Таны үйлчилгээний эрх нээгдээгүй байна'
+      text={
+        <span>
+          <p>
+            Манай борлуулалтын албанаас холбогдтол түр хүлээнэ үү. Хэрвээ
+            холбогдохыг хүсвэл доорх дугаараар холбогдоно уу.
+          </p>
 
-        <div className='flex flex-col items-end'>
-          <div className='w-full mb-4'>
-            <b className='font-semibold'>
-              Таны үйлчилгээний эрх нээгдээгүй байна
-            </b>
-
-            <span className='mt-1'>
-              <p>
-                Манай борлуулалтын албанаас холбогдтол түр хүлээнэ үү. Хэрвээ
-                холбогдохыг хүсвэл доорх дугаараар холбогдоно уу.
-              </p>
-
-              <p className='font-medium sm:text-end mt-2'>{CONTACT_PHONE}</p>
-            </span>
-          </div>
-
-          <div className='flex gap-3'>
-            <button
-              className='normal_btn'
-              onClick={onClose}
-            >
-              Хаах
-            </button>
-
-            <button onClick={() => router.push('/dashboard')}>За</button>
-          </div>
-        </div>
-      </div>
-    </Modal>
+          <p className='font-medium sm:text-end mt-2'>{CONTACT_PHONE}</p>
+        </span>
+      }
+      yesText='За'
+      noText='Хаах'
+      borderColor='red'
+      visible={visible}
+      yesOnClick={() => router.push('/dashboard')}
+      noOnClick={onClose}
+    />
   );
 };
 

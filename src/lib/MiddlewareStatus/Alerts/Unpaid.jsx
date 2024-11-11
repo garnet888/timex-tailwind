@@ -1,32 +1,26 @@
 import { useRouter } from 'next/navigation';
-import Modal from 'react-minimal-modal';
-import { BackedIcon } from '@/ui';
+import { BackedIcon, Warning } from '@/ui';
 import { LockIcon } from '@/utils/icons';
 
-const UnpaidAlert = ({ visible, onClose }) => {
+const UnpaidAlert = ({ visible }) => {
   const router = useRouter();
 
   return (
-    <Modal
+    <Warning
       width={428}
-      hideIcon
-      open={visible}
-    >
-      <div className='flex gap-4'>
+      icon={
         <BackedIcon>
           <LockIcon />
         </BackedIcon>
-
-        <div className='flex flex-col items-end'>
-          <span className='w-full mb-4'>
-            <b className='font-semibold'>Төлөлт хийгдээгүй байна</b>
-            <p className='mt-1'>Та өөрт тохирох багцаа худалдан авна уу</p>
-          </span>
-
-          <button onClick={() => router.push('/payment?type=buy')}>За</button>
-        </div>
-      </div>
-    </Modal>
+      }
+      title='Төлөлт хийгдээгүй байна'
+      text='Та өөрт тохирох багцаа худалдан авна уу'
+      yesText='За'
+      borderColor='red'
+      visible={visible}
+      hiddenNoButton
+      yesOnClick={() => router.push('/payment?type=buy')}
+    />
   );
 };
 
