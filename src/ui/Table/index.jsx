@@ -9,7 +9,7 @@ import {
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa6';
 import Pagination from 'react-responsive-pagination';
 import { useMainContext } from '@/context/MainContext';
-import { getParamsTable } from '@/lib/helper';
+import { getIfEmpty, getParamsTable } from '@/lib/helper';
 import { ChevronArrow } from '@/utils/icons';
 import { callGetList } from '@/axios/api';
 import { GetColumns } from './columns';
@@ -226,6 +226,8 @@ const Table = ({
             ))}
           </tbody>
         </table>
+
+        {DATA?.length > 0 || <center className='p-2'>{getIfEmpty()}</center>}
       </div>
 
       {noPagination || (
@@ -250,7 +252,10 @@ const Table = ({
               onChange={pageSizeOnChange}
             >
               {[5, 10, 25, 50, 100, 500, 1000, 5000].map((item) => (
-                <option key={item} value={item}>
+                <option
+                  key={item}
+                  value={item}
+                >
                   {item}
                 </option>
               ))}

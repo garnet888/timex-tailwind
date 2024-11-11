@@ -1,10 +1,7 @@
-import { usePathname } from 'next/navigation';
 import { dataType } from '@/lib/constants';
 import { getIfEmpty, numberWithCommas } from '@/lib/helper';
 
-export const topC = () => {
-  const pathname = usePathname();
-
+export const topC = (path) => {
   const PATHNAMES = {
     service: '/admin/report/service',
     user: '/admin/report/user',
@@ -14,7 +11,7 @@ export const topC = () => {
   let colKey = '';
   let colHeader = '';
 
-  switch (pathname) {
+  switch (path) {
     case PATHNAMES.service:
       colKey = 'name';
       colHeader = 'Үйлчилгээний нэр';
@@ -57,7 +54,7 @@ export const topC = () => {
     },
   ];
 
-  if (pathname === PATHNAMES.user) {
+  if (path === PATHNAMES.user) {
     COLUMNS.splice(3, 0, {
       accessorKey: 'phone',
       header: 'Хэрэглэгчийн утас',
